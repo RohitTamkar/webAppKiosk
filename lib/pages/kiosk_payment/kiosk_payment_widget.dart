@@ -150,9 +150,7 @@ class _KioskPaymentWidgetState extends State<KioskPaymentWidget> {
                                 focusColor: Colors.transparent,
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
-                                onLongPress: () async {
-                                  context.pushNamed('null');
-                                },
+                                onLongPress: () async {},
                                 child: wrapWithModel(
                                   model: _model.kioskHeaderModel,
                                   updateCallback: () => safeSetState(() {}),
