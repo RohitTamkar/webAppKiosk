@@ -187,7 +187,7 @@ class _LoadingScreenkiosknewWidgetState
         }
 
         context.pushNamed(
-          'KioskAdvertising',
+          'KioskBillScreen',
           queryParameters: {
             'shiftdoc': serializeParam(
               _model.shiftDetailsNew2,
@@ -264,7 +264,7 @@ class _LoadingScreenkiosknewWidgetState
         }
 
         context.pushNamed(
-          'KioskAdvertising',
+          'KioskBillScreen',
           queryParameters: {
             'shiftdoc': serializeParam(
               _model.shiftDetailsNewresumed,
