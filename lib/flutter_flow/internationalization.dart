@@ -414,7 +414,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ta': '',
     },
     's9g1enft': {
-      'en': 'Cancel Order',
+      'en': '',
       'hi': '',
       'kn': '',
       'mr': '',

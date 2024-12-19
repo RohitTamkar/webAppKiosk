@@ -915,7 +915,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                       ),
                                                     ),
                                                     Expanded(
-                                                      flex: 6,
+                                                      flex: 8,
                                                       child: Container(
                                                         width: double.infinity,
                                                         decoration:

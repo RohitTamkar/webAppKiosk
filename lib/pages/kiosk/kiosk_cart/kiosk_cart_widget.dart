@@ -102,7 +102,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                           EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 30.0, 15.0),
                       child: Container(
                         width: double.infinity,
-                        height: MediaQuery.sizeOf(context).height * 0.14,
+                        height: MediaQuery.sizeOf(context).height * 0.16,
                         decoration: BoxDecoration(),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
@@ -121,191 +121,201 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                   child: KioskHeaderWidget(),
                                 ),
                               ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 20.0, 0.0),
-                                    child: FlutterFlowIconButton(
-                                      borderColor:
-                                          FlutterFlowTheme.of(context).primary,
-                                      borderRadius: 15.0,
-                                      borderWidth: 0.5,
-                                      buttonSize: 25.0,
-                                      fillColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      icon: Icon(
-                                        Icons.keyboard_backspace_outlined,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        size: 10.0,
-                                      ),
-                                      onPressed: () async {
-                                        context.goNamed(
-                                          'KioskBillScreen',
-                                          queryParameters: {
-                                            'doc': serializeParam(
-                                              widget!.doc,
-                                              ParamType.DocumentReference,
-                                            ),
-                                            'shiftdoc': serializeParam(
-                                              widget!.shiftdetails,
-                                              ParamType.JSON,
-                                            ),
-                                            'appsetting': serializeParam(
-                                              widget!.appsetting,
-                                              ParamType.Document,
-                                            ),
-                                            'taxcollection': serializeParam(
-                                              widget!.taxcollection,
-                                              ParamType.Document,
-                                              isList: true,
-                                            ),
-                                          }.withoutNulls,
-                                          extra: <String, dynamic>{
-                                            'appsetting': widget!.appsetting,
-                                            'taxcollection':
-                                                widget!.taxcollection,
-                                          },
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                  Text(
-                                    FFLocalizations.of(context).getText(
-                                      '770ul0ha' /* Confirm Your Order */,
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .headlineSmall
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .headlineSmallFamily,
+                              Flexible(
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 20.0, 0.0),
+                                      child: FlutterFlowIconButton(
+                                        borderColor:
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                        borderRadius: 15.0,
+                                        borderWidth: 0.5,
+                                        buttonSize: 25.0,
+                                        fillColor: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        icon: Icon(
+                                          Icons.keyboard_backspace_outlined,
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
-                                          fontSize: 10.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .headlineSmallFamily),
+                                          size: 10.0,
                                         ),
-                                  ),
-                                  Flexible(
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Flexible(
-                                          child: Container(
-                                            height: 35.0,
-                                            decoration: BoxDecoration(),
-                                            child: FlutterFlowChoiceChips(
-                                              options: [
-                                                ChipData(
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                  'm630vqg2' /* DINE IN */,
-                                                )),
-                                                ChipData(
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                  '9hqpozct' /* PARCEL */,
-                                                ))
-                                              ],
-                                              onChanged: (val) async {
-                                                safeSetState(() =>
-                                                    _model.choiceChipsValue =
-                                                        val?.firstOrNull);
-                                                FFAppState().orderType =
-                                                    _model.choiceChipsValue!;
-                                                safeSetState(() {});
-                                              },
-                                              selectedChipStyle: ChipStyle(
-                                                backgroundColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                          fontSize: 12.0,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
-                                                        ),
-                                                iconColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .info,
-                                                iconSize: 10.0,
-                                                elevation: 0.0,
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
+                                        onPressed: () async {
+                                          context.goNamed(
+                                            'KioskBillScreen',
+                                            queryParameters: {
+                                              'doc': serializeParam(
+                                                widget!.doc,
+                                                ParamType.DocumentReference,
                                               ),
-                                              unselectedChipStyle: ChipStyle(
-                                                backgroundColor:
-                                                    Color(0xFFD7D4E8),
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
-                                                        ),
-                                                iconColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                iconSize: 12.0,
-                                                elevation: 0.0,
-                                                borderRadius:
-                                                    BorderRadius.circular(6.0),
+                                              'shiftdoc': serializeParam(
+                                                widget!.shiftdetails,
+                                                ParamType.JSON,
                                               ),
-                                              chipSpacing: 10.0,
-                                              rowSpacing: 8.0,
-                                              multiselect: false,
-                                              alignment: WrapAlignment.start,
-                                              controller: _model
-                                                      .choiceChipsValueController ??=
-                                                  FormFieldController<
-                                                      List<String>>(
-                                                [],
+                                              'appsetting': serializeParam(
+                                                widget!.appsetting,
+                                                ParamType.Document,
                                               ),
-                                              wrapped: false,
+                                              'taxcollection': serializeParam(
+                                                widget!.taxcollection,
+                                                ParamType.Document,
+                                                isList: true,
+                                              ),
+                                            }.withoutNulls,
+                                            extra: <String, dynamic>{
+                                              'appsetting': widget!.appsetting,
+                                              'taxcollection':
+                                                  widget!.taxcollection,
+                                            },
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                    Text(
+                                      FFLocalizations.of(context).getText(
+                                        '770ul0ha' /* Confirm Your Order */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .headlineSmall
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineSmallFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            fontSize: 10.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w600,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineSmallFamily),
+                                          ),
+                                    ),
+                                    Flexible(
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Flexible(
+                                            child: Container(
+                                              height: 35.0,
+                                              decoration: BoxDecoration(),
+                                              child: FlutterFlowChoiceChips(
+                                                options: [
+                                                  ChipData(FFLocalizations.of(
+                                                          context)
+                                                      .getText(
+                                                    'm630vqg2' /* DINE IN */,
+                                                  )),
+                                                  ChipData(FFLocalizations.of(
+                                                          context)
+                                                      .getText(
+                                                    '9hqpozct' /* PARCEL */,
+                                                  ))
+                                                ],
+                                                onChanged: (val) async {
+                                                  safeSetState(() =>
+                                                      _model.choiceChipsValue =
+                                                          val?.firstOrNull);
+                                                  FFAppState().orderType =
+                                                      _model.choiceChipsValue!;
+                                                  safeSetState(() {});
+                                                },
+                                                selectedChipStyle: ChipStyle(
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                  textStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                            fontSize: 12.0,
+                                                            letterSpacing: 0.0,
+                                                            useGoogleFonts: GoogleFonts
+                                                                    .asMap()
+                                                                .containsKey(
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMediumFamily),
+                                                          ),
+                                                  iconColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .info,
+                                                  iconSize: 10.0,
+                                                  elevation: 0.0,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                ),
+                                                unselectedChipStyle: ChipStyle(
+                                                  backgroundColor:
+                                                      Color(0xFFD7D4E8),
+                                                  textStyle: FlutterFlowTheme
+                                                          .of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
+                                                  iconColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryText,
+                                                  iconSize: 12.0,
+                                                  elevation: 0.0,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          6.0),
+                                                ),
+                                                chipSpacing: 10.0,
+                                                rowSpacing: 8.0,
+                                                multiselect: false,
+                                                alignment: WrapAlignment.start,
+                                                controller: _model
+                                                        .choiceChipsValueController ??=
+                                                    FormFieldController<
+                                                        List<String>>(
+                                                  [],
+                                                ),
+                                                wrapped: false,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ],
                           ),
@@ -397,7 +407,14 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                                             8.0),
                                                                 child: Image
                                                                     .network(
-                                                                  'https://picsum.photos/seed/845/600',
+                                                                  valueOrDefault<
+                                                                      String>(
+                                                                    getJsonField(
+                                                                      listviewItem,
+                                                                      r'''$.imageUrl''',
+                                                                    )?.toString(),
+                                                                    'https://as1.ftcdn.net/v2/jpg/04/34/72/82/1000_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg',
+                                                                  ),
                                                                   width: 100.0,
                                                                   height: 100.0,
                                                                   fit: BoxFit
@@ -1113,7 +1130,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                         }
                                       },
                                       text: FFLocalizations.of(context).getText(
-                                        's9g1enft' /* Cancel Order */,
+                                        's9g1enft' /*  */,
                                       ),
                                       icon: Icon(
                                         Icons.close,
@@ -1324,7 +1341,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                   _model.apiResulttja =
                                                       await PayApiCall.call(
                                                     merchantId:
-                                                        'SENSIBLEQRTESTUAT',
+                                                        'PGTESTPAYUAT131',
                                                     merchantTransactionId:
                                                         'MT${getCurrentTimestamp.millisecondsSinceEpoch.toString()}',
                                                     merchantUserId:
@@ -1336,7 +1353,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                     redirectUrl: 'google.com',
                                                     redirectMode: 'POST',
                                                     callbackUrl:
-                                                        'https://uvpixel.com/orderStatus',
+                                                        'https://google.com/orderStatus',
                                                     mobileNumber: 0,
                                                     type: 'PAY_PAGE',
                                                   );
@@ -1358,6 +1375,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                       builder:
                                                           (alertDialogContext) {
                                                         return AlertDialog(
+                                                          title: Text('Failed'),
                                                           content: Text((_model
                                                                       .apiResulttja
                                                                       ?.jsonBody ??
