@@ -151,7 +151,7 @@ class _KioskPaymentWidgetState extends State<KioskPaymentWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onLongPress: () async {
-                                  context.pushNamed('KioskLogin');
+                                  context.pushNamed('null');
                                 },
                                 child: wrapWithModel(
                                   model: _model.kioskHeaderModel,

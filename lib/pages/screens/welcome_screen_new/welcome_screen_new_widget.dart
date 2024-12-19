@@ -144,9 +144,7 @@ class _WelcomeScreenNewWidgetState extends State<WelcomeScreenNewWidget>
         );
       }
 
-      if (FFAppState().targetPlatform == 'android') {
-        context.pushNamed('LoginPageNew');
-      }
+      if (FFAppState().targetPlatform == 'android') {}
     });
 
     // On shake action.

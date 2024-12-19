@@ -137,8 +137,6 @@ class _KioskWelcomeWidgetState extends State<KioskWelcomeWidget> {
       }
 
       await Future.delayed(const Duration(milliseconds: 5000));
-
-      context.pushNamed('KioskLogin');
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));

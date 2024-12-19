@@ -6,10 +6,6 @@ export '/pages/loading_screen/loading_screen_widget.dart'
 export '/pages/start_screen/start_screen_widget.dart' show StartScreenWidget;
 export '/pages/screens/welcome_screen_new/welcome_screen_new_widget.dart'
     show WelcomeScreenNewWidget;
-export '/pages/login_page_new/login_page_new_widget.dart'
-    show LoginPageNewWidget;
-export '/pages/loading_screen_new/loading_screen_new_widget.dart'
-    show LoadingScreenNewWidget;
 export '/pages/screens/print_settingkiosk/print_settingkiosk_widget.dart'
     show PrintSettingkioskWidget;
 export '/pages/kiosk_payment/kiosk_payment_widget.dart' show KioskPaymentWidget;
@@ -25,7 +21,6 @@ export '/pages/kiosk/kiosk_dine_parcel/kiosk_dine_parcel_widget.dart'
     show KioskDineParcelWidget;
 export '/pages/kiosk/kiosk_advertising/kiosk_advertising_widget.dart'
     show KioskAdvertisingWidget;
-export '/pages/kiosk/kiosk_login/kiosk_login_widget.dart' show KioskLoginWidget;
 export '/pages/kiosk/kiosk_splash_screen/kiosk_splash_screen_widget.dart'
     show KioskSplashScreenWidget;
 export '/pages/kiosk/loading_screenkiosknew/loading_screenkiosknew_widget.dart'

@@ -89,58 +89,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => WelcomeScreenNewWidget(),
             ),
             FFRoute(
-              name: 'LoginPageNew',
-              path: 'loginPageNew',
-              builder: (context, params) => LoginPageNewWidget(
-                billDetails: params.getParam(
-                  'billDetails',
-                  ParamType.DocumentReference,
-                  isList: false,
-                  collectionNamePath: ['OUTLET', 'INVOICE'],
-                ),
-                doc: params.getParam(
-                  'doc',
-                  ParamType.DocumentReference,
-                  isList: false,
-                  collectionNamePath: ['USER_PROFILE'],
-                ),
-                shiftDetails: params.getParam(
-                  'shiftDetails',
-                  ParamType.JSON,
-                ),
-              ),
-            ),
-            FFRoute(
-              name: 'loadingScreenNew',
-              path: 'loadingScreenNew',
-              asyncParams: {
-                'appSettingDoc': getDoc(
-                    ['OUTLET', 'APP_SETTINGS'], AppSettingsRecord.fromSnapshot),
-              },
-              builder: (context, params) => LoadingScreenNewWidget(
-                shiftDoc: params.getParam(
-                  'shiftDoc',
-                  ParamType.JSON,
-                ),
-                userDoc: params.getParam(
-                  'userDoc',
-                  ParamType.DocumentReference,
-                  isList: false,
-                  collectionNamePath: ['USER_PROFILE'],
-                ),
-                appSettingDoc: params.getParam(
-                  'appSettingDoc',
-                  ParamType.Document,
-                ),
-                outletRef: params.getParam(
-                  'outletRef',
-                  ParamType.DocumentReference,
-                  isList: false,
-                  collectionNamePath: ['OUTLET'],
-                ),
-              ),
-            ),
-            FFRoute(
               name: 'printSettingkiosk',
               path: 'printSettingkiosk',
               builder: (context, params) => PrintSettingkioskWidget(),
@@ -356,28 +304,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   'taxcollection',
                   ParamType.Document,
                   isList: true,
-                ),
-              ),
-            ),
-            FFRoute(
-              name: 'KioskLogin',
-              path: 'kioskLogin',
-              builder: (context, params) => KioskLoginWidget(
-                billDetails: params.getParam(
-                  'billDetails',
-                  ParamType.DocumentReference,
-                  isList: false,
-                  collectionNamePath: ['OUTLET', 'INVOICE'],
-                ),
-                doc: params.getParam(
-                  'doc',
-                  ParamType.DocumentReference,
-                  isList: false,
-                  collectionNamePath: ['USER_PROFILE'],
-                ),
-                shiftDetails: params.getParam(
-                  'shiftDetails',
-                  ParamType.JSON,
                 ),
               ),
             ),
