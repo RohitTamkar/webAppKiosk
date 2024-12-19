@@ -10,4 +10,3 @@ export 'upi_integration.dart' show UpiIntegration;
 export 'custom_web_view_widget.dart' show CustomWebViewWidget;
 export 'dynamic_q_r.dart' show DynamicQR;
 export 'user_input.dart' show UserInput;
-export 'pd_led_customerdisplay.dart' show PdLedCustomerdisplay;

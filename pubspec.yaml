@@ -96,7 +96,6 @@ dependencies:
   screenshot: ^2.3.0
   sensors_plus: 6.0.1
   sensors_plus_platform_interface: 2.0.0
-  serial_port_win32: ^2.1.12
   shake: 
     git:
       url: https://github.com/FlutterFlow/shake.git
