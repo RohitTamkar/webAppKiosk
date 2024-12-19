@@ -420,7 +420,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryText,
-                                                    size: 30.0,
+                                                    size: 20.0,
                                                   ),
                                                   onPressed: () async {
                                                     _model.appsettingresfresh =
@@ -935,78 +935,49 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                                 CrossAxisAlignment
                                                                     .start,
                                                             children: [
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            5.0),
-                                                                child: Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                              Flexible(
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
                                                                           5.0),
-                                                                      child:
-                                                                          Text(
-                                                                        valueOrDefault<
-                                                                            String>(
-                                                                          functions
-                                                                              .returnTitlecase(kioskBillScreenVarItem.name),
-                                                                          'null',
-                                                                        ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .headlineLarge
-                                                                            .override(
-                                                                              fontFamily: FlutterFlowTheme.of(context).headlineLargeFamily,
-                                                                              color: Color(0xFF033BE8),
-                                                                              fontSize: 10.0,
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FontWeight.w600,
-                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineLargeFamily),
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      Flexible(
+                                                                        child:
+                                                                            Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              5.0),
+                                                                          child:
+                                                                              Text(
+                                                                            valueOrDefault<String>(
+                                                                              functions.returnTitlecase(kioskBillScreenVarItem.name),
+                                                                              'null',
                                                                             ),
-                                                                      ),
-                                                                    ),
-                                                                    if (!valueOrDefault<
-                                                                        bool>(
-                                                                      widget!
-                                                                          .appsetting
-                                                                          ?.settingList
-                                                                          ?.where((e) =>
-                                                                              e.title ==
-                                                                              'hideRegionalLanguage')
-                                                                          .toList()
-                                                                          ?.firstOrNull
-                                                                          ?.value,
-                                                                      false,
-                                                                    ))
-                                                                      Text(
-                                                                        valueOrDefault<
-                                                                            String>(
-                                                                          kioskBillScreenVarItem
-                                                                              .regionalName,
-                                                                          'null',
+                                                                            style: FlutterFlowTheme.of(context).headlineLarge.override(
+                                                                                  fontFamily: FlutterFlowTheme.of(context).headlineLargeFamily,
+                                                                                  color: Color(0xFF033BE8),
+                                                                                  fontSize: 10.0,
+                                                                                  letterSpacing: 0.0,
+                                                                                  fontWeight: FontWeight.w600,
+                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineLargeFamily),
+                                                                                ),
+                                                                          ),
                                                                         ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                              color: Color(0xFF033BE8),
-                                                                              letterSpacing: 0.0,
-                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                            ),
                                                                       ),
-                                                                  ],
+                                                                    ],
+                                                                  ),
                                                                 ),
                                                               ),
                                                               Row(
@@ -1713,7 +1684,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                           fontFamily:
                                               FlutterFlowTheme.of(context)
                                                   .displayMediumFamily,
-                                          fontSize: 22.0,
+                                          fontSize: 18.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
                                           useGoogleFonts: GoogleFonts.asMap()
@@ -1733,7 +1704,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                           fontFamily:
                                               FlutterFlowTheme.of(context)
                                                   .displayMediumFamily,
-                                          fontSize: 24.0,
+                                          fontSize: 18.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.w600,
                                           useGoogleFonts: GoogleFonts.asMap()

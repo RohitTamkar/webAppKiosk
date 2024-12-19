@@ -1,8 +1,6 @@
 // Export pages
 export '/pages/screens/welcome_screen/welcome_screen_widget.dart'
     show WelcomeScreenWidget;
-export '/pages/loading_screen/loading_screen_widget.dart'
-    show LoadingScreenWidget;
 export '/pages/start_screen/start_screen_widget.dart' show StartScreenWidget;
 export '/pages/screens/welcome_screen_new/welcome_screen_new_widget.dart'
     show WelcomeScreenNewWidget;

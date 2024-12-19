@@ -451,6 +451,18 @@ class PayApiCall {
     int? mobileNumber,
     String? type = '',
   }) async {
+    final ffApiRequestBody = '''
+{
+  "merchantId": "${escapeStringForJson(merchantId)}",
+  "merchantTransactionId": "${escapeStringForJson(merchantTransactionId)}",
+  "merchantUserId": "${escapeStringForJson(merchantUserId)}",
+  "amount": ${amount},
+  "redirectUrl": "${escapeStringForJson(redirectUrl)}",
+  "redirectMode": "${escapeStringForJson(redirectMode)}",
+  "callbackUrl": "${escapeStringForJson(callbackUrl)}",
+  "mobileNumber": ${mobileNumber},
+  "type": "${escapeStringForJson(type)}"
+}''';
     return ApiManager.instance.makeApiCall(
       callName: 'payApi',
       apiUrl:
@@ -458,6 +470,7 @@ class PayApiCall {
       callType: ApiCallType.POST,
       headers: {},
       params: {},
+      body: ffApiRequestBody,
       bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
@@ -474,6 +487,11 @@ class CheckStatusCall {
     String? merchantId = '',
     String? merchantTransactionId = '',
   }) async {
+    final ffApiRequestBody = '''
+{
+  "merchantId": "${escapeStringForJson(merchantId)}",
+  "merchantTransactionId": "${escapeStringForJson(merchantTransactionId)}"
+}''';
     return ApiManager.instance.makeApiCall(
       callName: 'checkStatus',
       apiUrl:
@@ -481,6 +499,7 @@ class CheckStatusCall {
       callType: ApiCallType.POST,
       headers: {},
       params: {},
+      body: ffApiRequestBody,
       bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
@@ -537,4 +556,15 @@ String _serializeJson(dynamic jsonVar, [bool isList = false]) {
     }
     return isList ? '[]' : '{}';
   }
+}
+
+String? escapeStringForJson(String? input) {
+  if (input == null) {
+    return null;
+  }
+  return input
+      .replaceAll('\\', '\\\\')
+      .replaceAll('"', '\\"')
+      .replaceAll('\n', '\\n')
+      .replaceAll('\t', '\\t');
 }

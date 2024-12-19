@@ -331,7 +331,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                           children: [
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  25.0, 0.0, 25.0, 20.0),
+                                  20.0, 0.0, 20.0, 20.0),
                               child: Container(
                                 width: double.infinity,
                                 height: double.infinity,
@@ -375,7 +375,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                           0.0, 0.0, 0.0, 10.0),
                                                   child: Container(
                                                     width: 100.0,
-                                                    height: 150.0,
+                                                    height: 160.0,
                                                     decoration: BoxDecoration(
                                                       color: FlutterFlowTheme
                                                               .of(context)
@@ -395,7 +395,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                           child: Column(
                                                             mainAxisSize:
                                                                 MainAxisSize
-                                                                    .max,
+                                                                    .min,
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
                                                                     .center,
@@ -432,6 +432,9 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
                                                                     .center,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .center,
                                                             children: [
                                                               Flexible(
                                                                 child: Text(
@@ -445,6 +448,9 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                                     ).toString()),
                                                                     'MAGIC ICE CREAM FACTORY',
                                                                   ),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
@@ -464,6 +470,71 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                                       ),
                                                                 ),
                                                               ),
+                                                              Flexible(
+                                                                child: RichText(
+                                                                  textScaler: MediaQuery.of(
+                                                                          context)
+                                                                      .textScaler,
+                                                                  text:
+                                                                      TextSpan(
+                                                                    children: [
+                                                                      TextSpan(
+                                                                        text: FFLocalizations.of(context)
+                                                                            .getText(
+                                                                          'vi0q6yhk' /* ₹   */,
+                                                                        ),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .headlineSmall
+                                                                            .override(
+                                                                              fontFamily: FlutterFlowTheme.of(context).headlineSmallFamily,
+                                                                              color: Color(0xFF0046D3),
+                                                                              fontSize: 13.0,
+                                                                              letterSpacing: 0.0,
+                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineSmallFamily),
+                                                                            ),
+                                                                      ),
+                                                                      TextSpan(
+                                                                        text: valueOrDefault<
+                                                                            String>(
+                                                                          getJsonField(
+                                                                            listviewItem,
+                                                                            r'''$.price''',
+                                                                          )?.toString(),
+                                                                          '1000',
+                                                                        ),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .headlineSmall
+                                                                            .override(
+                                                                              fontFamily: FlutterFlowTheme.of(context).headlineSmallFamily,
+                                                                              color: Color(0xFF0046D3),
+                                                                              fontSize: 14.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.w600,
+                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineSmallFamily),
+                                                                            ),
+                                                                      )
+                                                                    ],
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .headlineSmall
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              FlutterFlowTheme.of(context).headlineSmallFamily,
+                                                                          color:
+                                                                              Color(0xFF0046D3),
+                                                                          fontSize:
+                                                                              12.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineSmallFamily),
+                                                                        ),
+                                                                  ),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                ),
+                                                              ),
                                                             ],
                                                           ),
                                                         ),
@@ -475,7 +546,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                                         0.0,
                                                                         10.0,
                                                                         0.0,
-                                                                        0.0),
+                                                                        10.0),
                                                             child: Column(
                                                               mainAxisSize:
                                                                   MainAxisSize
@@ -679,7 +750,10 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                                           },
                                                                         ),
                                                                       ),
-                                                                    ],
+                                                                    ].addToEnd(
+                                                                        SizedBox(
+                                                                            width:
+                                                                                5.0)),
                                                                   ),
                                                                 ),
                                                                 Container(
@@ -847,7 +921,10 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                                               () {});
                                                                         },
                                                                       ),
-                                                                    ],
+                                                                    ].addToEnd(
+                                                                        SizedBox(
+                                                                            width:
+                                                                                5.0)),
                                                                   ),
                                                                 ),
                                                               ],
@@ -869,181 +946,10 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                               ),
                             ),
                             Align(
-                              alignment: AlignmentDirectional(1.0, 1.0),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 100.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    if (false)
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(0.0, 1.0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 10.0, 0.0, 10.0),
-                                          child: FFButtonWidget(
-                                            onPressed: () async {
-                                              FFAppState().orderId =
-                                                  FFAppState().orderId + 10;
-                                              FFAppState().paytmOrderId =
-                                                  'ORD-${FFAppState().orderId.toString()}${getCurrentTimestamp.millisecondsSinceEpoch.toString()}';
-                                              safeSetState(() {});
-                                              _model.closeUnixTime =
-                                                  await actions
-                                                      .setCloseUnixTime(
-                                                getCurrentTimestamp,
-                                                10,
-                                              );
-                                              _model.qrResp =
-                                                  await RazorpayQRCreationCall
-                                                      .call(
-                                                type: 'upi_qr',
-                                                name: 'Mrunaal Nerlikar',
-                                                paymentAmount:
-                                                    FFAppState().finalAmt,
-                                                description: 'Bill',
-                                                closeBy: _model.closeUnixTime
-                                                    ?.secondsSinceEpoch,
-                                                isProd: true,
-                                                purpose: 'Bill',
-                                                fixedAmount: true,
-                                                orderId:
-                                                    FFAppState().paytmOrderId,
-                                                posId: FFAppState().outletId,
-                                              );
-
-                                              await showDialog(
-                                                context: context,
-                                                builder: (alertDialogContext) {
-                                                  return AlertDialog(
-                                                    title: Text('Response'),
-                                                    content: Text((_model.qrResp
-                                                                ?.jsonBody ??
-                                                            '')
-                                                        .toString()),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: Text('Ok'),
-                                                      ),
-                                                    ],
-                                                  );
-                                                },
-                                              );
-
-                                              context.pushNamed(
-                                                'KioskPayment',
-                                                queryParameters: {
-                                                  'doc': serializeParam(
-                                                    widget!.doc,
-                                                    ParamType.DocumentReference,
-                                                  ),
-                                                  'shiftdetails':
-                                                      serializeParam(
-                                                    widget!.shiftdetails,
-                                                    ParamType.JSON,
-                                                  ),
-                                                  'qrJson': serializeParam(
-                                                    (_model.qrResp?.jsonBody ??
-                                                        ''),
-                                                    ParamType.JSON,
-                                                  ),
-                                                  'paytmOrderId':
-                                                      serializeParam(
-                                                    FFAppState().paytmOrderId,
-                                                    ParamType.String,
-                                                  ),
-                                                  'isPaytm': serializeParam(
-                                                    false,
-                                                    ParamType.bool,
-                                                  ),
-                                                  'appsettings': serializeParam(
-                                                    widget!.appsetting,
-                                                    ParamType.Document,
-                                                  ),
-                                                  'taxcollection':
-                                                      serializeParam(
-                                                    widget!.taxcollection,
-                                                    ParamType.Document,
-                                                    isList: true,
-                                                  ),
-                                                }.withoutNulls,
-                                                extra: <String, dynamic>{
-                                                  'appsettings':
-                                                      widget!.appsetting,
-                                                  'taxcollection':
-                                                      widget!.taxcollection,
-                                                },
-                                              );
-
-                                              safeSetState(() {});
-                                            },
-                                            text: FFLocalizations.of(context)
-                                                .getText(
-                                              'mhpv2zkx' /* Proceed to Razorpay for paymen... */,
-                                            ),
-                                            icon: Icon(
-                                              Icons.chevron_right,
-                                              size: 25.0,
-                                            ),
-                                            options: FFButtonOptions(
-                                              width: MediaQuery.sizeOf(context)
-                                                      .width *
-                                                  0.4,
-                                              height: 65.0,
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .tertiary,
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleLargeFamily,
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .primaryBackground,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleLargeFamily),
-                                                      ),
-                                              elevation: 3.0,
-                                              borderSide: BorderSide(
-                                                color: Colors.transparent,
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Align(
                               alignment: AlignmentDirectional(0.0, 1.0),
                               child: Container(
                                 width: double.infinity,
-                                height: 85.0,
+                                height: 60.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -1051,7 +957,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
                                     FFButtonWidget(
                                       onPressed: () async {
@@ -1353,7 +1259,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                     redirectUrl: 'google.com',
                                                     redirectMode: 'POST',
                                                     callbackUrl:
-                                                        'https://google.com/orderStatus',
+                                                        'https://google.com',
                                                     mobileNumber: 0,
                                                     type: 'PAY_PAGE',
                                                   );
@@ -1469,21 +1375,22 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                               safeSetState(() {});
                                             },
                                       text: FFLocalizations.of(context).getText(
-                                        'sq4xgrw1' /* Proceed to Payment */,
+                                        'sq4xgrw1' /* Proceed to Pay */,
                                       ),
                                       icon: Icon(
                                         Icons.chevron_right,
                                         size: 12.0,
                                       ),
                                       options: FFButtonOptions(
-                                        width: 200.0,
-                                        height: 60.0,
+                                        width: 165.0,
+                                        height: 50.0,
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             12.0, 0.0, 12.0, 0.0),
                                         iconPadding:
                                             EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: Color(0xFF00A03F),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -1491,7 +1398,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .titleSmallFamily,
                                               color: Colors.white,
-                                              fontSize: 12.0,
+                                              fontSize: 10.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.normal,
                                               useGoogleFonts: GoogleFonts

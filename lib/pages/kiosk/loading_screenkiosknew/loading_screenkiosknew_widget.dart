@@ -46,6 +46,7 @@ class _LoadingScreenkiosknewWidgetState
         singleRecord: true,
       ).then((s) => s.firstOrNull);
       FFAppState().outletIdRef = _model.outletgetdirect?.reference;
+      FFAppState().outletName = _model.outletgetdirect!.name;
       safeSetState(() {});
       _model.shiftlist = await queryShiftRecordOnce(
         parent: FFAppState().outletIdRef,

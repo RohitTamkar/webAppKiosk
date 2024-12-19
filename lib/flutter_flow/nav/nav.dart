@@ -55,30 +55,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => WelcomeScreenWidget(),
             ),
             FFRoute(
-              name: 'LoadingScreen',
-              path: 'loadingScreen',
-              asyncParams: {
-                'appSettingDoc': getDoc(
-                    ['OUTLET', 'APP_SETTINGS'], AppSettingsRecord.fromSnapshot),
-              },
-              builder: (context, params) => LoadingScreenWidget(
-                shiftDoc: params.getParam(
-                  'shiftDoc',
-                  ParamType.JSON,
-                ),
-                userDoc: params.getParam(
-                  'userDoc',
-                  ParamType.DocumentReference,
-                  isList: false,
-                  collectionNamePath: ['USER_PROFILE'],
-                ),
-                appSettingDoc: params.getParam(
-                  'appSettingDoc',
-                  ParamType.Document,
-                ),
-              ),
-            ),
-            FFRoute(
               name: 'StartScreen',
               path: 'startScreen',
               builder: (context, params) => StartScreenWidget(),

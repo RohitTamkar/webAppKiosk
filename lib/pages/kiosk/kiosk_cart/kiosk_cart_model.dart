@@ -53,10 +53,6 @@ class KioskCartModel extends FlutterFlowModel<KioskCartWidget> {
   double? res21Copy;
   // Stores action output result for [Custom Action - calBillAmt] action in IconButton widget.
   double? reuslt22Copy;
-  // Stores action output result for [Custom Action - setCloseUnixTime] action in Button widget.
-  DateTime? closeUnixTime;
-  // Stores action output result for [Backend Call - API (razorpayQRCreation)] action in Button widget.
-  ApiCallResponse? qrResp;
   // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
   OutletRecord? outletDOc;
   // Stores action output result for [Backend Call - API (payApi)] action in Button widget.
