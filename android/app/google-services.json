@@ -1,0 +1,466 @@
+{
+  "project_info": {
+    "project_number": "401022448274",
+    "project_id": "sensiblebizpro",
+    "storage_bucket": "sensiblebizpro.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401022448274:android:943aa3377c11b13e762c4b",
+        "android_client_info": {
+          "package_name": "com.mycompany.adminpanelnsiblepos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401022448274-nt9p243ikm4mb16sbghg3r4b23rq1n8f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.adminpanelnsiblepos",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "401022448274-bb0ohhb258t2nqmsp0mfjimuffff4huv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfaYoVSSiTIhv9AC19tpHWkM59fX_wrI0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401022448274-bb0ohhb258t2nqmsp0mfjimuffff4huv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "401022448274-4ppc8hrnk24ag7drh5q5844dlgllp6d4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sensibleconnect.sensiblebizpro"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401022448274:android:dbec10b1eb9a3d90762c4b",
+        "android_client_info": {
+          "package_name": "com.mycompany.demoforfirestore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401022448274-bb0ohhb258t2nqmsp0mfjimuffff4huv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfaYoVSSiTIhv9AC19tpHWkM59fX_wrI0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401022448274-bb0ohhb258t2nqmsp0mfjimuffff4huv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "401022448274-4ppc8hrnk24ag7drh5q5844dlgllp6d4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sensibleconnect.sensiblebizpro"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401022448274:android:159f2905d537b05b762c4b",
+        "android_client_info": {
+          "package_name": "com.mycompany.desktopdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401022448274-bb0ohhb258t2nqmsp0mfjimuffff4huv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfaYoVSSiTIhv9AC19tpHWkM59fX_wrI0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401022448274-bb0ohhb258t2nqmsp0mfjimuffff4huv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "401022448274-4ppc8hrnk24ag7drh5q5844dlgllp6d4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sensibleconnect.sensiblebizpro"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401022448274:android:af13215894abeb32762c4b",
+        "android_client_info": {
+          "package_name": "com.sensible.admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401022448274-bb0ohhb258t2nqmsp0mfjimuffff4huv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfaYoVSSiTIhv9AC19tpHWkM59fX_wrI0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401022448274-bb0ohhb258t2nqmsp0mfjimuffff4huv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "401022448274-4ppc8hrnk24ag7drh5q5844dlgllp6d4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sensibleconnect.sensiblebizpro"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401022448274:android:43892ea20e2285a3762c4b",
+        "android_client_info": {
+          "package_name": "com.sensible.bizpro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401022448274-171umcsubfi0si0fmkqsgi74du2e6b28.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sensible.bizpro",
+            "certificate_hash": "aa3bce763daaeda88d0ff3e0bb6b8fd024e96ce9"
+          }
+        },
+        {
+          "client_id": "401022448274-1t3rhq8ie16g9f0vptl0aq4d59hd64q2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sensible.bizpro",
+            "certificate_hash": "05761aa152451dfaf36dbde8d0f0289ddd47a0ff"
+          }
+        },
+        {
+          "client_id": "401022448274-dpg0kj6osu39ulii2ars7bdnbnoqtv3q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sensible.bizpro",
+            "certificate_hash": "db590585baade4149fa57fc8ac4e4a67793cc91f"
+          }
+        },
+        {
+          "client_id": "401022448274-kta9mr0314qudgu9otl446osi0urorst.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sensible.bizpro",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "401022448274-n6j6tncemt64q3f722ii2p7ggmaivdss.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sensible.bizpro",
+            "certificate_hash": "3605f7b9f479012d9773fc6862d9f1e45e6eefec"
+          }
+        },
+        {
+          "client_id": "401022448274-bb0ohhb258t2nqmsp0mfjimuffff4huv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfaYoVSSiTIhv9AC19tpHWkM59fX_wrI0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401022448274-bb0ohhb258t2nqmsp0mfjimuffff4huv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "401022448274-4ppc8hrnk24ag7drh5q5844dlgllp6d4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sensibleconnect.sensiblebizpro"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401022448274:android:6bd7d1f09f9485fe762c4b",
+        "android_client_info": {
+          "package_name": "com.sensible.pos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401022448274-0iqgo9icd3pomjbqdbanfp3ssuid1bg3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sensible.pos",
+            "certificate_hash": "db590585baade4149fa57fc8ac4e4a67793cc91f"
+          }
+        },
+        {
+          "client_id": "401022448274-9bttmv35tko7sp2fmfl49pfv8uavhifj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sensible.pos",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "401022448274-bb0ohhb258t2nqmsp0mfjimuffff4huv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfaYoVSSiTIhv9AC19tpHWkM59fX_wrI0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401022448274-bb0ohhb258t2nqmsp0mfjimuffff4huv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "401022448274-4ppc8hrnk24ag7drh5q5844dlgllp6d4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sensibleconnect.sensiblebizpro"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401022448274:android:bad700579a726611762c4b",
+        "android_client_info": {
+          "package_name": "com.sensible.sendesk2.O"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401022448274-bb0ohhb258t2nqmsp0mfjimuffff4huv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfaYoVSSiTIhv9AC19tpHWkM59fX_wrI0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401022448274-bb0ohhb258t2nqmsp0mfjimuffff4huv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "401022448274-4ppc8hrnk24ag7drh5q5844dlgllp6d4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sensibleconnect.sensiblebizpro"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401022448274:android:bbb41a363ff15466762c4b",
+        "android_client_info": {
+          "package_name": "com.sensibleconnect.adminpanelpos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401022448274-qg0sl9r6mekb0hegkt2cm4em5paha36r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sensibleconnect.adminpanelpos",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "401022448274-bb0ohhb258t2nqmsp0mfjimuffff4huv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfaYoVSSiTIhv9AC19tpHWkM59fX_wrI0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401022448274-bb0ohhb258t2nqmsp0mfjimuffff4huv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "401022448274-4ppc8hrnk24ag7drh5q5844dlgllp6d4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sensibleconnect.sensiblebizpro"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401022448274:android:07cdb04898a9e63f762c4b",
+        "android_client_info": {
+          "package_name": "com.sensibleconnect.sensiblebizpos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401022448274-k1mi86ej2ltunlpjph6ng79e09eviq6j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sensibleconnect.sensiblebizpos",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "401022448274-bb0ohhb258t2nqmsp0mfjimuffff4huv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfaYoVSSiTIhv9AC19tpHWkM59fX_wrI0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401022448274-bb0ohhb258t2nqmsp0mfjimuffff4huv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "401022448274-4ppc8hrnk24ag7drh5q5844dlgllp6d4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sensibleconnect.sensiblebizpro"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401022448274:android:662b30ee58a6fda0762c4b",
+        "android_client_info": {
+          "package_name": "com.sensibleconnect.sensiblebizpro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401022448274-478s50dossdear24mdalfaqo0n3r2ctn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sensibleconnect.sensiblebizpro",
+            "certificate_hash": "17f4d246dab48ef3a0f66e019d218967d6ef43cb"
+          }
+        },
+        {
+          "client_id": "401022448274-bdi6ibgbgm2iibdknch88bg98v3pql6d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sensibleconnect.sensiblebizpro",
+            "certificate_hash": "34214d043d5d50c37d48978fda5d035389d57129"
+          }
+        },
+        {
+          "client_id": "401022448274-bb0ohhb258t2nqmsp0mfjimuffff4huv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfaYoVSSiTIhv9AC19tpHWkM59fX_wrI0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401022448274-bb0ohhb258t2nqmsp0mfjimuffff4huv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "401022448274-4ppc8hrnk24ag7drh5q5844dlgllp6d4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sensibleconnect.sensiblebizpro"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

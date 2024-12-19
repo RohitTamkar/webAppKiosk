@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>401022448274-an2lpor6qav6kpjl2s4tanv9q7t1esbn.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.401022448274-an2lpor6qav6kpjl2s4tanv9q7t1esbn</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>401022448274-0iqgo9icd3pomjbqdbanfp3ssuid1bg3.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBEDvuRNbSIPbw0hQLhy0FRO1Bem8TOcc4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>401022448274</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.sensibleconnect.sensiblebizpos</string>
+	<key>PROJECT_ID</key>
+	<string>sensiblebizpro</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sensiblebizpro.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:401022448274:ios:077fc94794a79abf762c4b</string>
+</dict>
+</plist>
