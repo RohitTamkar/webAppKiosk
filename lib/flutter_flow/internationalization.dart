@@ -2067,44 +2067,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ta': '',
     },
   },
-  // openingBalNew
-  {
-    'vey0gwm5': {
-      'en': 'Enter Opening Balance',
-      'hi': '',
-      'kn': '',
-      'mr': '',
-      'ta': '',
-    },
-    'w168dgrv': {
-      'en': 'Enter Amount.....',
-      'hi': '',
-      'kn': '',
-      'mr': '',
-      'ta': '',
-    },
-    '03764vqa': {
-      'en': 'Shift Time In :',
-      'hi': '',
-      'kn': '',
-      'mr': '',
-      'ta': '',
-    },
-    'hig23h1e': {
-      'en': 'Cancel',
-      'hi': '',
-      'kn': '',
-      'mr': '',
-      'ta': '',
-    },
-    'dw10x265': {
-      'en': 'Ok',
-      'hi': '',
-      'kn': '',
-      'mr': '',
-      'ta': '',
-    },
-  },
   // paymentMode
   {
     'itmkmxu3': {
