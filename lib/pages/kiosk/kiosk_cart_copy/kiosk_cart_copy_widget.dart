@@ -10,6 +10,7 @@ import '/pages/kiosk/kiosk_header/kiosk_header_widget.dart';
 import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/gestures.dart';
@@ -18,11 +19,11 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'kiosk_cart_model.dart';
-export 'kiosk_cart_model.dart';
+import 'kiosk_cart_copy_model.dart';
+export 'kiosk_cart_copy_model.dart';
 
-class KioskCartWidget extends StatefulWidget {
-  const KioskCartWidget({
+class KioskCartCopyWidget extends StatefulWidget {
+  const KioskCartCopyWidget({
     super.key,
     this.doc,
     this.shiftdetails,
@@ -36,18 +37,18 @@ class KioskCartWidget extends StatefulWidget {
   final List<TaxMasterRecord>? taxcollection;
 
   @override
-  State<KioskCartWidget> createState() => _KioskCartWidgetState();
+  State<KioskCartCopyWidget> createState() => _KioskCartCopyWidgetState();
 }
 
-class _KioskCartWidgetState extends State<KioskCartWidget> {
-  late KioskCartModel _model;
+class _KioskCartCopyWidgetState extends State<KioskCartCopyWidget> {
+  late KioskCartCopyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => KioskCartModel());
+    _model = createModel(context, () => KioskCartCopyModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -70,7 +71,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
     context.watch<FFAppState>();
 
     return Title(
-        title: 'KioskCart',
+        title: 'KioskCartCopy',
         color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
         child: GestureDetector(
           onTap: () {
@@ -176,7 +177,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                   ),
                                   Text(
                                     FFLocalizations.of(context).getText(
-                                      '770ul0ha' /* Confirm Your Order */,
+                                      'ewvj6nhv' /* Confirm Your Order */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .headlineSmall
@@ -203,11 +204,11 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                           options: [
                                             ChipData(FFLocalizations.of(context)
                                                 .getText(
-                                              'm630vqg2' /* DINE IN */,
+                                              'hua4ippd' /* DINE IN */,
                                             )),
                                             ChipData(FFLocalizations.of(context)
                                                 .getText(
-                                              '9hqpozct' /* PARCEL */,
+                                              'd18ex2ub' /* PARCEL */,
                                             ))
                                           ],
                                           onChanged: (val) async {
@@ -356,473 +357,520 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                           0.0, 0.0, 0.0, 10.0),
                                                   child: Container(
                                                     width: 100.0,
-                                                    height: 150.0,
                                                     decoration: BoxDecoration(
                                                       color: FlutterFlowTheme
                                                               .of(context)
                                                           .secondaryBackground,
+                                                      boxShadow: [
+                                                        BoxShadow(
+                                                          blurRadius: 7.0,
+                                                          color:
+                                                              Color(0x25000000),
+                                                          offset: Offset(
+                                                            3.0,
+                                                            5.0,
+                                                          ),
+                                                        )
+                                                      ],
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              8.0),
+                                                              12.0),
                                                     ),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Flexible(
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              ClipRRect(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0),
-                                                                child: Image
-                                                                    .network(
-                                                                  'https://picsum.photos/seed/845/600',
-                                                                  width: 100.0,
-                                                                  height: 100.0,
-                                                                  fit: BoxFit
-                                                                      .cover,
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsets.all(10.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Expanded(
+                                                            flex: 3,
+                                                            child: ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                              child:
+                                                                  CachedNetworkImage(
+                                                                fadeInDuration:
+                                                                    Duration(
+                                                                        milliseconds:
+                                                                            500),
+                                                                fadeOutDuration:
+                                                                    Duration(
+                                                                        milliseconds:
+                                                                            500),
+                                                                imageUrl:
+                                                                    valueOrDefault<
+                                                                        String>(
+                                                                  getJsonField(
+                                                                    listviewItem,
+                                                                    r'''$.imageUrl''',
+                                                                  )?.toString(),
+                                                                  'https://as1.ftcdn.net/v2/jpg/04/34/72/82/1000_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg',
                                                                 ),
+                                                                width: 300.0,
+                                                                height: 110.0,
+                                                                fit: BoxFit
+                                                                    .cover,
                                                               ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        Flexible(
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Flexible(
-                                                                child: Text(
-                                                                  valueOrDefault<
-                                                                      String>(
-                                                                    functions
-                                                                        .returnTitlecase(
-                                                                            getJsonField(
-                                                                      listviewItem,
-                                                                      r'''$.name''',
-                                                                    ).toString()),
-                                                                    'MAGIC ICE CREAM FACTORY',
-                                                                  ),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        useGoogleFonts:
-                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        Flexible(
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        10.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Container(
-                                                                  width: 100.0,
-                                                                  height: 50.0,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryBackground,
-                                                                  ),
-                                                                  child: Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    children: [
-                                                                      Expanded(
-                                                                        child:
-                                                                            FlutterFlowIconButton(
-                                                                          borderColor:
-                                                                              Colors.transparent,
-                                                                          borderRadius:
-                                                                              12.0,
-                                                                          buttonSize:
-                                                                              double.infinity,
-                                                                          fillColor:
-                                                                              Color(0xFFA7D348),
-                                                                          icon:
-                                                                              Icon(
-                                                                            Icons.remove_sharp,
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primaryText,
-                                                                            size:
-                                                                                20.0,
-                                                                          ),
-                                                                          onPressed:
-                                                                              () async {
-                                                                            _model.res2cart =
-                                                                                await actions.reduceQuantityHoldListkiosk(
-                                                                              listviewItem,
-                                                                              FFAppState().selBill,
-                                                                              widget!.taxcollection!.toList(),
-                                                                              functions.enabletaxinclusive(valueOrDefault<bool>(
-                                                                                widget!.appsetting?.settingList?.where((e) => e.title == 'enableInclusiveTax').toList()?.firstOrNull?.value,
-                                                                                false,
-                                                                              )),
-                                                                            );
-                                                                            _model.res2345 =
-                                                                                await actions.calSubTotalForHoldListkiosk(
-                                                                              valueOrDefault<String>(
-                                                                                FFAppState().selBill.toString(),
-                                                                                '1',
-                                                                              ),
-                                                                              FFAppState().allBillsList.toList(),
-                                                                              functions.enabletaxinclusive(valueOrDefault<bool>(
-                                                                                widget!.appsetting?.settingList?.where((e) => e.title == 'enableInclusiveTax').toList()?.firstOrNull?.value,
-                                                                                false,
-                                                                              )),
-                                                                            );
-                                                                            _model.reu34 =
-                                                                                await actions.calBillAmt(
-                                                                              valueOrDefault<double>(
-                                                                                FFAppState().disAmt,
-                                                                                0.0,
-                                                                              ),
-                                                                              FFAppState().delCharges,
-                                                                            );
-
-                                                                            safeSetState(() {});
-                                                                          },
-                                                                        ),
-                                                                      ),
-                                                                      Expanded(
-                                                                        child:
-                                                                            Align(
-                                                                          alignment: AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Text(
-                                                                            valueOrDefault<String>(
-                                                                              getJsonField(
-                                                                                listviewItem,
-                                                                                r'''$.quantity''',
-                                                                              )?.toString(),
-                                                                              '0',
-                                                                            ),
-                                                                            textAlign:
-                                                                                TextAlign.center,
-                                                                            style: FlutterFlowTheme.of(context).headlineLarge.override(
-                                                                                  fontFamily: FlutterFlowTheme.of(context).headlineLargeFamily,
-                                                                                  fontSize: 15.0,
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FontWeight.w600,
-                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineLargeFamily),
-                                                                                ),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                      Expanded(
-                                                                        child:
-                                                                            FlutterFlowIconButton(
-                                                                          borderColor:
-                                                                              Colors.transparent,
-                                                                          borderRadius:
-                                                                              12.0,
-                                                                          buttonSize:
-                                                                              double.infinity,
-                                                                          fillColor:
-                                                                              Color(0xFFA7D348),
-                                                                          icon:
-                                                                              Icon(
-                                                                            Icons.add,
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primaryText,
-                                                                            size:
-                                                                                20.0,
-                                                                          ),
-                                                                          onPressed:
-                                                                              () async {
-                                                                            var _shouldSetState =
-                                                                                false;
-                                                                            if (getJsonField(
-                                                                              listviewItem,
-                                                                              r'''$.stockable''',
-                                                                            )) {
-                                                                              if (!functions.greatethanlesskiosk(
-                                                                                  functions.jsontoint(getJsonField(
-                                                                                    listviewItem,
-                                                                                    r'''$.currentStock''',
-                                                                                  )),
-                                                                                  functions.jsontoint(getJsonField(
-                                                                                    listviewItem,
-                                                                                    r'''$.quantity''',
-                                                                                  )))) {
-                                                                                await showDialog(
-                                                                                  context: context,
-                                                                                  builder: (alertDialogContext) {
-                                                                                    return AlertDialog(
-                                                                                      content: Text('Item Out Of Stock.'),
-                                                                                      actions: [
-                                                                                        TextButton(
-                                                                                          onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                          child: Text('Ok'),
-                                                                                        ),
-                                                                                      ],
-                                                                                    );
-                                                                                  },
-                                                                                );
-                                                                                if (_shouldSetState) safeSetState(() {});
-                                                                                return;
-                                                                              }
-                                                                            }
-                                                                            _model.resultkioskcart =
-                                                                                await actions.plusQuantityHoldListkiosk(
-                                                                              getJsonField(
-                                                                                listviewItem,
-                                                                                r'''$''',
-                                                                              ),
-                                                                              FFAppState().selBill,
-                                                                              widget!.taxcollection!.toList(),
-                                                                              functions.enabletaxinclusive(valueOrDefault<bool>(
-                                                                                widget!.appsetting?.settingList?.where((e) => e.title == 'enableInclusiveTax').toList()?.firstOrNull?.value,
-                                                                                false,
-                                                                              )),
-                                                                            );
-                                                                            _shouldSetState =
-                                                                                true;
-                                                                            _model.res23456 =
-                                                                                await actions.calSubTotalForHoldListkiosk(
-                                                                              valueOrDefault<String>(
-                                                                                FFAppState().selBill.toString(),
-                                                                                '1',
-                                                                              ),
-                                                                              FFAppState().allBillsList.toList(),
-                                                                              functions.enabletaxinclusive(valueOrDefault<bool>(
-                                                                                widget!.appsetting?.settingList?.where((e) => e.title == 'enableInclusiveTax').toList()?.firstOrNull?.value,
-                                                                                false,
-                                                                              )),
-                                                                            );
-                                                                            _shouldSetState =
-                                                                                true;
-                                                                            _model.reuslt12 =
-                                                                                await actions.calBillAmt(
-                                                                              valueOrDefault<double>(
-                                                                                FFAppState().disAmt,
-                                                                                0.0,
-                                                                              ),
-                                                                              FFAppState().delCharges,
-                                                                            );
-                                                                            _shouldSetState =
-                                                                                true;
-                                                                            if (_shouldSetState)
-                                                                              safeSetState(() {});
-                                                                          },
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                                Container(
-                                                                  width: 120.0,
-                                                                  height: 50.0,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryBackground,
-                                                                  ),
-                                                                  child: Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    children: [
-                                                                      Flexible(
-                                                                        child:
-                                                                            Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0.0,
-                                                                              0.0,
-                                                                              0.0,
-                                                                              5.0),
-                                                                          child:
-                                                                              Text(
-                                                                            FFLocalizations.of(context).getText(
-                                                                              'tz46iv7q' /* Sub Total : */,
-                                                                            ),
-                                                                            style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                  fontFamily: FlutterFlowTheme.of(context).labelSmallFamily,
-                                                                                  color: Color(0xFF00A03F),
-                                                                                  fontSize: 12.0,
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FontWeight.w600,
-                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelSmallFamily),
-                                                                                ),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                      Flexible(
-                                                                        child:
-                                                                            RichText(
-                                                                          textScaler:
-                                                                              MediaQuery.of(context).textScaler,
-                                                                          text:
-                                                                              TextSpan(
-                                                                            children: [
-                                                                              TextSpan(
-                                                                                text: FFLocalizations.of(context).getText(
-                                                                                  'fk7ffxym' /* ₹  */,
-                                                                                ),
-                                                                                style: FlutterFlowTheme.of(context).titleMedium.override(
-                                                                                      fontFamily: FlutterFlowTheme.of(context).titleMediumFamily,
-                                                                                      color: Color(0xFF00A03F),
-                                                                                      fontSize: 13.0,
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: FontWeight.normal,
-                                                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleMediumFamily),
-                                                                                    ),
-                                                                              ),
-                                                                              TextSpan(
-                                                                                text: functions
-                                                                                    .getTotal(
-                                                                                        getJsonField(
-                                                                                          listviewItem,
-                                                                                          r'''$.quantity''',
-                                                                                        ),
-                                                                                        getJsonField(
-                                                                                          listviewItem,
-                                                                                          r'''$.price''',
-                                                                                        ))
-                                                                                    .toString(),
-                                                                                style: FlutterFlowTheme.of(context).headlineLarge.override(
-                                                                                      fontFamily: FlutterFlowTheme.of(context).headlineLargeFamily,
-                                                                                      color: Color(0xFF00A03F),
-                                                                                      fontSize: 15.0,
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: FontWeight.w600,
-                                                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineLargeFamily),
-                                                                                    ),
-                                                                              )
-                                                                            ],
-                                                                            style: FlutterFlowTheme.of(context).headlineSmall.override(
-                                                                                  fontFamily: FlutterFlowTheme.of(context).headlineSmallFamily,
-                                                                                  color: Color(0xFF0046D3),
-                                                                                  fontSize: 12.0,
-                                                                                  letterSpacing: 0.0,
-                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineSmallFamily),
-                                                                                ),
-                                                                          ),
-                                                                          textAlign:
-                                                                              TextAlign.center,
-                                                                        ),
-                                                                      ),
-                                                                    ].divide(SizedBox(
-                                                                        width:
-                                                                            8.0)),
-                                                                  ),
-                                                                ),
-                                                                Container(
-                                                                  decoration:
-                                                                      BoxDecoration(),
-                                                                  child: Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .end,
-                                                                    children: [
-                                                                      FlutterFlowIconButton(
-                                                                        borderColor:
-                                                                            FlutterFlowTheme.of(context).primary,
-                                                                        borderRadius:
-                                                                            12.0,
-                                                                        borderWidth:
-                                                                            0.5,
-                                                                        buttonSize:
-                                                                            40.0,
-                                                                        fillColor:
-                                                                            FlutterFlowTheme.of(context).secondaryBackground,
-                                                                        icon:
-                                                                            Icon(
-                                                                          Icons
-                                                                              .delete_rounded,
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primary,
-                                                                          size:
-                                                                              18.0,
-                                                                        ),
-                                                                        onPressed:
-                                                                            () async {
-                                                                          _model.res20Copy =
-                                                                              await actions.removeHoldListItem(
-                                                                            listviewItem,
-                                                                            FFAppState().selBill,
-                                                                          );
-                                                                          _model.res21Copy =
-                                                                              await actions.calSubTotalForHoldList(
-                                                                            FFAppState().selBill.toString(),
-                                                                            FFAppState().allBillsList.toList(),
-                                                                          );
-                                                                          _model.reuslt22Copy =
-                                                                              await actions.calBillAmt(
-                                                                            valueOrDefault<double>(
-                                                                              FFAppState().disAmt,
-                                                                              0.0,
-                                                                            ),
-                                                                            valueOrDefault<double>(
-                                                                              FFAppState().delCharges,
-                                                                              0.0,
-                                                                            ),
-                                                                          );
-                                                                          FFAppState().removeFromCartItem(functions.returnidRef(
-                                                                              getJsonField(
-                                                                                listviewItem,
-                                                                                r'''$.id''',
-                                                                              ).toString(),
-                                                                              FFAppState().outletIdRef!.id)!);
-                                                                          safeSetState(
-                                                                              () {});
-
-                                                                          safeSetState(
-                                                                              () {});
-                                                                        },
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ],
                                                             ),
                                                           ),
-                                                        ),
-                                                      ],
+                                                          Flexible(
+                                                            flex: 10,
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          15.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Container(
+                                                                decoration:
+                                                                    BoxDecoration(),
+                                                                child: Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Expanded(
+                                                                      child:
+                                                                          Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            15.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Column(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.spaceBetween,
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.start,
+                                                                          children: [
+                                                                            Column(
+                                                                              mainAxisSize: MainAxisSize.max,
+                                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                                              children: [
+                                                                                Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                                                                                  child: Text(
+                                                                                    valueOrDefault<String>(
+                                                                                      functions.returnTitlecase(getJsonField(
+                                                                                        listviewItem,
+                                                                                        r'''$.name''',
+                                                                                      ).toString()),
+                                                                                      '0',
+                                                                                    ),
+                                                                                    style: FlutterFlowTheme.of(context).headlineLarge.override(
+                                                                                          fontFamily: FlutterFlowTheme.of(context).headlineLargeFamily,
+                                                                                          color: Color(0xFF033BE8),
+                                                                                          fontSize: 18.0,
+                                                                                          letterSpacing: 0.0,
+                                                                                          fontWeight: FontWeight.w600,
+                                                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineLargeFamily),
+                                                                                        ),
+                                                                                  ),
+                                                                                ),
+                                                                                if (!valueOrDefault<bool>(
+                                                                                  widget!.appsetting?.settingList?.where((e) => e.title == 'hideRegionalLanguage').toList()?.firstOrNull?.value,
+                                                                                  false,
+                                                                                ))
+                                                                                  Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+                                                                                    child: Text(
+                                                                                      getJsonField(
+                                                                                        listviewItem,
+                                                                                        r'''$.regionalName''',
+                                                                                      ).toString(),
+                                                                                      style: FlutterFlowTheme.of(context).titleMedium.override(
+                                                                                            fontFamily: FlutterFlowTheme.of(context).titleMediumFamily,
+                                                                                            color: Color(0xFF033BE8),
+                                                                                            fontSize: 12.0,
+                                                                                            letterSpacing: 0.0,
+                                                                                            useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleMediumFamily),
+                                                                                          ),
+                                                                                    ),
+                                                                                  ),
+                                                                              ],
+                                                                            ),
+                                                                            RichText(
+                                                                              textScaler: MediaQuery.of(context).textScaler,
+                                                                              text: TextSpan(
+                                                                                children: [
+                                                                                  TextSpan(
+                                                                                    text: FFLocalizations.of(context).getText(
+                                                                                      '26nqfoq2' /* ₹  */,
+                                                                                    ),
+                                                                                    style: FlutterFlowTheme.of(context).headlineSmall.override(
+                                                                                          fontFamily: FlutterFlowTheme.of(context).headlineSmallFamily,
+                                                                                          color: Color(0xFF0046D3),
+                                                                                          fontSize: 13.0,
+                                                                                          letterSpacing: 0.0,
+                                                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineSmallFamily),
+                                                                                        ),
+                                                                                  ),
+                                                                                  TextSpan(
+                                                                                    text: getJsonField(
+                                                                                      listviewItem,
+                                                                                      r'''$.price''',
+                                                                                    ).toString(),
+                                                                                    style: FlutterFlowTheme.of(context).headlineSmall.override(
+                                                                                          fontFamily: FlutterFlowTheme.of(context).headlineSmallFamily,
+                                                                                          color: Color(0xFF0046D3),
+                                                                                          fontSize: 14.0,
+                                                                                          letterSpacing: 0.0,
+                                                                                          fontWeight: FontWeight.w600,
+                                                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineSmallFamily),
+                                                                                        ),
+                                                                                  )
+                                                                                ],
+                                                                                style: FlutterFlowTheme.of(context).headlineSmall.override(
+                                                                                      fontFamily: FlutterFlowTheme.of(context).headlineSmallFamily,
+                                                                                      color: Color(0xFF0046D3),
+                                                                                      fontSize: 12.0,
+                                                                                      letterSpacing: 0.0,
+                                                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineSmallFamily),
+                                                                                    ),
+                                                                              ),
+                                                                              textAlign: TextAlign.start,
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Flexible(
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.spaceBetween,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.end,
+                                                                        children: [
+                                                                          Padding(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                                0.0,
+                                                                                0.0,
+                                                                                0.0,
+                                                                                25.0),
+                                                                            child:
+                                                                                Container(
+                                                                              width: 100.0,
+                                                                              height: MediaQuery.sizeOf(context).height * 0.05,
+                                                                              decoration: BoxDecoration(
+                                                                                color: Color(0xFFC6E88C),
+                                                                                borderRadius: BorderRadius.only(
+                                                                                  bottomLeft: Radius.circular(12.0),
+                                                                                  bottomRight: Radius.circular(12.0),
+                                                                                  topLeft: Radius.circular(12.0),
+                                                                                  topRight: Radius.circular(12.0),
+                                                                                ),
+                                                                              ),
+                                                                              child: Row(
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                children: [
+                                                                                  Expanded(
+                                                                                    child: FlutterFlowIconButton(
+                                                                                      borderColor: Colors.transparent,
+                                                                                      borderRadius: 12.0,
+                                                                                      buttonSize: double.infinity,
+                                                                                      fillColor: Color(0xFFA7D348),
+                                                                                      icon: Icon(
+                                                                                        Icons.remove_sharp,
+                                                                                        color: FlutterFlowTheme.of(context).primaryText,
+                                                                                        size: 20.0,
+                                                                                      ),
+                                                                                      onPressed: () async {
+                                                                                        _model.res2cart = await actions.reduceQuantityHoldListkiosk(
+                                                                                          listviewItem,
+                                                                                          FFAppState().selBill,
+                                                                                          widget!.taxcollection!.toList(),
+                                                                                          functions.enabletaxinclusive(valueOrDefault<bool>(
+                                                                                            widget!.appsetting?.settingList?.where((e) => e.title == 'enableInclusiveTax').toList()?.firstOrNull?.value,
+                                                                                            false,
+                                                                                          )),
+                                                                                        );
+                                                                                        _model.res2345 = await actions.calSubTotalForHoldListkiosk(
+                                                                                          valueOrDefault<String>(
+                                                                                            FFAppState().selBill.toString(),
+                                                                                            '1',
+                                                                                          ),
+                                                                                          FFAppState().allBillsList.toList(),
+                                                                                          functions.enabletaxinclusive(valueOrDefault<bool>(
+                                                                                            widget!.appsetting?.settingList?.where((e) => e.title == 'enableInclusiveTax').toList()?.firstOrNull?.value,
+                                                                                            false,
+                                                                                          )),
+                                                                                        );
+                                                                                        _model.reu34 = await actions.calBillAmt(
+                                                                                          valueOrDefault<double>(
+                                                                                            FFAppState().disAmt,
+                                                                                            0.0,
+                                                                                          ),
+                                                                                          FFAppState().delCharges,
+                                                                                        );
+
+                                                                                        safeSetState(() {});
+                                                                                      },
+                                                                                    ),
+                                                                                  ),
+                                                                                  Expanded(
+                                                                                    child: Align(
+                                                                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                                                                      child: Text(
+                                                                                        valueOrDefault<String>(
+                                                                                          getJsonField(
+                                                                                            listviewItem,
+                                                                                            r'''$.quantity''',
+                                                                                          )?.toString(),
+                                                                                          '0',
+                                                                                        ),
+                                                                                        textAlign: TextAlign.center,
+                                                                                        style: FlutterFlowTheme.of(context).headlineLarge.override(
+                                                                                              fontFamily: FlutterFlowTheme.of(context).headlineLargeFamily,
+                                                                                              fontSize: 15.0,
+                                                                                              letterSpacing: 0.0,
+                                                                                              fontWeight: FontWeight.w600,
+                                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineLargeFamily),
+                                                                                            ),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                  Expanded(
+                                                                                    child: FlutterFlowIconButton(
+                                                                                      borderColor: Colors.transparent,
+                                                                                      borderRadius: 12.0,
+                                                                                      buttonSize: double.infinity,
+                                                                                      fillColor: Color(0xFFA7D348),
+                                                                                      icon: Icon(
+                                                                                        Icons.add,
+                                                                                        color: FlutterFlowTheme.of(context).primaryText,
+                                                                                        size: 20.0,
+                                                                                      ),
+                                                                                      onPressed: () async {
+                                                                                        var _shouldSetState = false;
+                                                                                        if (getJsonField(
+                                                                                          listviewItem,
+                                                                                          r'''$.stockable''',
+                                                                                        )) {
+                                                                                          if (!functions.greatethanlesskiosk(
+                                                                                              functions.jsontoint(getJsonField(
+                                                                                                listviewItem,
+                                                                                                r'''$.currentStock''',
+                                                                                              )),
+                                                                                              functions.jsontoint(getJsonField(
+                                                                                                listviewItem,
+                                                                                                r'''$.quantity''',
+                                                                                              )))) {
+                                                                                            await showDialog(
+                                                                                              context: context,
+                                                                                              builder: (alertDialogContext) {
+                                                                                                return AlertDialog(
+                                                                                                  content: Text('Item Out Of Stock.'),
+                                                                                                  actions: [
+                                                                                                    TextButton(
+                                                                                                      onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                                      child: Text('Ok'),
+                                                                                                    ),
+                                                                                                  ],
+                                                                                                );
+                                                                                              },
+                                                                                            );
+                                                                                            if (_shouldSetState) safeSetState(() {});
+                                                                                            return;
+                                                                                          }
+                                                                                        }
+                                                                                        _model.resultkioskcart = await actions.plusQuantityHoldListkiosk(
+                                                                                          getJsonField(
+                                                                                            listviewItem,
+                                                                                            r'''$''',
+                                                                                          ),
+                                                                                          FFAppState().selBill,
+                                                                                          widget!.taxcollection!.toList(),
+                                                                                          functions.enabletaxinclusive(valueOrDefault<bool>(
+                                                                                            widget!.appsetting?.settingList?.where((e) => e.title == 'enableInclusiveTax').toList()?.firstOrNull?.value,
+                                                                                            false,
+                                                                                          )),
+                                                                                        );
+                                                                                        _shouldSetState = true;
+                                                                                        _model.res23456 = await actions.calSubTotalForHoldListkiosk(
+                                                                                          valueOrDefault<String>(
+                                                                                            FFAppState().selBill.toString(),
+                                                                                            '1',
+                                                                                          ),
+                                                                                          FFAppState().allBillsList.toList(),
+                                                                                          functions.enabletaxinclusive(valueOrDefault<bool>(
+                                                                                            widget!.appsetting?.settingList?.where((e) => e.title == 'enableInclusiveTax').toList()?.firstOrNull?.value,
+                                                                                            false,
+                                                                                          )),
+                                                                                        );
+                                                                                        _shouldSetState = true;
+                                                                                        _model.reuslt12 = await actions.calBillAmt(
+                                                                                          valueOrDefault<double>(
+                                                                                            FFAppState().disAmt,
+                                                                                            0.0,
+                                                                                          ),
+                                                                                          FFAppState().delCharges,
+                                                                                        );
+                                                                                        _shouldSetState = true;
+                                                                                        if (_shouldSetState) safeSetState(() {});
+                                                                                      },
+                                                                                    ),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                          Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment.start,
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.end,
+                                                                            children: [
+                                                                              Flexible(
+                                                                                child: Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 15.0, 0.0),
+                                                                                  child: Column(
+                                                                                    mainAxisSize: MainAxisSize.max,
+                                                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                                                    children: [
+                                                                                      Padding(
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                                                                        child: Text(
+                                                                                          FFLocalizations.of(context).getText(
+                                                                                            'gn1roys9' /* Sub Total : */,
+                                                                                          ),
+                                                                                          style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                                fontFamily: FlutterFlowTheme.of(context).labelSmallFamily,
+                                                                                                color: Color(0xFF00A03F),
+                                                                                                fontSize: 12.0,
+                                                                                                letterSpacing: 0.0,
+                                                                                                fontWeight: FontWeight.w600,
+                                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelSmallFamily),
+                                                                                              ),
+                                                                                        ),
+                                                                                      ),
+                                                                                      RichText(
+                                                                                        textScaler: MediaQuery.of(context).textScaler,
+                                                                                        text: TextSpan(
+                                                                                          children: [
+                                                                                            TextSpan(
+                                                                                              text: FFLocalizations.of(context).getText(
+                                                                                                'az87cq6x' /* ₹  */,
+                                                                                              ),
+                                                                                              style: FlutterFlowTheme.of(context).titleMedium.override(
+                                                                                                    fontFamily: FlutterFlowTheme.of(context).titleMediumFamily,
+                                                                                                    color: Color(0xFF00A03F),
+                                                                                                    fontSize: 13.0,
+                                                                                                    letterSpacing: 0.0,
+                                                                                                    fontWeight: FontWeight.normal,
+                                                                                                    useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleMediumFamily),
+                                                                                                  ),
+                                                                                            ),
+                                                                                            TextSpan(
+                                                                                              text: functions
+                                                                                                  .getTotal(
+                                                                                                      getJsonField(
+                                                                                                        listviewItem,
+                                                                                                        r'''$.quantity''',
+                                                                                                      ),
+                                                                                                      getJsonField(
+                                                                                                        listviewItem,
+                                                                                                        r'''$.price''',
+                                                                                                      ))
+                                                                                                  .toString(),
+                                                                                              style: FlutterFlowTheme.of(context).headlineLarge.override(
+                                                                                                    fontFamily: FlutterFlowTheme.of(context).headlineLargeFamily,
+                                                                                                    color: Color(0xFF00A03F),
+                                                                                                    fontSize: 15.0,
+                                                                                                    letterSpacing: 0.0,
+                                                                                                    fontWeight: FontWeight.w600,
+                                                                                                    useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineLargeFamily),
+                                                                                                  ),
+                                                                                            )
+                                                                                          ],
+                                                                                          style: FlutterFlowTheme.of(context).headlineSmall.override(
+                                                                                                fontFamily: FlutterFlowTheme.of(context).headlineSmallFamily,
+                                                                                                color: Color(0xFF0046D3),
+                                                                                                fontSize: 12.0,
+                                                                                                letterSpacing: 0.0,
+                                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineSmallFamily),
+                                                                                              ),
+                                                                                        ),
+                                                                                        textAlign: TextAlign.center,
+                                                                                      ),
+                                                                                    ],
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                              FlutterFlowIconButton(
+                                                                                borderColor: FlutterFlowTheme.of(context).primary,
+                                                                                borderRadius: 12.0,
+                                                                                borderWidth: 0.5,
+                                                                                buttonSize: 40.0,
+                                                                                fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                icon: Icon(
+                                                                                  Icons.delete_rounded,
+                                                                                  color: FlutterFlowTheme.of(context).primary,
+                                                                                  size: 18.0,
+                                                                                ),
+                                                                                onPressed: () async {
+                                                                                  _model.res20Copy = await actions.removeHoldListItem(
+                                                                                    listviewItem,
+                                                                                    FFAppState().selBill,
+                                                                                  );
+                                                                                  _model.res21Copy = await actions.calSubTotalForHoldList(
+                                                                                    FFAppState().selBill.toString(),
+                                                                                    FFAppState().allBillsList.toList(),
+                                                                                  );
+                                                                                  _model.reuslt22Copy = await actions.calBillAmt(
+                                                                                    valueOrDefault<double>(
+                                                                                      FFAppState().disAmt,
+                                                                                      0.0,
+                                                                                    ),
+                                                                                    valueOrDefault<double>(
+                                                                                      FFAppState().delCharges,
+                                                                                      0.0,
+                                                                                    ),
+                                                                                  );
+                                                                                  FFAppState().removeFromCartItem(functions.returnidRef(
+                                                                                      getJsonField(
+                                                                                        listviewItem,
+                                                                                        r'''$.id''',
+                                                                                      ).toString(),
+                                                                                      FFAppState().outletIdRef!.id)!);
+                                                                                  safeSetState(() {});
+
+                                                                                  safeSetState(() {});
+                                                                                },
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
                                                 );
@@ -954,7 +1002,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                             },
                                             text: FFLocalizations.of(context)
                                                 .getText(
-                                              'mhpv2zkx' /* Proceed to Razorpay for paymen... */,
+                                              '5cm6w7qq' /* Proceed to Razorpay for paymen... */,
                                             ),
                                             icon: Icon(
                                               Icons.chevron_right,
@@ -1098,7 +1146,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                         }
                                       },
                                       text: FFLocalizations.of(context).getText(
-                                        's9g1enft' /* Cancel Order */,
+                                        'tga423x2' /* Cancel Order */,
                                       ),
                                       icon: Icon(
                                         Icons.close,
@@ -1186,7 +1234,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                           TextSpan(
                                             text: FFLocalizations.of(context)
                                                 .getText(
-                                              '9dk0mden' /* ₹  */,
+                                              '7kweka5l' /* ₹  */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .headlineSmall
@@ -1454,7 +1502,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                               safeSetState(() {});
                                             },
                                       text: FFLocalizations.of(context).getText(
-                                        'sq4xgrw1' /* Proceed to Payment */,
+                                        '9l6la5w7' /* Proceed to Payment */,
                                       ),
                                       icon: Icon(
                                         Icons.chevron_right,

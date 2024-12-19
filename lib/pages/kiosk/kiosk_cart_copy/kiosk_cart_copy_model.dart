@@ -10,7 +10,8 @@ import '/pages/kiosk/kiosk_header/kiosk_header_widget.dart';
 import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'kiosk_cart_widget.dart' show KioskCartWidget;
+import 'kiosk_cart_copy_widget.dart' show KioskCartCopyWidget;
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/gestures.dart';
@@ -20,7 +21,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class KioskCartModel extends FlutterFlowModel<KioskCartWidget> {
+class KioskCartCopyModel extends FlutterFlowModel<KioskCartCopyWidget> {
   ///  Local state fields for this page.
 
   bool btnPressed = false;
