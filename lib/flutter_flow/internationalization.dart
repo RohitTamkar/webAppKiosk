@@ -875,17 +875,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ta': '',
     },
   },
-  // responsePageCopy
+  // responseOrder
   {
-    '8qbzlfkm': {
-      'en': 'Thank You !',
+    'vktoj9tj': {
+      'en': 'Thank you !',
       'hi': '',
       'kn': '',
       'mr': '',
       'ta': '',
     },
-    '0wfm29km': {
-      'en': 'If bill is not printed click here to print again !',
+    'atni9g2j': {
+      'en': 'Click here to continue',
       'hi': '',
       'kn': '',
       'mr': '',

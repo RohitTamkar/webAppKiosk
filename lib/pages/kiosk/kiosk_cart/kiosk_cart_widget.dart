@@ -434,8 +434,14 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                                       .override(
                                                                         fontFamily:
                                                                             FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .info,
+                                                                        fontSize:
+                                                                            14.0,
                                                                         letterSpacing:
                                                                             0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.bold,
                                                                         useGoogleFonts:
                                                                             GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                       ),
@@ -1315,78 +1321,60 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                   FFAppState().outletId =
                                                       _model.outletDOc!.id;
                                                   safeSetState(() {});
-                                                  _model.paymentQrResponse =
-                                                      await CreateQRCall.call(
-                                                    mid: valueOrDefault<String>(
-                                                      _model.outletDOc
-                                                          ?.merchantId,
-                                                      '0',
-                                                    ),
-                                                    orderId: FFAppState()
-                                                        .paytmOrderId,
-                                                    amount: functions.toDecimal(
-                                                        FFAppState().finalAmt),
-                                                    businessType: 'UPI_QR_CODE',
-                                                    posId:
-                                                        FFAppState().outletId,
-                                                    mKey:
-                                                        valueOrDefault<String>(
-                                                      _model.outletDOc
-                                                          ?.merchantKey,
-                                                      '0',
-                                                    ),
-                                                    isProd: _model
-                                                        .outletDOc?.isProd,
+                                                  _model.apiResulttja =
+                                                      await PayApiCall.call(
+                                                    merchantId:
+                                                        'SENSIBLEQRTESTUAT',
+                                                    merchantTransactionId:
+                                                        'MT${getCurrentTimestamp.millisecondsSinceEpoch.toString()}',
+                                                    merchantUserId:
+                                                        getCurrentTimestamp
+                                                            .millisecondsSinceEpoch
+                                                            .toString(),
+                                                    amount:
+                                                        FFAppState().finalAmt,
+                                                    redirectUrl: 'google.com',
+                                                    redirectMode: 'POST',
+                                                    callbackUrl:
+                                                        'https://uvpixel.com/orderStatus',
+                                                    mobileNumber: 0,
+                                                    type: 'PAY_PAGE',
                                                   );
 
-                                                  context.goNamed(
-                                                    'KioskChoosePaymentMode',
-                                                    queryParameters: {
-                                                      'doc': serializeParam(
-                                                        widget!.doc,
-                                                        ParamType
-                                                            .DocumentReference,
-                                                      ),
-                                                      'shiftdetails':
-                                                          serializeParam(
-                                                        widget!.shiftdetails,
-                                                        ParamType.JSON,
-                                                      ),
-                                                      'appSettings':
-                                                          serializeParam(
-                                                        widget!.appsetting,
-                                                        ParamType.Document,
-                                                      ),
-                                                      'taxcollection':
-                                                          serializeParam(
-                                                        widget!.taxcollection,
-                                                        ParamType.Document,
-                                                        isList: true,
-                                                      ),
-                                                      'qrJson': serializeParam(
-                                                        (_model.paymentQrResponse
+                                                  if ((_model.apiResulttja
+                                                          ?.succeeded ??
+                                                      true)) {
+                                                    await actions.launchUrl(
+                                                      getJsonField(
+                                                        (_model.apiResulttja
                                                                 ?.jsonBody ??
                                                             ''),
-                                                        ParamType.JSON,
-                                                      ),
-                                                      'paytmOrderId':
-                                                          serializeParam(
-                                                        FFAppState()
-                                                            .paytmOrderId,
-                                                        ParamType.String,
-                                                      ),
-                                                      'isPaytm': serializeParam(
-                                                        true,
-                                                        ParamType.bool,
-                                                      ),
-                                                    }.withoutNulls,
-                                                    extra: <String, dynamic>{
-                                                      'appSettings':
-                                                          widget!.appsetting,
-                                                      'taxcollection':
-                                                          widget!.taxcollection,
-                                                    },
-                                                  );
+                                                        r'''$.data.instrumentResponse.redirectInfo.url''',
+                                                      ).toString(),
+                                                    );
+                                                  } else {
+                                                    await showDialog(
+                                                      context: context,
+                                                      builder:
+                                                          (alertDialogContext) {
+                                                        return AlertDialog(
+                                                          content: Text((_model
+                                                                      .apiResulttja
+                                                                      ?.jsonBody ??
+                                                                  '')
+                                                              .toString()),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext),
+                                                              child: Text('Ok'),
+                                                            ),
+                                                          ],
+                                                        );
+                                                      },
+                                                    );
+                                                  }
                                                 } else {
                                                   await showDialog(
                                                     context: context,

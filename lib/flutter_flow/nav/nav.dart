@@ -328,8 +328,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => TokenDisplayWidget(),
             ),
             FFRoute(
-              name: 'responsePageCopy',
-              path: 'responsePageCopy',
+              name: 'responseOrder',
+              path: 'responseOrder',
               asyncParams: {
                 'doc': getDoc(['OUTLET', 'QR_TRANSACTIONS'],
                     QrTransactionsRecord.fromSnapshot),
@@ -338,7 +338,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 'taxcoollectipon':
                     getDocList(['TAX_MASTER'], TaxMasterRecord.fromSnapshot),
               },
-              builder: (context, params) => ResponsePageCopyWidget(
+              builder: (context, params) => ResponseOrderWidget(
                 doc: params.getParam(
                   'doc',
                   ParamType.Document,

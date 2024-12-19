@@ -439,6 +439,70 @@ class SendWhatsappMsgBillPdfCall {
   }
 }
 
+class PayApiCall {
+  static Future<ApiCallResponse> call({
+    String? merchantId = '',
+    String? merchantTransactionId = '',
+    String? merchantUserId = '',
+    double? amount,
+    String? redirectUrl = '',
+    String? redirectMode = '',
+    String? callbackUrl = '',
+    int? mobileNumber,
+    String? type = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'payApi',
+      apiUrl:
+          'https://asia-south1-uvpixcel.cloudfunctions.net/Phonepe-PayAPI/payAPI',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'merchantId': merchantId,
+        'merchantTransactionId': merchantTransactionId,
+        'merchantUserId': merchantUserId,
+        'amount': amount,
+        'redirectUrl': redirectUrl,
+        'redirectMode': redirectMode,
+        'callbackUrl': callbackUrl,
+        'mobileNumber': mobileNumber,
+        'type': type,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class CheckStatusCall {
+  static Future<ApiCallResponse> call({
+    String? merchantId = '',
+    String? merchantTransactionId = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'checkStatus',
+      apiUrl:
+          'https://asia-south1-uvpixcel.cloudfunctions.net/Phonepe-PayAPI/payAPI/status',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'merchantId': merchantId,
+        'merchantTransactionId': merchantTransactionId,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
