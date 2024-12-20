@@ -380,9 +380,20 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                       color: FlutterFlowTheme
                                                               .of(context)
                                                           .secondaryBackground,
+                                                      boxShadow: [
+                                                        BoxShadow(
+                                                          blurRadius: 4.0,
+                                                          color:
+                                                              Color(0x52000000),
+                                                          offset: Offset(
+                                                            0.0,
+                                                            2.0,
+                                                          ),
+                                                        )
+                                                      ],
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              8.0),
+                                                              14.0),
                                                     ),
                                                     child: Row(
                                                       mainAxisSize:
@@ -400,25 +411,37 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                                 MainAxisAlignment
                                                                     .center,
                                                             children: [
-                                                              ClipRRect(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0),
-                                                                child: Image
-                                                                    .network(
-                                                                  valueOrDefault<
-                                                                      String>(
-                                                                    getJsonField(
-                                                                      listviewItem,
-                                                                      r'''$.imageUrl''',
-                                                                    )?.toString(),
-                                                                    'https://as1.ftcdn.net/v2/jpg/04/34/72/82/1000_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg',
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            5.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                child:
+                                                                    ClipRRect(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8.0),
+                                                                  child: Image
+                                                                      .network(
+                                                                    valueOrDefault<
+                                                                        String>(
+                                                                      getJsonField(
+                                                                        listviewItem,
+                                                                        r'''$.imageUrl''',
+                                                                      )?.toString(),
+                                                                      'https://as1.ftcdn.net/v2/jpg/04/34/72/82/1000_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg',
+                                                                    ),
+                                                                    width:
+                                                                        100.0,
+                                                                    height:
+                                                                        100.0,
+                                                                    fit: BoxFit
+                                                                        .cover,
                                                                   ),
-                                                                  width: 100.0,
-                                                                  height: 100.0,
-                                                                  fit: BoxFit
-                                                                      .cover,
                                                                 ),
                                                               ),
                                                             ],
@@ -487,7 +510,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                                             .headlineSmall
                                                                             .override(
                                                                               fontFamily: FlutterFlowTheme.of(context).headlineSmallFamily,
-                                                                              color: Color(0xFF0046D3),
+                                                                              color: FlutterFlowTheme.of(context).primary,
                                                                               fontSize: 13.0,
                                                                               letterSpacing: 0.0,
                                                                               useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineSmallFamily),
@@ -506,7 +529,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                                             .headlineSmall
                                                                             .override(
                                                                               fontFamily: FlutterFlowTheme.of(context).headlineSmallFamily,
-                                                                              color: Color(0xFF0046D3),
+                                                                              color: FlutterFlowTheme.of(context).primary,
                                                                               fontSize: 14.0,
                                                                               letterSpacing: 0.0,
                                                                               fontWeight: FontWeight.w600,
@@ -521,7 +544,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                                           fontFamily:
                                                                               FlutterFlowTheme.of(context).headlineSmallFamily,
                                                                           color:
-                                                                              Color(0xFF0046D3),
+                                                                              FlutterFlowTheme.of(context).parkingPrimary,
                                                                           fontSize:
                                                                               12.0,
                                                                           letterSpacing:
@@ -557,7 +580,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                               children: [
                                                                 Container(
                                                                   width: 100.0,
-                                                                  height: 50.0,
+                                                                  height: 40.0,
                                                                   decoration:
                                                                       BoxDecoration(
                                                                     color: FlutterFlowTheme.of(
@@ -568,6 +591,9 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                                     mainAxisSize:
                                                                         MainAxisSize
                                                                             .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .start,
                                                                     children: [
                                                                       Expanded(
                                                                         child:

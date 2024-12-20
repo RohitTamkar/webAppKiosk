@@ -1,34 +1,13 @@
 const axios = require("axios").default;
 const qs = require("qs");
 
-async function _getDaywiseShiftsCall(context, ffVariables) {
-  var outletId = ffVariables["outletId"];
-  var dayId = ffVariables["dayId"];
-
-  var url = `https://asia-south1-sensiblebizpro.cloudfunctions.net/getShiftDayWise`;
-  var headers = {};
-  var params = { outletId: outletId, dayId: dayId };
-  var ffApiRequestBody = undefined;
-
-  return makeApiRequest({
-    method: "get",
-    url,
-    headers,
-    params,
-    returnBody: true,
-    isStreamingApi: false,
-  });
-}
-
 /// Helper functions to route to the appropriate API Call.
 
 async function makeApiCall(context, data) {
   var callName = data["callName"] || "";
   var variables = data["variables"] || {};
 
-  const callMap = {
-    GetDaywiseShiftsCall: _getDaywiseShiftsCall,
-  };
+  const callMap = {};
 
   if (!(callName in callMap)) {
     return {

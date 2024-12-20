@@ -64,6 +64,7 @@ class _LoadingScreenkiosknewWidgetState
         _model.shiftDetailsNew,
         r'''$.shiftExists''',
       ).toString().toString();
+      FFAppState().orderType = 'DINE IN';
       safeSetState(() {});
       _model.shiftboolean = await actions.shiftkiosknew(
         getJsonField(
