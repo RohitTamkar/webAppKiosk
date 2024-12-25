@@ -157,6 +157,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                 0.0, 0.0, 0.0, 10.0),
                             child: Container(
                               width: double.infinity,
+                              height: MediaQuery.sizeOf(context).height * 0.27,
                               decoration: BoxDecoration(),
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
