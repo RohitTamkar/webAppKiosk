@@ -235,7 +235,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                     child: Text(
                                                       valueOrDefault<String>(
                                                         FFAppState().outletName,
-                                                        'THE MAGIC ICE CREAMfdghdsfghdfghdf FACTORY',
+                                                        'THE MAGIC ICE CREAM FACTORY',
                                                       ),
                                                       style:
                                                           FlutterFlowTheme.of(
