@@ -336,34 +336,6 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
         FFAppState().delCharges = 0.0;
         FFAppState().transactionid = '';
         FFAppState().update(() {});
-
-        context.goNamed(
-          'KioskBillScreen',
-          queryParameters: {
-            'doc': serializeParam(
-              _model.outletdoc2?.userRef,
-              ParamType.DocumentReference,
-            ),
-            'shiftdoc': serializeParam(
-              _model.shiftDetailsNewweb,
-              ParamType.JSON,
-            ),
-            'appsetting': serializeParam(
-              _model.appsetting1,
-              ParamType.Document,
-            ),
-            'taxcollection': serializeParam(
-              _model.taxmaster2,
-              ParamType.Document,
-              isList: true,
-            ),
-          }.withoutNulls,
-          extra: <String, dynamic>{
-            'appsetting': _model.appsetting1,
-            'taxcollection': _model.taxmaster2,
-          },
-        );
-
         return;
       }
     });
