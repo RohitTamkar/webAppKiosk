@@ -1422,7 +1422,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                           .allBillsList
                                                           .toList(),
                                                     );
-                                                    _model.qRtransaction =
+                                                    _model.qrtransaction =
                                                         await queryQrTransactionsRecordOnce(
                                                       parent: FFAppState()
                                                           .outletIdRef,
@@ -1438,14 +1438,19 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                     ).then((s) =>
                                                             s.firstOrNull);
 
-                                                    await _model.qRtransaction!
+                                                    await _model.qrtransaction!
                                                         .reference
                                                         .update({
                                                       ...createQrTransactionsRecordData(
-                                                        shiftId: getJsonField(
-                                                          widget!.shiftdetails,
-                                                          r'''$.shiftId''',
-                                                        ).toString(),
+                                                        shiftId: valueOrDefault<
+                                                            String>(
+                                                          getJsonField(
+                                                            widget!
+                                                                .shiftdetails,
+                                                            r'''$.shiftId''',
+                                                          )?.toString(),
+                                                          '0',
+                                                        ),
                                                         count:
                                                             FFAppState().count,
                                                         orderType: FFAppState()

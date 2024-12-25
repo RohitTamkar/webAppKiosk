@@ -63,7 +63,7 @@ class KioskCartModel extends FlutterFlowModel<KioskCartWidget> {
   // Stores action output result for [Custom Action - filterProducts] action in Button widget.
   List<SelItemListStruct>? prdListkiosk;
   // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
-  QrTransactionsRecord? qRtransaction;
+  QrTransactionsRecord? qrtransaction;
 
   @override
   void initState(BuildContext context) {
