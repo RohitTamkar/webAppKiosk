@@ -157,7 +157,6 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                 0.0, 0.0, 0.0, 10.0),
                             child: Container(
                               width: double.infinity,
-                              height: MediaQuery.sizeOf(context).height * 0.32,
                               decoration: BoxDecoration(),
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
@@ -489,285 +488,282 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                         ),
                                       ),
                                     ),
-                                    Flexible(
-                                      child: Container(
-                                        width: double.infinity,
-                                        height:
-                                            MediaQuery.sizeOf(context).height *
-                                                0.15,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                        ),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                FFAppState().categoryColor =
-                                                    'ALL';
-                                                safeSetState(() {});
-                                                _model.productDoc = _model
-                                                    .prodoc!
-                                                    .toList()
-                                                    .cast<ProductRecord>();
-                                                safeSetState(() {});
-                                              },
-                                              child: Container(
-                                                height: double.infinity,
-                                                decoration: BoxDecoration(
-                                                  color: Color(0xFFF5F5FA),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                  border: Border.all(
-                                                    color: FFAppState()
-                                                                .categoryColor ==
-                                                            'ALL'
-                                                        ? FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary
-                                                        : FlutterFlowTheme.of(
-                                                                context)
-                                                            .customColor2,
-                                                    width: 1.0,
-                                                  ),
+                                    Container(
+                                      width: double.infinity,
+                                      height:
+                                          MediaQuery.sizeOf(context).height *
+                                              0.15,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              FFAppState().categoryColor =
+                                                  'ALL';
+                                              safeSetState(() {});
+                                              _model.productDoc = _model.prodoc!
+                                                  .toList()
+                                                  .cast<ProductRecord>();
+                                              safeSetState(() {});
+                                            },
+                                            child: Container(
+                                              height: double.infinity,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xFFF5F5FA),
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                                border: Border.all(
+                                                  color: FFAppState()
+                                                              .categoryColor ==
+                                                          'ALL'
+                                                      ? FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary
+                                                      : FlutterFlowTheme.of(
+                                                              context)
+                                                          .customColor2,
+                                                  width: 1.0,
                                                 ),
-                                                child: Padding(
-                                                  padding: EdgeInsets.all(12.0),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Text(
-                                                        FFLocalizations.of(
-                                                                context)
-                                                            .getText(
-                                                          '3zt1lnqa' /* ALL */,
-                                                        ),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
-                                                                ),
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsets.all(12.0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        '3zt1lnqa' /* ALL */,
                                                       ),
-                                                    ],
-                                                  ),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily),
+                                                              ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
                                             ),
-                                            Expanded(
-                                              child: Builder(
-                                                builder: (context) {
-                                                  final listcat = _model
-                                                          .categorydoc
-                                                          ?.where((e) =>
-                                                              e.isDeleted ==
-                                                              false)
-                                                          .toList()
-                                                          ?.sortedList(
-                                                              keyOf: (e) =>
-                                                                  valueOrDefault<
-                                                                          bool>(
-                                                                    widget!
-                                                                        .appsetting
-                                                                        ?.settingList
-                                                                        ?.where((e) =>
-                                                                            e.title ==
-                                                                            'sortCategoryByCode')
-                                                                        .toList()
-                                                                        ?.firstOrNull
-                                                                        ?.value,
-                                                                    false,
-                                                                  )
-                                                                      ? e.code
-                                                                          .toString()
-                                                                      : e.name,
-                                                              desc: false)
-                                                          ?.toList() ??
-                                                      [];
+                                          ),
+                                          Expanded(
+                                            child: Builder(
+                                              builder: (context) {
+                                                final listcat = _model
+                                                        .categorydoc
+                                                        ?.where((e) =>
+                                                            e.isDeleted ==
+                                                            false)
+                                                        .toList()
+                                                        ?.sortedList(
+                                                            keyOf: (e) =>
+                                                                valueOrDefault<
+                                                                        bool>(
+                                                                  widget!
+                                                                      .appsetting
+                                                                      ?.settingList
+                                                                      ?.where((e) =>
+                                                                          e.title ==
+                                                                          'sortCategoryByCode')
+                                                                      .toList()
+                                                                      ?.firstOrNull
+                                                                      ?.value,
+                                                                  false,
+                                                                )
+                                                                    ? e.code
+                                                                        .toString()
+                                                                    : e.name,
+                                                            desc: false)
+                                                        ?.toList() ??
+                                                    [];
 
-                                                  return ListView.separated(
-                                                    padding: EdgeInsets.zero,
-                                                    shrinkWrap: true,
-                                                    scrollDirection:
-                                                        Axis.horizontal,
-                                                    itemCount: listcat.length,
-                                                    separatorBuilder: (_, __) =>
-                                                        SizedBox(width: 10.0),
-                                                    itemBuilder: (context,
-                                                        listcatIndex) {
-                                                      final listcatItem =
-                                                          listcat[listcatIndex];
-                                                      return InkWell(
-                                                        splashColor:
-                                                            Colors.transparent,
-                                                        focusColor:
-                                                            Colors.transparent,
-                                                        hoverColor:
-                                                            Colors.transparent,
-                                                        highlightColor:
-                                                            Colors.transparent,
-                                                        onTap: () async {
-                                                          FFAppState()
-                                                                  .categoryColor =
-                                                              listcatItem.id;
-                                                          safeSetState(() {});
-                                                          _model.productDoc = _model
-                                                              .prodoc!
-                                                              .where((e) =>
-                                                                  e.category ==
-                                                                  listcatItem
-                                                                      .id)
-                                                              .toList()
-                                                              .cast<
-                                                                  ProductRecord>();
-                                                          safeSetState(() {});
-                                                        },
-                                                        child: Container(
-                                                          width:
-                                                              MediaQuery.sizeOf(
-                                                                          context)
-                                                                      .width *
-                                                                  0.23,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: Color(
-                                                                0xFFF5F5FA),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10.0),
-                                                            border: Border.all(
-                                                              color: listcatItem
-                                                                          .id ==
-                                                                      FFAppState()
-                                                                          .categoryColor
-                                                                  ? FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary
-                                                                  : FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryBackground,
-                                                              width: 0.5,
-                                                            ),
+                                                return ListView.separated(
+                                                  padding: EdgeInsets.zero,
+                                                  shrinkWrap: true,
+                                                  scrollDirection:
+                                                      Axis.horizontal,
+                                                  itemCount: listcat.length,
+                                                  separatorBuilder: (_, __) =>
+                                                      SizedBox(width: 10.0),
+                                                  itemBuilder:
+                                                      (context, listcatIndex) {
+                                                    final listcatItem =
+                                                        listcat[listcatIndex];
+                                                    return InkWell(
+                                                      splashColor:
+                                                          Colors.transparent,
+                                                      focusColor:
+                                                          Colors.transparent,
+                                                      hoverColor:
+                                                          Colors.transparent,
+                                                      highlightColor:
+                                                          Colors.transparent,
+                                                      onTap: () async {
+                                                        FFAppState()
+                                                                .categoryColor =
+                                                            listcatItem.id;
+                                                        safeSetState(() {});
+                                                        _model.productDoc = _model
+                                                            .prodoc!
+                                                            .where((e) =>
+                                                                e.category ==
+                                                                listcatItem.id)
+                                                            .toList()
+                                                            .cast<
+                                                                ProductRecord>();
+                                                        safeSetState(() {});
+                                                      },
+                                                      child: Container(
+                                                        width:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .width *
+                                                                0.23,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color:
+                                                              Color(0xFFF5F5FA),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      10.0),
+                                                          border: Border.all(
+                                                            color: listcatItem
+                                                                        .id ==
+                                                                    FFAppState()
+                                                                        .categoryColor
+                                                                ? FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryBackground,
+                                                            width: 0.5,
                                                           ),
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    3.0),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              children: [
-                                                                Expanded(
-                                                                  flex: 2,
+                                                        ),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  3.0),
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Expanded(
+                                                                flex: 2,
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          5.0),
+                                                                  child: Image
+                                                                      .network(
+                                                                    valueOrDefault<
+                                                                        String>(
+                                                                      listcatItem
+                                                                          .catImageUrl,
+                                                                      'https://as1.ftcdn.net/v2/jpg/04/34/72/82/1000_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg',
+                                                                    ),
+                                                                    width: double
+                                                                        .infinity,
+                                                                    height:
+                                                                        120.0,
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Expanded(
+                                                                child:
+                                                                    Container(
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            10.0),
+                                                                  ),
                                                                   child:
                                                                       Padding(
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
+                                                                            3.0,
                                                                             0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            5.0),
-                                                                    child: Image
-                                                                        .network(
-                                                                      valueOrDefault<
-                                                                          String>(
-                                                                        listcatItem
-                                                                            .catImageUrl,
-                                                                        'https://as1.ftcdn.net/v2/jpg/04/34/72/82/1000_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg',
-                                                                      ),
-                                                                      width: double
-                                                                          .infinity,
-                                                                      height:
-                                                                          120.0,
-                                                                      fit: BoxFit
-                                                                          .cover,
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                Expanded(
-                                                                  child:
-                                                                      Container(
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              10.0),
-                                                                    ),
+                                                                            3.0,
+                                                                            0.0),
                                                                     child:
-                                                                        Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          3.0,
-                                                                          0.0,
-                                                                          3.0,
-                                                                          0.0),
-                                                                      child:
-                                                                          Column(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        children: [
-                                                                          Text(
-                                                                            listcatItem.name,
-                                                                            textAlign:
-                                                                                TextAlign.center,
-                                                                            style: FlutterFlowTheme.of(context).displayMedium.override(
-                                                                                  fontFamily: FlutterFlowTheme.of(context).displayMediumFamily,
-                                                                                  color: Color(0xFF83A1EB),
-                                                                                  fontSize: 10.0,
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FontWeight.normal,
-                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayMediumFamily),
-                                                                                ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
+                                                                        Column(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      children: [
+                                                                        Text(
+                                                                          listcatItem
+                                                                              .name,
+                                                                          textAlign:
+                                                                              TextAlign.center,
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .displayMedium
+                                                                              .override(
+                                                                                fontFamily: FlutterFlowTheme.of(context).displayMediumFamily,
+                                                                                color: Color(0xFF83A1EB),
+                                                                                fontSize: 10.0,
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FontWeight.normal,
+                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayMediumFamily),
+                                                                              ),
+                                                                        ),
+                                                                      ],
                                                                     ),
                                                                   ),
                                                                 ),
-                                                              ],
-                                                            ),
+                                                              ),
+                                                            ],
                                                           ),
                                                         ),
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                              ),
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+                                              },
                                             ),
-                                          ].divide(SizedBox(width: 10.0)),
-                                        ),
+                                          ),
+                                        ].divide(SizedBox(width: 10.0)),
                                       ),
                                     ),
                                   ],
