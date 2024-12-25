@@ -97,7 +97,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
               FFAppState().billAmt,
               0.0,
             ),
-            finalBillAmt: _model.qrTransaction?.txAmount,
+            finalBillAmt: FFAppState().finalAmt,
             roundOff: 0.0,
             shiftId: getJsonField(
               FFAppState().shiftDetailsJson,
@@ -139,7 +139,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
               FFAppState().billAmt,
               0.0,
             ),
-            finalBillAmt: _model.qrTransaction?.txAmount,
+            finalBillAmt: FFAppState().finalAmt,
             roundOff: 0.0,
             shiftId: getJsonField(
               FFAppState().shiftDetailsJson,

@@ -230,35 +230,32 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                               ),
                                                     ),
                                                   ),
-                                                  Flexible(
-                                                    child: Text(
-                                                      valueOrDefault<String>(
-                                                        FFAppState().outletName,
-                                                        'THE MAGIC ICE CREAM FACTORY',
-                                                      ),
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .headlineSmall
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineSmallFamily,
-                                                                color: Color(
-                                                                    0xFF033BE8),
-                                                                fontSize: 14.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .headlineSmallFamily),
-                                                              ),
+                                                  Text(
+                                                    valueOrDefault<String>(
+                                                      FFAppState().outletName,
+                                                      'THE MAGIC ICE CREAM FACTORY',
                                                     ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .headlineSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .headlineSmallFamily,
+                                                          color:
+                                                              Color(0xFF033BE8),
+                                                          fontSize: 14.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineSmallFamily),
+                                                        ),
                                                   ),
                                                 ],
                                               ),
