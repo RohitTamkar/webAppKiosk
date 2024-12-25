@@ -21,18 +21,7 @@ import 'response_page_model.dart';
 export 'response_page_model.dart';
 
 class ResponsePageWidget extends StatefulWidget {
-  const ResponsePageWidget({
-    super.key,
-    this.doc,
-    this.shiftdetails,
-    this.appsetting,
-    this.taxcoollectipon,
-  });
-
-  final QrTransactionsRecord? doc;
-  final dynamic shiftdetails;
-  final AppSettingsRecord? appsetting;
-  final List<TaxMasterRecord>? taxcoollectipon;
+  const ResponsePageWidget({super.key});
 
   @override
   State<ResponsePageWidget> createState() => _ResponsePageWidgetState();
@@ -233,7 +222,11 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
           ));
           FFAppState().lastBill = FFAppState().finalAmt;
           FFAppState().update(() {});
-          if (widget!.appsetting!.settingList
+          _model.appsetting = await queryAppSettingsRecordOnce(
+            parent: FFAppState().outletIdRef,
+            singleRecord: true,
+          ).then((s) => s.firstOrNull);
+          if (_model.appsetting!.settingList
               .where((e) => e.title == 'enableStock')
               .toList()
               .firstOrNull!
@@ -273,14 +266,6 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
               safeSetState(() {});
             }
           }
-          _model.appsetting = await queryAppSettingsRecordOnce(
-            parent: FFAppState().outletIdRef,
-            queryBuilder: (appSettingsRecord) => appSettingsRecord.where(
-              'deviceId',
-              isEqualTo: FFAppState().dId,
-            ),
-            singleRecord: true,
-          ).then((s) => s.firstOrNull);
           _model.outletdoc = await queryOutletRecordOnce(
             queryBuilder: (outletRecord) => outletRecord.where(
               'id',
@@ -362,10 +347,6 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
         ).then((s) => s.firstOrNull);
         _model.appsetting1 = await queryAppSettingsRecordOnce(
           parent: FFAppState().outletIdRef,
-          queryBuilder: (appSettingsRecord) => appSettingsRecord.where(
-            'deviceId',
-            isEqualTo: FFAppState().dId,
-          ),
           singleRecord: true,
         ).then((s) => s.firstOrNull);
         _model.rm = await actions.removeFromAllBillList(
@@ -416,7 +397,31 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
     });
 
     animationsMap.addAll({
-      'textOnPageLoadAnimation': AnimationInfo(
+      'textOnPageLoadAnimation1': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+      'textOnPageLoadAnimation2': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+      'textOnPageLoadAnimation3': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
           FadeEffect(
@@ -468,7 +473,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
             onWillPop: () async => false,
             child: Scaffold(
               key: scaffoldKey,
-              backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
               body: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -482,8 +487,18 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
                           width: double.infinity,
                           height: 50.0,
                           decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
+                            gradient: LinearGradient(
+                              colors: [
+                                FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                Color(0x38FFAC47),
+                                Color(0xFF673AB7),
+                                Colors.blue
+                              ],
+                              stops: [0.0, 1.0, 1.0, 1.0],
+                              begin: AlignmentDirectional(0.0, -1.0),
+                              end: AlignmentDirectional(0, 1.0),
+                            ),
                             borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(6.0),
                               bottomRight: Radius.circular(6.0),
@@ -501,7 +516,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
                             children: [
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 75.0),
+                                    0.0, 0.0, 0.0, 20.0),
                                 child: Text(
                                   FFLocalizations.of(context).getText(
                                     'y4rnysxj' /* Thank You ! */,
@@ -523,19 +538,71 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
                                                     .displayLargeFamily),
                                       ),
                                 ).animateOnPageLoad(
-                                    animationsMap['textOnPageLoadAnimation']!),
+                                    animationsMap['textOnPageLoadAnimation1']!),
+                              ),
+                              Flexible(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 20.0),
+                                  child: Text(
+                                    FFLocalizations.of(context).getText(
+                                      'e8xv42wg' /* Show Below Token No To Collect... */,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                    style: FlutterFlowTheme.of(context)
+                                        .displayLarge
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .displayLargeFamily,
+                                          color:
+                                              FlutterFlowTheme.of(context).info,
+                                          fontSize: 15.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                          fontStyle: FontStyle.italic,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .displayLargeFamily),
+                                        ),
+                                  ).animateOnPageLoad(animationsMap[
+                                      'textOnPageLoadAnimation2']!),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 50.0),
+                                child: Text(
+                                  'TOKEN NO :${valueOrDefault<String>(
+                                    _model.qrTransaction?.count?.toString(),
+                                    '0',
+                                  )}',
+                                  style: FlutterFlowTheme.of(context)
+                                      .displayLarge
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .displayLargeFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        fontSize: 20.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w600,
+                                        fontStyle: FontStyle.italic,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .displayLargeFamily),
+                                      ),
+                                ).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation3']!),
                               ),
                               Container(
                                 width: 500.0,
                                 height: 400.0,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context).success,
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(16.0),
-                                    bottomRight: Radius.circular(16.0),
-                                    topLeft: Radius.circular(16.0),
-                                    topRight: Radius.circular(16.0),
-                                  ),
+                                  color: Color(0xFF04A24C),
+                                  borderRadius: BorderRadius.circular(0.0),
                                   border: Border.all(
                                     color: FlutterFlowTheme.of(context)
                                         .primaryBackground,
@@ -755,7 +822,7 @@ Successful */
                         ),
                       ),
                     ),
-                  if (!widget!.doc!.status)
+                  if (!_model.qrTransaction!.status)
                     Expanded(
                       flex: 7,
                       child: Padding(

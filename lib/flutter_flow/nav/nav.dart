@@ -188,33 +188,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'responsePage',
               path: 'responsePage',
-              asyncParams: {
-                'doc': getDoc(['OUTLET', 'QR_TRANSACTIONS'],
-                    QrTransactionsRecord.fromSnapshot),
-                'appsetting': getDoc(
-                    ['OUTLET', 'APP_SETTINGS'], AppSettingsRecord.fromSnapshot),
-                'taxcoollectipon':
-                    getDocList(['TAX_MASTER'], TaxMasterRecord.fromSnapshot),
-              },
-              builder: (context, params) => ResponsePageWidget(
-                doc: params.getParam(
-                  'doc',
-                  ParamType.Document,
-                ),
-                shiftdetails: params.getParam(
-                  'shiftdetails',
-                  ParamType.JSON,
-                ),
-                appsetting: params.getParam(
-                  'appsetting',
-                  ParamType.Document,
-                ),
-                taxcoollectipon: params.getParam<TaxMasterRecord>(
-                  'taxcoollectipon',
-                  ParamType.Document,
-                  isList: true,
-                ),
-              ),
+              builder: (context, params) => ResponsePageWidget(),
             ),
             FFRoute(
               name: 'KioskWelcome',
