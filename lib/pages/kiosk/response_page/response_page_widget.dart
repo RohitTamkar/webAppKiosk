@@ -291,34 +291,6 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
           FFAppState().delCharges = 0.0;
           FFAppState().update(() {});
           _model.taxmaster = await queryTaxMasterRecordOnce();
-
-          context.goNamed(
-            'KioskBillScreen',
-            queryParameters: {
-              'doc': serializeParam(
-                _model.outletdoc?.userRef,
-                ParamType.DocumentReference,
-              ),
-              'shiftdoc': serializeParam(
-                _model.shiftSummarRkiosk,
-                ParamType.JSON,
-              ),
-              'appsetting': serializeParam(
-                _model.appsetting,
-                ParamType.Document,
-              ),
-              'taxcollection': serializeParam(
-                _model.taxmaster,
-                ParamType.Document,
-                isList: true,
-              ),
-            }.withoutNulls,
-            extra: <String, dynamic>{
-              'appsetting': _model.appsetting,
-              'taxcollection': _model.taxmaster,
-            },
-          );
-
           return;
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -574,10 +546,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 50.0),
                                 child: Text(
-                                  'TOKEN NO :${valueOrDefault<String>(
-                                    _model.qrTransaction?.count?.toString(),
-                                    '0',
-                                  )}',
+                                  'TOKEN NO :${_model.docInvoicekiosk?.count?.toString()}',
                                   style: FlutterFlowTheme.of(context)
                                       .displayLarge
                                       .override(
