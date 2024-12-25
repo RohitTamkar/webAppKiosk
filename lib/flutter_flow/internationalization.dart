@@ -369,7 +369,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ta': '',
     },
     'tz46iv7q': {
-      'en': 'Sub Total :',
+      'en': 'Sub Total',
       'hi': '',
       'kn': '',
       'mr': '',
@@ -536,7 +536,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ta': '',
     },
     '2wg5nblz': {
-      'en': 'Cancel Order',
+      'en': 'Cancel',
       'hi': '',
       'kn': '',
       'mr': '',
@@ -580,8 +580,22 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'mr': '',
       'ta': '',
     },
-    'hbnondbb': {
-      'en': 'If bill is not printed click here to print again !',
+    'snuv9cux': {
+      'en': 'Receipt ',
+      'hi': '',
+      'kn': '',
+      'mr': '',
+      'ta': '',
+    },
+    '33p1y43u': {
+      'en': 'Payment \nSuccessful',
+      'hi': '',
+      'kn': '',
+      'mr': '',
+      'ta': '',
+    },
+    'fte141e1': {
+      'en': 'Redirects Automatically',
       'hi': '',
       'kn': '',
       'mr': '',

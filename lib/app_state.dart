@@ -630,6 +630,9 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _directory = prefs.getString('ff_directory') ?? _directory;
     });
+    _safeInit(() {
+      _transactionid = prefs.getString('ff_transactionid') ?? _transactionid;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -3527,6 +3530,13 @@ class FFAppState extends ChangeNotifier {
   set directory(String value) {
     _directory = value;
     prefs.setString('ff_directory', value);
+  }
+
+  String _transactionid = '';
+  String get transactionid => _transactionid;
+  set transactionid(String value) {
+    _transactionid = value;
+    prefs.setString('ff_transactionid', value);
   }
 }
 

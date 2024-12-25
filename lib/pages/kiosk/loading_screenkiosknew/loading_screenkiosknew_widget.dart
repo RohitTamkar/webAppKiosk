@@ -428,9 +428,9 @@ class _LoadingScreenkiosknewWidgetState
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(8.0),
                                       child: Image.asset(
-                                        'assets/images/10-11-02-622_512.gif',
-                                        width: 50.0,
-                                        height: 50.0,
+                                        'assets/images/order.gif',
+                                        width: 200.0,
+                                        height: 200.0,
                                         fit: BoxFit.cover,
                                       ),
                                     ),

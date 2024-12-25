@@ -116,6 +116,26 @@ class QrTransactionsRecord extends FirestoreRecord {
   String get dayId => _dayId ?? '';
   bool hasDayId() => _dayId != null;
 
+  // "productList" field.
+  List<SelItemListStruct>? _productList;
+  List<SelItemListStruct> get productList => _productList ?? const [];
+  bool hasProductList() => _productList != null;
+
+  // "shiftId" field.
+  String? _shiftId;
+  String get shiftId => _shiftId ?? '';
+  bool hasShiftId() => _shiftId != null;
+
+  // "orderType" field.
+  String? _orderType;
+  String get orderType => _orderType ?? '';
+  bool hasOrderType() => _orderType != null;
+
+  // "count" field.
+  int? _count;
+  int get count => _count ?? 0;
+  bool hasCount() => _count != null;
+
   DocumentReference get parentReference => reference.parent.parent!;
 
   void _initializeFields() {
@@ -139,6 +159,13 @@ class QrTransactionsRecord extends FirestoreRecord {
     _createdDate = castToType<int>(snapshotData['createdDate']);
     _resultStatus = snapshotData['resultStatus'] as String?;
     _dayId = snapshotData['dayId'] as String?;
+    _productList = getStructList(
+      snapshotData['productList'],
+      SelItemListStruct.fromMap,
+    );
+    _shiftId = snapshotData['shiftId'] as String?;
+    _orderType = snapshotData['orderType'] as String?;
+    _count = castToType<int>(snapshotData['count']);
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -201,6 +228,9 @@ Map<String, dynamic> createQrTransactionsRecordData({
   int? createdDate,
   String? resultStatus,
   String? dayId,
+  String? shiftId,
+  String? orderType,
+  int? count,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -224,6 +254,9 @@ Map<String, dynamic> createQrTransactionsRecordData({
       'createdDate': createdDate,
       'resultStatus': resultStatus,
       'dayId': dayId,
+      'shiftId': shiftId,
+      'orderType': orderType,
+      'count': count,
     }.withoutNulls,
   );
 
@@ -236,6 +269,7 @@ class QrTransactionsRecordDocumentEquality
 
   @override
   bool equals(QrTransactionsRecord? e1, QrTransactionsRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.id == e2?.id &&
         e1?.event == e2?.event &&
         e1?.currency == e2?.currency &&
@@ -255,7 +289,11 @@ class QrTransactionsRecordDocumentEquality
         e1?.resJsonString == e2?.resJsonString &&
         e1?.createdDate == e2?.createdDate &&
         e1?.resultStatus == e2?.resultStatus &&
-        e1?.dayId == e2?.dayId;
+        e1?.dayId == e2?.dayId &&
+        listEquality.equals(e1?.productList, e2?.productList) &&
+        e1?.shiftId == e2?.shiftId &&
+        e1?.orderType == e2?.orderType &&
+        e1?.count == e2?.count;
   }
 
   @override
@@ -279,7 +317,11 @@ class QrTransactionsRecordDocumentEquality
         e?.resJsonString,
         e?.createdDate,
         e?.resultStatus,
-        e?.dayId
+        e?.dayId,
+        e?.productList,
+        e?.shiftId,
+        e?.orderType,
+        e?.count
       ]);
 
   @override

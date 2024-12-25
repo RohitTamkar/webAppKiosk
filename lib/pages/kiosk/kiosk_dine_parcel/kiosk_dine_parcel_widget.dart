@@ -152,28 +152,27 @@ class _KioskDineParcelWidgetState extends State<KioskDineParcelWidget>
                         updateCallback: () => safeSetState(() {}),
                         child: KioskHeaderWidget(),
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            0.0, 250.0, 0.0, 0.0),
+                      Expanded(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 80.0),
+                                  0.0, 0.0, 0.0, 40.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
                                   '0r4e1rg5' /* Choose Order Type  */,
                                 ),
+                                textAlign: TextAlign.center,
                                 style: FlutterFlowTheme.of(context)
                                     .displayLarge
                                     .override(
                                       fontFamily: FlutterFlowTheme.of(context)
                                           .displayLargeFamily,
                                       color: FlutterFlowTheme.of(context).info,
-                                      fontSize: 40.0,
-                                      letterSpacing: 5.0,
+                                      fontSize: 25.0,
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
@@ -262,7 +261,7 @@ class _KioskDineParcelWidgetState extends State<KioskDineParcelWidget>
                                 child: Container(
                                   width: MediaQuery.sizeOf(context).width * 0.6,
                                   height:
-                                      MediaQuery.sizeOf(context).height * 0.15,
+                                      MediaQuery.sizeOf(context).height * 0.1,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context).primary,
                                     boxShadow: [
@@ -278,7 +277,7 @@ class _KioskDineParcelWidgetState extends State<KioskDineParcelWidget>
                                     borderRadius: BorderRadius.circular(30.0),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(60.0),
+                                    padding: EdgeInsets.all(20.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
@@ -287,7 +286,7 @@ class _KioskDineParcelWidgetState extends State<KioskDineParcelWidget>
                                             Icons.dinner_dining,
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryBtnText,
-                                            size: 50.0,
+                                            size: 30.0,
                                           ).animateOnPageLoad(animationsMap[
                                               'iconOnPageLoadAnimation1']!),
                                         ),
@@ -308,7 +307,7 @@ class _KioskDineParcelWidgetState extends State<KioskDineParcelWidget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryBtnText,
-                                                  fontSize: 36.0,
+                                                  fontSize: 25.0,
                                                   letterSpacing: 0.0,
                                                   useGoogleFonts: GoogleFonts
                                                           .asMap()
@@ -419,8 +418,8 @@ class _KioskDineParcelWidgetState extends State<KioskDineParcelWidget>
                                   child: Container(
                                     width:
                                         MediaQuery.sizeOf(context).width * 0.6,
-                                    height: MediaQuery.sizeOf(context).height *
-                                        0.15,
+                                    height:
+                                        MediaQuery.sizeOf(context).height * 0.1,
                                     decoration: BoxDecoration(
                                       color:
                                           FlutterFlowTheme.of(context).primary,
@@ -437,7 +436,7 @@ class _KioskDineParcelWidgetState extends State<KioskDineParcelWidget>
                                       borderRadius: BorderRadius.circular(30.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(60.0),
+                                      padding: EdgeInsets.all(20.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
@@ -447,7 +446,7 @@ class _KioskDineParcelWidgetState extends State<KioskDineParcelWidget>
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryBtnText,
-                                              size: 45.0,
+                                              size: 30.0,
                                             ).animateOnPageLoad(animationsMap[
                                                 'iconOnPageLoadAnimation2']!),
                                           ),
@@ -471,7 +470,7 @@ class _KioskDineParcelWidgetState extends State<KioskDineParcelWidget>
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryBtnText,
-                                                        fontSize: 36.0,
+                                                        fontSize: 25.0,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()

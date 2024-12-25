@@ -33,7 +33,7 @@ export '/pages/kiosk/kiosk_payment_copy/kiosk_payment_copy_widget.dart'
     show KioskPaymentCopyWidget;
 export '/pages/kiosk/kiosk_choose_payment_mode/kiosk_choose_payment_mode_widget.dart'
     show KioskChoosePaymentModeWidget;
-export '/pages/kiosk/cash_response_page/cash_response_page_widget.dart'
+export '/pages/cash_response_page/cash_response_page_widget.dart'
     show CashResponsePageWidget;
 export '/pages/kiosk/kiosk_customer_info/kiosk_customer_info_widget.dart'
     show KioskCustomerInfoWidget;

@@ -57,8 +57,8 @@ class _TransactionStatusWidgetState extends State<TransactionStatusWidget> {
     context.watch<FFAppState>();
 
     return Container(
-      width: 450.0,
-      height: 550.0,
+      width: 350.0,
+      height: 400.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).success,
         borderRadius: BorderRadius.only(
@@ -122,8 +122,8 @@ class _TransactionStatusWidgetState extends State<TransactionStatusWidget> {
                   borderRadius: BorderRadius.circular(22.0),
                   child: Image.asset(
                     'assets/images/TwitterVerifiedIconGIF-TwitterVerifiedIcon-DiscoverShareGIFs-ezgif.com-gif-maker.gif',
-                    width: 300.0,
-                    height: 200.0,
+                    width: 200.0,
+                    height: 150.0,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -145,7 +145,7 @@ Successful */
                       fontFamily:
                           FlutterFlowTheme.of(context).displayMediumFamily,
                       color: FlutterFlowTheme.of(context).primaryBtnText,
-                      fontSize: 27.0,
+                      fontSize: 20.0,
                       letterSpacing: 0.0,
                       fontWeight: FontWeight.w600,
                       useGoogleFonts: GoogleFonts.asMap().containsKey(
@@ -167,7 +167,7 @@ Successful */
                       fontFamily:
                           FlutterFlowTheme.of(context).headlineMediumFamily,
                       color: FlutterFlowTheme.of(context).primaryBackground,
-                      fontSize: 30.0,
+                      fontSize: 20.0,
                       letterSpacing: 0.0,
                       useGoogleFonts: GoogleFonts.asMap().containsKey(
                           FlutterFlowTheme.of(context).headlineMediumFamily),
@@ -205,7 +205,7 @@ Successful */
                 ),
                 style: FlutterFlowTheme.of(context).labelLarge.override(
                       fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
-                      color: FlutterFlowTheme.of(context).primary,
+                      color: FlutterFlowTheme.of(context).warning,
                       fontSize: 16.0,
                       letterSpacing: 0.0,
                       useGoogleFonts: GoogleFonts.asMap().containsKey(

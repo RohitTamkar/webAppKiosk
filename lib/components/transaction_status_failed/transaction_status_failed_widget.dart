@@ -47,8 +47,8 @@ class _TransactionStatusFailedWidgetState
     context.watch<FFAppState>();
 
     return Container(
-      width: 450.0,
-      height: 550.0,
+      width: 500.0,
+      height: 400.0,
       decoration: BoxDecoration(
         color: Color(0xFFDA4257),
         borderRadius: BorderRadius.only(

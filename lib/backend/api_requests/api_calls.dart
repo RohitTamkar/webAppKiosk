@@ -289,6 +289,8 @@ class PayApiCall {
     String? callbackUrl = '',
     int? mobileNumber,
     String? type = '',
+    String? outletId = '',
+    String? orderId = '',
   }) async {
     final ffApiRequestBody = '''
 {
@@ -300,12 +302,14 @@ class PayApiCall {
   "redirectMode": "${escapeStringForJson(redirectMode)}",
   "callbackUrl": "${escapeStringForJson(callbackUrl)}",
   "mobileNumber": ${mobileNumber},
-  "type": "${escapeStringForJson(type)}"
+  "type": "${escapeStringForJson(type)}",
+  "outletId": "${escapeStringForJson(outletId)}",
+  "orderId": "${escapeStringForJson(orderId)}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'payApi',
       apiUrl:
-          'https://asia-south1-uvpixcel.cloudfunctions.net/Phonepe-PayAPI/payAPI',
+          'https://asia-south1-sensiblebizpro.cloudfunctions.net/PhonePeAPI/payAPI',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -325,16 +329,20 @@ class CheckStatusCall {
   static Future<ApiCallResponse> call({
     String? merchantId = '',
     String? merchantTransactionId = '',
+    String? outletId = '',
+    String? orderId = '',
   }) async {
     final ffApiRequestBody = '''
 {
   "merchantId": "${escapeStringForJson(merchantId)}",
-  "merchantTransactionId": "${escapeStringForJson(merchantTransactionId)}"
+  "merchantTransactionId": "${escapeStringForJson(merchantTransactionId)}",
+  "outletId": "${escapeStringForJson(outletId)}",
+  "orderId": "${escapeStringForJson(orderId)}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'checkStatus',
       apiUrl:
-          'https://asia-south1-uvpixcel.cloudfunctions.net/Phonepe-PayAPI/payAPI/status',
+          'https://asia-south1-sensiblebizpro.cloudfunctions.net/PhonePeAPI/payAPI/status',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
