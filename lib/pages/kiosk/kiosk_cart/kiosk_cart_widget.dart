@@ -1383,7 +1383,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                         FFAppState().finalAmt *
                                                             100,
                                                     redirectUrl:
-                                                        'themagicicecreamfactory.in/responsePage',
+                                                        'https://kioskweb.web.app/responsePage',
                                                     redirectMode: 'POST',
                                                     callbackUrl:
                                                         'themagicicecreamfactory.in',
