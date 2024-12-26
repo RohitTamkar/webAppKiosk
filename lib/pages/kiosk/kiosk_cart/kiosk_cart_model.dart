@@ -1,6 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -58,12 +57,6 @@ class KioskCartModel extends FlutterFlowModel<KioskCartWidget> {
   OutletRecord? outletDOc;
   // Stores action output result for [Backend Call - API (payApi)] action in Button widget.
   ApiCallResponse? apiResulttja;
-  // Stores action output result for [Backend Call - API (checkStatus)] action in Button widget.
-  ApiCallResponse? checkstatus;
-  // Stores action output result for [Custom Action - filterProducts] action in Button widget.
-  List<SelItemListStruct>? prdListkiosk;
-  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
-  QrTransactionsRecord? qrtransaction;
 
   @override
   void initState(BuildContext context) {

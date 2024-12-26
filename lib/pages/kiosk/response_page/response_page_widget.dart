@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/transaction_status_failed/transaction_status_failed_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -63,7 +64,13 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
         singleRecord: true,
       ).then((s) => s.firstOrNull);
       FFAppState().shiftDetailsNEw = _model.shiftDetailsNewweb!;
-      FFAppState().msg = _model.qrTransaction!.msg;
+      FFAppState().msg = valueOrDefault<String>(
+        getJsonField(
+          (_model.checkStatus?.jsonBody ?? ''),
+          r'''$[:1].message''',
+        )?.toString()?.toString(),
+        'null',
+      );
       safeSetState(() {});
       FFAppState().shiftDetailsJson = _model.shiftDetailsNewweb!;
       FFAppState().kioskAmt = FFAppState().finalAmt;
@@ -71,6 +78,11 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
       FFAppState().shiftexist = 'True';
       safeSetState(() {});
       if (_model.qrTransaction!.status) {
+        _model.prdListkiosk = await actions.filterProducts(
+          FFAppState().selBill,
+          FFAppState().allBillsList.toList(),
+        );
+
         var invoiceRecordReference =
             InvoiceRecord.createDoc(FFAppState().outletIdRef!);
         await invoiceRecordReference.set({
@@ -103,14 +115,14 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
               FFAppState().shiftDetailsJson,
               r'''$.shiftId''',
             ).toString().toString(),
-            orderType: _model.qrTransaction?.orderType,
+            orderType: FFAppState().orderType,
             kotStatus: 'PENDING',
-            count: _model.qrTransaction?.count,
+            count: FFAppState().count,
           ),
           ...mapToFirestore(
             {
               'productList': getSelItemListListFirestoreData(
-                _model.qrTransaction?.productList,
+                _model.prdListkiosk,
               ),
             },
           ),
@@ -145,14 +157,14 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
               FFAppState().shiftDetailsJson,
               r'''$.shiftId''',
             ).toString().toString(),
-            orderType: _model.qrTransaction?.orderType,
+            orderType: FFAppState().orderType,
             kotStatus: 'PENDING',
-            count: _model.qrTransaction?.count,
+            count: FFAppState().count,
           ),
           ...mapToFirestore(
             {
               'productList': getSelItemListListFirestoreData(
-                _model.qrTransaction?.productList,
+                _model.prdListkiosk,
               ),
             },
           ),
@@ -226,46 +238,6 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
             parent: FFAppState().outletIdRef,
             singleRecord: true,
           ).then((s) => s.firstOrNull);
-          if (_model.appsetting!.settingList
-              .where((e) => e.title == 'enableStock')
-              .toList()
-              .firstOrNull!
-              .value) {
-            FFAppState().startLoop = 0;
-            safeSetState(() {});
-            while (FFAppState().startLoop <
-                _model.qrTransaction!.productList.length) {
-              _model.stockupdateprd = await queryProductRecordOnce(
-                parent: FFAppState().outletIdRef,
-                queryBuilder: (productRecord) => productRecord
-                    .where(
-                      'id',
-                      isEqualTo: (_model.qrTransaction?.productList
-                              ?.elementAtOrNull(FFAppState().startLoop))
-                          ?.id,
-                    )
-                    .where(
-                      'stockable',
-                      isEqualTo: true,
-                    ),
-                singleRecord: true,
-              ).then((s) => s.firstOrNull);
-              if (_model.stockupdateprd != null) {
-                await _model.stockupdateprd!.reference.update({
-                  ...mapToFirestore(
-                    {
-                      'currentStock': FieldValue.increment(-(functions
-                          .doubleToInt((_model.qrTransaction?.productList
-                                  ?.elementAtOrNull(FFAppState().startLoop))
-                              ?.quantity)!)),
-                    },
-                  ),
-                });
-              }
-              FFAppState().startLoop = FFAppState().startLoop + 1;
-              safeSetState(() {});
-            }
-          }
           _model.outletdoc = await queryOutletRecordOnce(
             queryBuilder: (outletRecord) => outletRecord.where(
               'id',

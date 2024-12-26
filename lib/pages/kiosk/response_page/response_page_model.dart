@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/transaction_status_failed/transaction_status_failed_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -28,6 +29,8 @@ class ResponsePageModel extends FlutterFlowModel<ResponsePageWidget> {
   ApiCallResponse? checkStatus;
   // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
   QrTransactionsRecord? qrTransaction;
+  // Stores action output result for [Custom Action - filterProducts] action in responsePage widget.
+  List<SelItemListStruct>? prdListkiosk;
   // Stores action output result for [Backend Call - Create Document] action in responsePage widget.
   InvoiceRecord? docInvoicekiosk;
   // Stores action output result for [Custom Action - calShiftSummary] action in responsePage widget.
@@ -36,8 +39,6 @@ class ResponsePageModel extends FlutterFlowModel<ResponsePageWidget> {
   ShiftRecord? shiftref;
   // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
   AppSettingsRecord? appsetting;
-  // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
-  ProductRecord? stockupdateprd;
   // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
   OutletRecord? outletdoc;
   // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
