@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/transaction_status_failed/transaction_status_failed_widget.dart';
@@ -47,7 +48,14 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
         '0',
         FFAppState().outletIdRef!.id,
       );
-      if (true) {
+      _model.checkStatus = await CheckStatusCall.call(
+        merchantId: 'PGTESTPAYUAT131',
+        merchantTransactionId: FFAppState().transactionid,
+        outletId: FFAppState().outletIdRef?.id,
+        orderId: FFAppState().paytmOrderId,
+      );
+
+      if ((_model.checkStatus?.succeeded ?? true)) {
         _model.qrTransaction = await queryQrTransactionsRecordOnce(
           parent: FFAppState().outletIdRef,
           queryBuilder: (qrTransactionsRecord) => qrTransactionsRecord.where(
@@ -57,6 +65,13 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
           singleRecord: true,
         ).then((s) => s.firstOrNull);
         FFAppState().shiftDetailsNEw = _model.shiftDetailsNewweb!;
+        FFAppState().msg = valueOrDefault<String>(
+          getJsonField(
+            (_model.checkStatus?.jsonBody ?? ''),
+            r'''$[:1].message''',
+          )?.toString()?.toString(),
+          'null',
+        );
         safeSetState(() {});
         FFAppState().shiftDetailsJson = _model.shiftDetailsNewweb!;
         FFAppState().kioskAmt = FFAppState().finalAmt;
@@ -248,6 +263,20 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
             FFAppState().delCharges = 0.0;
             FFAppState().update(() {});
             _model.taxmaster = await queryTaxMasterRecordOnce();
+            await showDialog(
+              context: context,
+              builder: (alertDialogContext) {
+                return AlertDialog(
+                  content: Text('DONE'),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(alertDialogContext),
+                      child: Text('Ok'),
+                    ),
+                  ],
+                );
+              },
+            );
             return;
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -293,6 +322,20 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
           FFAppState().delCharges = 0.0;
           FFAppState().transactionid = '';
           FFAppState().update(() {});
+          await showDialog(
+            context: context,
+            builder: (alertDialogContext) {
+              return AlertDialog(
+                content: Text('Failed'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(alertDialogContext),
+                    child: Text('Ok'),
+                  ),
+                ],
+              );
+            },
+          );
           return;
         }
       } else {
