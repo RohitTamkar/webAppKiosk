@@ -240,6 +240,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
               parent: FFAppState().outletIdRef,
               singleRecord: true,
             ).then((s) => s.firstOrNull);
+            await Future.delayed(const Duration(milliseconds: 10000));
             _model.outletdoc = await queryOutletRecordOnce(
               queryBuilder: (outletRecord) => outletRecord.where(
                 'id',
