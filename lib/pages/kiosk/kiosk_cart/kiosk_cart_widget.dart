@@ -1372,7 +1372,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                             100,
                                                     redirectUrl:
                                                         'https://kioskweb.web.app/responsePage',
-                                                    redirectMode: 'REDIRECT',
+                                                    redirectMode: 'POST',
                                                     callbackUrl:
                                                         'https://kioskweb.web.app/responsePage',
                                                     mobileNumber: 0,
