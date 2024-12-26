@@ -60,6 +60,14 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
             (_model.checkStatus?.jsonBody ?? ''),
             r'''$[1].success''',
           ).toString().toString()) {
+        _model.qrTransaction = await queryQrTransactionsRecordOnce(
+          parent: FFAppState().outletIdRef,
+          queryBuilder: (qrTransactionsRecord) => qrTransactionsRecord.where(
+            'orderId',
+            isEqualTo: FFAppState().paytmOrderId,
+          ),
+          singleRecord: true,
+        ).then((s) => s.firstOrNull);
         FFAppState().shiftDetailsNEw = _model.shiftDetailsNewweb!;
         FFAppState().msg = valueOrDefault<String>(
           getJsonField(
@@ -74,11 +82,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
         safeSetState(() {});
         FFAppState().shiftexist = 'True';
         safeSetState(() {});
-        if ('true' ==
-            getJsonField(
-              (_model.checkStatus?.jsonBody ?? ''),
-              r'''$[1].success''',
-            ).toString().toString()) {
+        if (_model.qrTransaction!.status) {
           _model.prdListkiosk = await actions.filterProducts(
             FFAppState().selBill,
             FFAppState().allBillsList.toList(),
@@ -390,11 +394,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  if ('true' ==
-                      getJsonField(
-                        (_model.checkStatus?.jsonBody ?? ''),
-                        r'''$[1].success''',
-                      ).toString())
+                  if (_model.qrTransaction?.status ?? true)
                     Expanded(
                       flex: 7,
                       child: Padding(
@@ -733,11 +733,7 @@ Successful */
                         ),
                       ),
                     ),
-                  if ('false' ==
-                      getJsonField(
-                        (_model.checkStatus?.jsonBody ?? ''),
-                        r'''$[1].success''',
-                      ).toString())
+                  if (!_model.qrTransaction!.status)
                     Expanded(
                       flex: 7,
                       child: Padding(
