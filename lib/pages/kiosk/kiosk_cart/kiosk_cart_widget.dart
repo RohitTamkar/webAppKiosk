@@ -1370,10 +1370,10 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                         FFAppState().finalAmt *
                                                             100,
                                                     redirectUrl:
-                                                        'https://kioskweb.web.app/responsePage',
+                                                        'https://themagicicecreamfactory.in/responsePage',
                                                     redirectMode: 'POST',
                                                     callbackUrl:
-                                                        'https://kioskweb.web.app/responsePage',
+                                                        'https://themagicicecreamfactory.in/responsePage',
                                                     mobileNumber: 0,
                                                     type: 'PAY_PAGE',
                                                     outletId: FFAppState()
