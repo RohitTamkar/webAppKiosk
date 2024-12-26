@@ -55,197 +55,244 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
         orderId: FFAppState().paytmOrderId,
       );
 
-      _model.qrTransaction = await queryQrTransactionsRecordOnce(
-        parent: FFAppState().outletIdRef,
-        queryBuilder: (qrTransactionsRecord) => qrTransactionsRecord.where(
-          'orderId',
-          isEqualTo: FFAppState().paytmOrderId,
-        ),
-        singleRecord: true,
-      ).then((s) => s.firstOrNull);
-      FFAppState().shiftDetailsNEw = _model.shiftDetailsNewweb!;
-      FFAppState().msg = valueOrDefault<String>(
-        getJsonField(
-          (_model.checkStatus?.jsonBody ?? ''),
-          r'''$[:1].message''',
-        )?.toString()?.toString(),
-        'null',
-      );
-      safeSetState(() {});
-      FFAppState().shiftDetailsJson = _model.shiftDetailsNewweb!;
-      FFAppState().kioskAmt = FFAppState().finalAmt;
-      safeSetState(() {});
-      FFAppState().shiftexist = 'True';
-      safeSetState(() {});
-      if (_model.qrTransaction!.status) {
-        _model.prdListkiosk = await actions.filterProducts(
-          FFAppState().selBill,
-          FFAppState().allBillsList.toList(),
+      if ((_model.checkStatus?.succeeded ?? true)) {
+        _model.qrTransaction = await queryQrTransactionsRecordOnce(
+          parent: FFAppState().outletIdRef,
+          queryBuilder: (qrTransactionsRecord) => qrTransactionsRecord.where(
+            'orderId',
+            isEqualTo: FFAppState().paytmOrderId,
+          ),
+          singleRecord: true,
+        ).then((s) => s.firstOrNull);
+        FFAppState().shiftDetailsNEw = _model.shiftDetailsNewweb!;
+        FFAppState().msg = valueOrDefault<String>(
+          getJsonField(
+            (_model.checkStatus?.jsonBody ?? ''),
+            r'''$[:1].message''',
+          )?.toString()?.toString(),
+          'null',
         );
-
-        var invoiceRecordReference =
-            InvoiceRecord.createDoc(FFAppState().outletIdRef!);
-        await invoiceRecordReference.set({
-          ...createInvoiceRecordData(
-            invoice: FFAppState().paytmOrderId,
-            party: FFAppState().setCustName,
-            invoiceDate: functions.timestampToMili(getCurrentTimestamp),
-            dayId: functions.getDayId(),
-            paymentMode: 'UPI QR',
-            discountAmt: valueOrDefault<double>(
-              FFAppState().disAmt,
-              0.0,
-            ),
-            discountPer: valueOrDefault<double>(
-              FFAppState().disPer,
-              0.0,
-            ),
-            delliveryChrg: FFAppState().delCharges * FFAppState().noOfItems,
-            taxAmt: valueOrDefault<double>(
-              FFAppState().taxamt,
-              0.0,
-            ),
-            billAmt: valueOrDefault<double>(
-              FFAppState().billAmt,
-              0.0,
-            ),
-            finalBillAmt: FFAppState().finalAmt,
-            roundOff: 0.0,
-            shiftId: getJsonField(
-              FFAppState().shiftDetailsJson,
-              r'''$.shiftId''',
-            ).toString().toString(),
-            orderType: FFAppState().orderType,
-            kotStatus: 'PENDING',
-            count: FFAppState().count,
-          ),
-          ...mapToFirestore(
-            {
-              'productList': getSelItemListListFirestoreData(
-                _model.prdListkiosk,
-              ),
-            },
-          ),
-        });
-        _model.docInvoicekiosk = InvoiceRecord.getDocumentFromData({
-          ...createInvoiceRecordData(
-            invoice: FFAppState().paytmOrderId,
-            party: FFAppState().setCustName,
-            invoiceDate: functions.timestampToMili(getCurrentTimestamp),
-            dayId: functions.getDayId(),
-            paymentMode: 'UPI QR',
-            discountAmt: valueOrDefault<double>(
-              FFAppState().disAmt,
-              0.0,
-            ),
-            discountPer: valueOrDefault<double>(
-              FFAppState().disPer,
-              0.0,
-            ),
-            delliveryChrg: FFAppState().delCharges * FFAppState().noOfItems,
-            taxAmt: valueOrDefault<double>(
-              FFAppState().taxamt,
-              0.0,
-            ),
-            billAmt: valueOrDefault<double>(
-              FFAppState().billAmt,
-              0.0,
-            ),
-            finalBillAmt: FFAppState().finalAmt,
-            roundOff: 0.0,
-            shiftId: getJsonField(
-              FFAppState().shiftDetailsJson,
-              r'''$.shiftId''',
-            ).toString().toString(),
-            orderType: FFAppState().orderType,
-            kotStatus: 'PENDING',
-            count: FFAppState().count,
-          ),
-          ...mapToFirestore(
-            {
-              'productList': getSelItemListListFirestoreData(
-                _model.prdListkiosk,
-              ),
-            },
-          ),
-        }, invoiceRecordReference);
-
-        await _model.docInvoicekiosk!.reference.update(createInvoiceRecordData(
-          id: _model.docInvoicekiosk?.reference.id,
-        ));
-        if (getJsonField(
-          _model.shiftDetailsNewweb,
-          r'''$.shiftExists''',
-        )) {
-          FFAppState().billcount = getJsonField(
-            _model.shiftDetailsNewweb,
-            r'''$.billCount''',
+        safeSetState(() {});
+        FFAppState().shiftDetailsJson = _model.shiftDetailsNewweb!;
+        FFAppState().kioskAmt = FFAppState().finalAmt;
+        safeSetState(() {});
+        FFAppState().shiftexist = 'True';
+        safeSetState(() {});
+        if (_model.qrTransaction!.status) {
+          _model.prdListkiosk = await actions.filterProducts(
+            FFAppState().selBill,
+            FFAppState().allBillsList.toList(),
           );
-          safeSetState(() {});
-          FFAppState().billcount = FFAppState().billcount + 1;
-          safeSetState(() {});
-          _model.shiftSummarRkiosk = await actions.calShiftSummary(
-            _model.docInvoicekiosk!,
-            FFAppState().shiftDetailsJson,
-          );
-          _model.shiftref = await queryShiftRecordOnce(
-            parent: FFAppState().outletIdRef,
-            queryBuilder: (shiftRecord) => shiftRecord.where(
-              'shiftId',
-              isEqualTo: getJsonField(
-                _model.shiftDetailsNewweb,
+
+          var invoiceRecordReference =
+              InvoiceRecord.createDoc(FFAppState().outletIdRef!);
+          await invoiceRecordReference.set({
+            ...createInvoiceRecordData(
+              invoice: FFAppState().paytmOrderId,
+              party: FFAppState().setCustName,
+              invoiceDate: functions.timestampToMili(getCurrentTimestamp),
+              dayId: functions.getDayId(),
+              paymentMode: 'UPI QR',
+              discountAmt: valueOrDefault<double>(
+                FFAppState().disAmt,
+                0.0,
+              ),
+              discountPer: valueOrDefault<double>(
+                FFAppState().disPer,
+                0.0,
+              ),
+              delliveryChrg: FFAppState().delCharges * FFAppState().noOfItems,
+              taxAmt: valueOrDefault<double>(
+                FFAppState().taxamt,
+                0.0,
+              ),
+              billAmt: valueOrDefault<double>(
+                FFAppState().billAmt,
+                0.0,
+              ),
+              finalBillAmt: FFAppState().finalAmt,
+              roundOff: 0.0,
+              shiftId: getJsonField(
+                FFAppState().shiftDetailsJson,
                 r'''$.shiftId''',
               ).toString().toString(),
+              orderType: FFAppState().orderType,
+              kotStatus: 'PENDING',
+              count: FFAppState().count,
             ),
-            singleRecord: true,
-          ).then((s) => s.firstOrNull);
+            ...mapToFirestore(
+              {
+                'productList': getSelItemListListFirestoreData(
+                  _model.prdListkiosk,
+                ),
+              },
+            ),
+          });
+          _model.docInvoicekiosk = InvoiceRecord.getDocumentFromData({
+            ...createInvoiceRecordData(
+              invoice: FFAppState().paytmOrderId,
+              party: FFAppState().setCustName,
+              invoiceDate: functions.timestampToMili(getCurrentTimestamp),
+              dayId: functions.getDayId(),
+              paymentMode: 'UPI QR',
+              discountAmt: valueOrDefault<double>(
+                FFAppState().disAmt,
+                0.0,
+              ),
+              discountPer: valueOrDefault<double>(
+                FFAppState().disPer,
+                0.0,
+              ),
+              delliveryChrg: FFAppState().delCharges * FFAppState().noOfItems,
+              taxAmt: valueOrDefault<double>(
+                FFAppState().taxamt,
+                0.0,
+              ),
+              billAmt: valueOrDefault<double>(
+                FFAppState().billAmt,
+                0.0,
+              ),
+              finalBillAmt: FFAppState().finalAmt,
+              roundOff: 0.0,
+              shiftId: getJsonField(
+                FFAppState().shiftDetailsJson,
+                r'''$.shiftId''',
+              ).toString().toString(),
+              orderType: FFAppState().orderType,
+              kotStatus: 'PENDING',
+              count: FFAppState().count,
+            ),
+            ...mapToFirestore(
+              {
+                'productList': getSelItemListListFirestoreData(
+                  _model.prdListkiosk,
+                ),
+              },
+            ),
+          }, invoiceRecordReference);
 
-          await _model.shiftref!.reference.update(createShiftRecordData(
-            billCount: FFAppState().billcount,
-            totalSale: getJsonField(
-              _model.shiftDetailsNewweb,
-              r'''$.totalSale''',
-            ),
-            deliveryCharges: getJsonField(
-              _model.shiftDetailsNewweb,
-              r'''$.deliveryCharges''',
-            ),
-            tax: getJsonField(
-              _model.shiftDetailsNewweb,
-              r'''$.tax''',
-            ),
-            lastBillNo: getJsonField(
-              _model.shiftSummarRkiosk,
-              r'''$.lastBillNo''',
-            ).toString().toString(),
-            discount: getJsonField(
-              _model.shiftSummarRkiosk,
-              r'''$.discount''',
-            ),
-            lastBillTime: functions.timestampToMili(getCurrentTimestamp),
-            cashSale: getJsonField(
-              _model.shiftSummarRkiosk,
-              r'''$.cashSale''',
-            ),
-            paymentJson: getJsonField(
-              _model.shiftSummarRkiosk,
-              r'''$.paymentJson''',
-            ).toString().toString(),
+          await _model.docInvoicekiosk!.reference
+              .update(createInvoiceRecordData(
+            id: _model.docInvoicekiosk?.reference.id,
           ));
-          FFAppState().lastBill = FFAppState().finalAmt;
-          FFAppState().update(() {});
-          _model.appsetting = await queryAppSettingsRecordOnce(
-            parent: FFAppState().outletIdRef,
-            singleRecord: true,
-          ).then((s) => s.firstOrNull);
-          _model.outletdoc = await queryOutletRecordOnce(
+          if (getJsonField(
+            _model.shiftDetailsNewweb,
+            r'''$.shiftExists''',
+          )) {
+            FFAppState().billcount = getJsonField(
+              _model.shiftDetailsNewweb,
+              r'''$.billCount''',
+            );
+            safeSetState(() {});
+            FFAppState().billcount = FFAppState().billcount + 1;
+            safeSetState(() {});
+            _model.shiftSummarRkiosk = await actions.calShiftSummary(
+              _model.docInvoicekiosk!,
+              FFAppState().shiftDetailsJson,
+            );
+            _model.shiftref = await queryShiftRecordOnce(
+              parent: FFAppState().outletIdRef,
+              queryBuilder: (shiftRecord) => shiftRecord.where(
+                'shiftId',
+                isEqualTo: getJsonField(
+                  _model.shiftDetailsNewweb,
+                  r'''$.shiftId''',
+                ).toString().toString(),
+              ),
+              singleRecord: true,
+            ).then((s) => s.firstOrNull);
+
+            await _model.shiftref!.reference.update(createShiftRecordData(
+              billCount: FFAppState().billcount,
+              totalSale: getJsonField(
+                _model.shiftDetailsNewweb,
+                r'''$.totalSale''',
+              ),
+              deliveryCharges: getJsonField(
+                _model.shiftDetailsNewweb,
+                r'''$.deliveryCharges''',
+              ),
+              tax: getJsonField(
+                _model.shiftDetailsNewweb,
+                r'''$.tax''',
+              ),
+              lastBillNo: getJsonField(
+                _model.shiftSummarRkiosk,
+                r'''$.lastBillNo''',
+              ).toString().toString(),
+              discount: getJsonField(
+                _model.shiftSummarRkiosk,
+                r'''$.discount''',
+              ),
+              lastBillTime: functions.timestampToMili(getCurrentTimestamp),
+              cashSale: getJsonField(
+                _model.shiftSummarRkiosk,
+                r'''$.cashSale''',
+              ),
+              paymentJson: getJsonField(
+                _model.shiftSummarRkiosk,
+                r'''$.paymentJson''',
+              ).toString().toString(),
+            ));
+            FFAppState().lastBill = FFAppState().finalAmt;
+            FFAppState().update(() {});
+            _model.appsetting = await queryAppSettingsRecordOnce(
+              parent: FFAppState().outletIdRef,
+              singleRecord: true,
+            ).then((s) => s.firstOrNull);
+            _model.outletdoc = await queryOutletRecordOnce(
+              queryBuilder: (outletRecord) => outletRecord.where(
+                'id',
+                isEqualTo: FFAppState().outletIdRef?.id,
+              ),
+              singleRecord: true,
+            ).then((s) => s.firstOrNull);
+            await actions.removeFromAllBillList(
+              FFAppState().selBill,
+            );
+            await actions.clearValue();
+            FFAppState().subTotal = 0.0;
+            FFAppState().update(() {});
+            FFAppState().finalAmt = 0.0;
+            FFAppState().billAmt = 0.0;
+            FFAppState().count = FFAppState().count;
+            FFAppState().cartItem = [];
+            FFAppState().isBillPrinted = true;
+            FFAppState().noOfItems = 0;
+            FFAppState().delCharges = 0.0;
+            FFAppState().update(() {});
+            _model.taxmaster = await queryTaxMasterRecordOnce();
+            return;
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  'Login again to start Shift ',
+                  style: TextStyle(
+                    color: FlutterFlowTheme.of(context).primaryText,
+                  ),
+                ),
+                duration: Duration(milliseconds: 4000),
+                backgroundColor: Color(0x00000000),
+              ),
+            );
+            return;
+          }
+        } else {
+          await Future.delayed(const Duration(milliseconds: 2000));
+          _model.taxmaster2 = await queryTaxMasterRecordOnce();
+          _model.outletdoc2 = await queryOutletRecordOnce(
             queryBuilder: (outletRecord) => outletRecord.where(
               'id',
               isEqualTo: FFAppState().outletIdRef?.id,
             ),
             singleRecord: true,
           ).then((s) => s.firstOrNull);
-          await actions.removeFromAllBillList(
+          _model.appsetting1 = await queryAppSettingsRecordOnce(
+            parent: FFAppState().outletIdRef,
+            singleRecord: true,
+          ).then((s) => s.firstOrNull);
+          _model.rm = await actions.removeFromAllBillList(
             FFAppState().selBill,
           );
           await actions.clearValue();
@@ -258,54 +305,25 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
           FFAppState().isBillPrinted = true;
           FFAppState().noOfItems = 0;
           FFAppState().delCharges = 0.0;
+          FFAppState().transactionid = '';
           FFAppState().update(() {});
-          _model.taxmaster = await queryTaxMasterRecordOnce();
-          return;
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                'Login again to start Shift ',
-                style: TextStyle(
-                  color: FlutterFlowTheme.of(context).primaryText,
-                ),
-              ),
-              duration: Duration(milliseconds: 4000),
-              backgroundColor: Color(0x00000000),
-            ),
-          );
           return;
         }
       } else {
-        await Future.delayed(const Duration(milliseconds: 2000));
-        _model.taxmaster2 = await queryTaxMasterRecordOnce();
-        _model.outletdoc2 = await queryOutletRecordOnce(
-          queryBuilder: (outletRecord) => outletRecord.where(
-            'id',
-            isEqualTo: FFAppState().outletIdRef?.id,
-          ),
-          singleRecord: true,
-        ).then((s) => s.firstOrNull);
-        _model.appsetting1 = await queryAppSettingsRecordOnce(
-          parent: FFAppState().outletIdRef,
-          singleRecord: true,
-        ).then((s) => s.firstOrNull);
-        _model.rm = await actions.removeFromAllBillList(
-          FFAppState().selBill,
+        await showDialog(
+          context: context,
+          builder: (alertDialogContext) {
+            return AlertDialog(
+              content: Text('Failed'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
+            );
+          },
         );
-        await actions.clearValue();
-        FFAppState().subTotal = 0.0;
-        FFAppState().update(() {});
-        FFAppState().finalAmt = 0.0;
-        FFAppState().billAmt = 0.0;
-        FFAppState().count = FFAppState().count;
-        FFAppState().cartItem = [];
-        FFAppState().isBillPrinted = true;
-        FFAppState().noOfItems = 0;
-        FFAppState().delCharges = 0.0;
-        FFAppState().transactionid = '';
-        FFAppState().update(() {});
-        return;
       }
     });
 
