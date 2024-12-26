@@ -1371,7 +1371,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                             100,
                                                     redirectUrl:
                                                         'https://webhook.site/7e40fab0-8e4c-4ac2-9a65-3eeb94ca5578',
-                                                    redirectMode: 'REDIRECT',
+                                                    redirectMode: 'POST',
                                                     callbackUrl:
                                                         'https://asia-south1-sensiblebizpro.cloudfunctions.net/PhonePeCallBack',
                                                     mobileNumber: 0,
