@@ -1370,11 +1370,11 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                         FFAppState().finalAmt *
                                                             100,
                                                     redirectUrl:
-                                                        'https://webhook.site/7e40fab0-8e4c-4ac2-9a65-3eeb94ca5578',
-                                                    redirectMode: 'POST',
+                                                        'https://themagicicecreamfactory.in/responsePage',
+                                                    redirectMode: 'REDIRECT',
                                                     callbackUrl:
-                                                        'https://asia-south1-sensiblebizpro.cloudfunctions.net/PhonePeCallBack',
-                                                    mobileNumber: 0,
+                                                        'https://themagicicecreamfactory.in/responsePage',
+                                                    mobileNumber: 9158724772,
                                                     type: 'PAY_PAGE',
                                                     outletId: FFAppState()
                                                         .outletIdRef

@@ -55,7 +55,10 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
         orderId: FFAppState().paytmOrderId,
       );
 
-      if ((_model.checkStatus?.succeeded ?? true)) {
+      if (getJsonField(
+        (_model.checkStatus?.jsonBody ?? ''),
+        r'''$[1].success''',
+      )) {
         _model.qrTransaction = await queryQrTransactionsRecordOnce(
           parent: FFAppState().outletIdRef,
           queryBuilder: (qrTransactionsRecord) => qrTransactionsRecord.where(
