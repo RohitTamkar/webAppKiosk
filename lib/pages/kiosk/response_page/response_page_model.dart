@@ -1,4 +1,3 @@
-import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/transaction_status_failed/transaction_status_failed_widget.dart';
@@ -25,8 +24,6 @@ class ResponsePageModel extends FlutterFlowModel<ResponsePageWidget> {
 
   // Stores action output result for [Custom Action - shiftExists] action in responsePage widget.
   dynamic? shiftDetailsNewweb;
-  // Stores action output result for [Backend Call - API (checkStatus)] action in responsePage widget.
-  ApiCallResponse? checkStatus;
   // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
   QrTransactionsRecord? qrTransaction;
   // Stores action output result for [Custom Action - filterProducts] action in responsePage widget.
