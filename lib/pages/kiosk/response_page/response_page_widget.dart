@@ -273,9 +273,6 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
             ),
             singleRecord: true,
           ).then((s) => s.firstOrNull);
-          _model.spoutlet = await queryServicePointOutletRecordOnce(
-            parent: FFAppState().outletIdRef,
-          );
           await actions.removeFromAllBillList(
             FFAppState().selBill,
           );

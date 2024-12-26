@@ -1358,8 +1358,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                   safeSetState(() {});
                                                   _model.apiResulttja =
                                                       await PayApiCall.call(
-                                                    merchantId:
-                                                        'PGTESTPAYUAT131',
+                                                    merchantId: 'M18CLSPZK1MZ',
                                                     merchantTransactionId:
                                                         FFAppState()
                                                             .transactionid,

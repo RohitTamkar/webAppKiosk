@@ -41,8 +41,6 @@ class ResponsePageModel extends FlutterFlowModel<ResponsePageWidget> {
   // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
   OutletRecord? outletdoc;
   // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
-  List<ServicePointOutletRecord>? spoutlet;
-  // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
   List<TaxMasterRecord>? taxmaster;
   // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
   List<TaxMasterRecord>? taxmaster2;
