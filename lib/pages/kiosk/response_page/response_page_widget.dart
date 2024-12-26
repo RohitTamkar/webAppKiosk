@@ -59,14 +59,6 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
         (_model.checkStatus?.jsonBody ?? ''),
         r'''$[1].success''',
       )) {
-        _model.qrTransaction = await queryQrTransactionsRecordOnce(
-          parent: FFAppState().outletIdRef,
-          queryBuilder: (qrTransactionsRecord) => qrTransactionsRecord.where(
-            'orderId',
-            isEqualTo: FFAppState().paytmOrderId,
-          ),
-          singleRecord: true,
-        ).then((s) => s.firstOrNull);
         FFAppState().shiftDetailsNEw = _model.shiftDetailsNewweb!;
         FFAppState().msg = valueOrDefault<String>(
           getJsonField(
@@ -81,7 +73,10 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
         safeSetState(() {});
         FFAppState().shiftexist = 'True';
         safeSetState(() {});
-        if (_model.qrTransaction!.status) {
+        if (getJsonField(
+          (_model.checkStatus?.jsonBody ?? ''),
+          r'''$[1].success''',
+        )) {
           _model.prdListkiosk = await actions.filterProducts(
             FFAppState().selBill,
             FFAppState().allBillsList.toList(),
@@ -239,18 +234,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
             ));
             FFAppState().lastBill = FFAppState().finalAmt;
             FFAppState().update(() {});
-            _model.appsetting = await queryAppSettingsRecordOnce(
-              parent: FFAppState().outletIdRef,
-              singleRecord: true,
-            ).then((s) => s.firstOrNull);
             await Future.delayed(const Duration(milliseconds: 10000));
-            _model.outletdoc = await queryOutletRecordOnce(
-              queryBuilder: (outletRecord) => outletRecord.where(
-                'id',
-                isEqualTo: FFAppState().outletIdRef?.id,
-              ),
-              singleRecord: true,
-            ).then((s) => s.firstOrNull);
             await actions.removeFromAllBillList(
               FFAppState().selBill,
             );
@@ -265,7 +249,6 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
             FFAppState().noOfItems = 0;
             FFAppState().delCharges = 0.0;
             FFAppState().update(() {});
-            _model.taxmaster = await queryTaxMasterRecordOnce();
             await showDialog(
               context: context,
               builder: (alertDialogContext) {
@@ -360,42 +343,6 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
     });
 
     animationsMap.addAll({
-      'textOnPageLoadAnimation1': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
-      'textOnPageLoadAnimation2': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
-      'textOnPageLoadAnimation3': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
       'transactionStatusFailedOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
@@ -441,7 +388,10 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  if (_model.qrTransaction?.status ?? true)
+                  if (getJsonField(
+                    (_model.checkStatus?.jsonBody ?? ''),
+                    r'''$[1].success''',
+                  ))
                     Expanded(
                       flex: 7,
                       child: Padding(
@@ -500,8 +450,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
                                                 FlutterFlowTheme.of(context)
                                                     .displayLargeFamily),
                                       ),
-                                ).animateOnPageLoad(
-                                    animationsMap['textOnPageLoadAnimation1']!),
+                                ),
                               ),
                               Flexible(
                                 child: Padding(
@@ -529,8 +478,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
                                                   FlutterFlowTheme.of(context)
                                                       .displayLargeFamily),
                                         ),
-                                  ).animateOnPageLoad(animationsMap[
-                                      'textOnPageLoadAnimation2']!),
+                                  ),
                                 ),
                               ),
                               Padding(
@@ -554,8 +502,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
                                                 FlutterFlowTheme.of(context)
                                                     .displayLargeFamily),
                                       ),
-                                ).animateOnPageLoad(
-                                    animationsMap['textOnPageLoadAnimation3']!),
+                                ),
                               ),
                               Container(
                                 width: 500.0,
@@ -607,10 +554,11 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
                                           ),
                                         ),
                                         Text(
-                                          valueOrDefault<String>(
-                                            _model.qrTransaction?.orderId,
-                                            '- -',
-                                          ),
+                                          getJsonField(
+                                            (_model.checkStatus?.jsonBody ??
+                                                ''),
+                                            r'''$[1].message''',
+                                          ).toString(),
                                           style: FlutterFlowTheme.of(context)
                                               .headlineLarge
                                               .override(
@@ -720,8 +668,8 @@ Successful */
                                       children: [
                                         Text(
                                           valueOrDefault<String>(
-                                            _model.qrTransaction?.msg,
-                                            '--',
+                                            _model.docInvoicekiosk?.invoice,
+                                            '0',
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .labelLarge
@@ -782,7 +730,10 @@ Successful */
                         ),
                       ),
                     ),
-                  if (!_model.qrTransaction!.status)
+                  if (!getJsonField(
+                    (_model.checkStatus?.jsonBody ?? ''),
+                    r'''$[1].success''',
+                  ))
                     Expanded(
                       flex: 7,
                       child: Padding(

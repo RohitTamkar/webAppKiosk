@@ -27,8 +27,6 @@ class ResponsePageModel extends FlutterFlowModel<ResponsePageWidget> {
   dynamic? shiftDetailsNewweb;
   // Stores action output result for [Backend Call - API (checkStatus)] action in responsePage widget.
   ApiCallResponse? checkStatus;
-  // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
-  QrTransactionsRecord? qrTransaction;
   // Stores action output result for [Custom Action - filterProducts] action in responsePage widget.
   List<SelItemListStruct>? prdListkiosk;
   // Stores action output result for [Backend Call - Create Document] action in responsePage widget.
@@ -37,12 +35,6 @@ class ResponsePageModel extends FlutterFlowModel<ResponsePageWidget> {
   dynamic? shiftSummarRkiosk;
   // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
   ShiftRecord? shiftref;
-  // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
-  AppSettingsRecord? appsetting;
-  // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
-  OutletRecord? outletdoc;
-  // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
-  List<TaxMasterRecord>? taxmaster;
   // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
   List<TaxMasterRecord>? taxmaster2;
   // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
