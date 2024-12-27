@@ -42,6 +42,10 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
         '0',
         FFAppState().outletIdRef!.id,
       );
+      _model.appsettings = await queryAppSettingsRecordOnce(
+        parent: FFAppState().outletIdRef,
+        singleRecord: true,
+      ).then((s) => s.firstOrNull);
       _model.checkStatus = await CheckStatusCall.call(
         merchantId: 'PGTESTPAYUAT131',
         merchantTransactionId: FFAppState().transactionid,
@@ -67,10 +71,45 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
         FFAppState().shiftexist = 'True';
         safeSetState(() {});
         if (_model.qrTransaction!.status) {
+          _model.invoice = await queryInvoiceRecordOnce(
+            parent: FFAppState().outletIdRef,
+            queryBuilder: (invoiceRecord) =>
+                invoiceRecord.orderBy('invoiceDate', descending: true),
+            singleRecord: true,
+          ).then((s) => s.firstOrNull);
+          if (_model.appsettings!.settingList
+              .where((e) => e.title == 'resetserialNoDaily')
+              .toList()
+              .firstOrNull!
+              .value) {
+            if ((_model.invoice?.count != null) &&
+                (_model.invoice?.shiftId ==
+                    getJsonField(
+                      _model.shiftDetailsNewweb,
+                      r'''$.shiftId''',
+                    ).toString().toString())) {
+              FFAppState().count = _model.invoice!.count;
+              safeSetState(() {});
+            } else {
+              FFAppState().count = 100;
+              safeSetState(() {});
+            }
+          } else {
+            if (_model.invoice?.count != null) {
+              FFAppState().count = _model.invoice!.count;
+              safeSetState(() {});
+            } else {
+              FFAppState().count = 0;
+              safeSetState(() {});
+            }
+          }
+
           _model.prdListkiosk = await actions.filterProducts(
             FFAppState().selBill,
             FFAppState().allBillsList.toList(),
           );
+          FFAppState().count = FFAppState().count + 1;
+          safeSetState(() {});
 
           var invoiceRecordReference =
               InvoiceRecord.createDoc(FFAppState().outletIdRef!);
@@ -224,7 +263,6 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
             ));
             FFAppState().lastBill = FFAppState().finalAmt;
             FFAppState().update(() {});
-            await Future.delayed(const Duration(milliseconds: 10000));
             await actions.removeFromAllBillList(
               FFAppState().selBill,
             );
@@ -238,6 +276,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
             FFAppState().isBillPrinted = true;
             FFAppState().noOfItems = 0;
             FFAppState().delCharges = 0.0;
+            FFAppState().shiftDetailsNEw = _model.shiftSummarRkiosk!;
             FFAppState().update(() {});
             await showDialog(
               context: context,
@@ -297,6 +336,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
           FFAppState().noOfItems = 0;
           FFAppState().delCharges = 0.0;
           FFAppState().transactionid = '';
+          FFAppState().shiftDetailsNEw = _model.shiftDetailsNewweb!;
           FFAppState().update(() {});
           await showDialog(
             context: context,
@@ -638,7 +678,7 @@ Successful */
                                         Text(
                                           valueOrDefault<String>(
                                             _model.docInvoicekiosk?.invoice,
-                                            '0',
+                                            '--',
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .labelLarge

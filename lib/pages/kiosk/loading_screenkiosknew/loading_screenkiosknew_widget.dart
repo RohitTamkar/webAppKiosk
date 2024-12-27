@@ -38,6 +38,7 @@ class _LoadingScreenkiosknewWidgetState
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await Future.delayed(const Duration(milliseconds: 3000));
       _model.outletgetdirect = await queryOutletRecordOnce(
         queryBuilder: (outletRecord) => outletRecord.where(
           'id',
