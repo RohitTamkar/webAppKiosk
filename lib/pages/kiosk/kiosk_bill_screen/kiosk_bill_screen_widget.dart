@@ -797,7 +797,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                     padding: EdgeInsets.zero,
                                     gridDelegate:
                                         SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 3,
+                                      crossAxisCount: 2,
                                       crossAxisSpacing: 5.0,
                                       mainAxisSpacing: 20.0,
                                       childAspectRatio: 0.8,
