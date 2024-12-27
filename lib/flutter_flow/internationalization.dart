@@ -860,15 +860,29 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // responseOrder
   {
-    'vktoj9tj': {
-      'en': 'Thank you !',
+    'd66ogc2g': {
+      'en': 'Thank You !',
       'hi': '',
       'kn': '',
       'mr': '',
       'ta': '',
     },
-    'atni9g2j': {
-      'en': 'Click here to continue',
+    'jvuqki25': {
+      'en': 'Show Below Token No To Collect Your Order At Counter',
+      'hi': '',
+      'kn': '',
+      'mr': '',
+      'ta': '',
+    },
+    'jup6btjc': {
+      'en': 'Receipt ',
+      'hi': '',
+      'kn': '',
+      'mr': '',
+      'ta': '',
+    },
+    'l69zys7a': {
+      'en': 'Payment \nSuccessful',
       'hi': '',
       'kn': '',
       'mr': '',

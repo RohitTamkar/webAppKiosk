@@ -1,11 +1,15 @@
 import '/backend/backend.dart';
-import '/components/transaction_status/transaction_status_widget.dart';
-import '/components/transaction_status_failed/transaction_status_failed_widget.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -40,6 +44,273 @@ class _ResponseOrderWidgetState extends State<ResponseOrderWidget> {
     super.initState();
     _model = createModel(context, () => ResponseOrderModel());
 
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.shiftDetailsNewweb = await actions.shiftExists(
+        functions.getDayId(),
+        '0',
+        FFAppState().outletIdRef!.id,
+      );
+      if (true) {
+        FFAppState().shiftDetailsNEw = _model.shiftDetailsNewweb!;
+        FFAppState().msg = 'msg';
+        safeSetState(() {});
+        FFAppState().shiftDetailsJson = _model.shiftDetailsNewweb!;
+        FFAppState().kioskAmt = FFAppState().finalAmt;
+        safeSetState(() {});
+        FFAppState().shiftexist = 'True';
+        safeSetState(() {});
+        if (true) {
+          _model.prdListkiosk = await actions.filterProducts(
+            FFAppState().selBill,
+            FFAppState().allBillsList.toList(),
+          );
+
+          var invoiceRecordReference =
+              InvoiceRecord.createDoc(FFAppState().outletIdRef!);
+          await invoiceRecordReference.set({
+            ...createInvoiceRecordData(
+              invoice: FFAppState().paytmOrderId,
+              party: FFAppState().setCustName,
+              invoiceDate: functions.timestampToMili(getCurrentTimestamp),
+              dayId: functions.getDayId(),
+              paymentMode: 'UPI QR',
+              discountAmt: valueOrDefault<double>(
+                FFAppState().disAmt,
+                0.0,
+              ),
+              discountPer: valueOrDefault<double>(
+                FFAppState().disPer,
+                0.0,
+              ),
+              delliveryChrg: FFAppState().delCharges * FFAppState().noOfItems,
+              taxAmt: valueOrDefault<double>(
+                FFAppState().taxamt,
+                0.0,
+              ),
+              billAmt: valueOrDefault<double>(
+                FFAppState().billAmt,
+                0.0,
+              ),
+              finalBillAmt: FFAppState().finalAmt,
+              roundOff: 0.0,
+              shiftId: getJsonField(
+                FFAppState().shiftDetailsJson,
+                r'''$.shiftId''',
+              ).toString().toString(),
+              orderType: FFAppState().orderType,
+              kotStatus: 'PENDING',
+              count: FFAppState().count,
+            ),
+            ...mapToFirestore(
+              {
+                'productList': getSelItemListListFirestoreData(
+                  _model.prdListkiosk,
+                ),
+              },
+            ),
+          });
+          _model.docInvoicekiosk = InvoiceRecord.getDocumentFromData({
+            ...createInvoiceRecordData(
+              invoice: FFAppState().paytmOrderId,
+              party: FFAppState().setCustName,
+              invoiceDate: functions.timestampToMili(getCurrentTimestamp),
+              dayId: functions.getDayId(),
+              paymentMode: 'UPI QR',
+              discountAmt: valueOrDefault<double>(
+                FFAppState().disAmt,
+                0.0,
+              ),
+              discountPer: valueOrDefault<double>(
+                FFAppState().disPer,
+                0.0,
+              ),
+              delliveryChrg: FFAppState().delCharges * FFAppState().noOfItems,
+              taxAmt: valueOrDefault<double>(
+                FFAppState().taxamt,
+                0.0,
+              ),
+              billAmt: valueOrDefault<double>(
+                FFAppState().billAmt,
+                0.0,
+              ),
+              finalBillAmt: FFAppState().finalAmt,
+              roundOff: 0.0,
+              shiftId: getJsonField(
+                FFAppState().shiftDetailsJson,
+                r'''$.shiftId''',
+              ).toString().toString(),
+              orderType: FFAppState().orderType,
+              kotStatus: 'PENDING',
+              count: FFAppState().count,
+            ),
+            ...mapToFirestore(
+              {
+                'productList': getSelItemListListFirestoreData(
+                  _model.prdListkiosk,
+                ),
+              },
+            ),
+          }, invoiceRecordReference);
+
+          await _model.docInvoicekiosk!.reference
+              .update(createInvoiceRecordData(
+            id: _model.docInvoicekiosk?.reference.id,
+          ));
+          if (getJsonField(
+            _model.shiftDetailsNewweb,
+            r'''$.shiftExists''',
+          )) {
+            FFAppState().billcount = getJsonField(
+              _model.shiftDetailsNewweb,
+              r'''$.billCount''',
+            );
+            safeSetState(() {});
+            FFAppState().billcount = FFAppState().billcount + 1;
+            safeSetState(() {});
+            _model.shiftSummarRkiosk = await actions.calShiftSummary(
+              _model.docInvoicekiosk!,
+              FFAppState().shiftDetailsJson,
+            );
+            _model.shiftref = await queryShiftRecordOnce(
+              parent: FFAppState().outletIdRef,
+              queryBuilder: (shiftRecord) => shiftRecord.where(
+                'shiftId',
+                isEqualTo: getJsonField(
+                  _model.shiftDetailsNewweb,
+                  r'''$.shiftId''',
+                ).toString().toString(),
+              ),
+              singleRecord: true,
+            ).then((s) => s.firstOrNull);
+
+            await _model.shiftref!.reference.update(createShiftRecordData(
+              billCount: FFAppState().billcount,
+              totalSale: getJsonField(
+                _model.shiftSummarRkiosk,
+                r'''$.totalSale''',
+              ),
+              deliveryCharges: getJsonField(
+                _model.shiftSummarRkiosk,
+                r'''$.deliveryCharges''',
+              ),
+              tax: getJsonField(
+                _model.shiftSummarRkiosk,
+                r'''$.tax''',
+              ),
+              lastBillNo: getJsonField(
+                _model.shiftSummarRkiosk,
+                r'''$.lastBillNo''',
+              ).toString().toString(),
+              discount: getJsonField(
+                _model.shiftSummarRkiosk,
+                r'''$.discount''',
+              ),
+              lastBillTime: functions.timestampToMili(getCurrentTimestamp),
+              cashSale: getJsonField(
+                _model.shiftSummarRkiosk,
+                r'''$.cashSale''',
+              ),
+              paymentJson: getJsonField(
+                _model.shiftSummarRkiosk,
+                r'''$.paymentJson''',
+              ).toString().toString(),
+            ));
+            FFAppState().lastBill = FFAppState().finalAmt;
+            FFAppState().update(() {});
+            await Future.delayed(const Duration(milliseconds: 10000));
+            await actions.removeFromAllBillList(
+              FFAppState().selBill,
+            );
+            await actions.clearValue();
+            FFAppState().subTotal = 0.0;
+            FFAppState().update(() {});
+            FFAppState().finalAmt = 0.0;
+            FFAppState().billAmt = 0.0;
+            FFAppState().count = FFAppState().count;
+            FFAppState().cartItem = [];
+            FFAppState().isBillPrinted = true;
+            FFAppState().noOfItems = 0;
+            FFAppState().delCharges = 0.0;
+            FFAppState().update(() {});
+            await showDialog(
+              context: context,
+              builder: (alertDialogContext) {
+                return AlertDialog(
+                  content: Text('DONE'),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(alertDialogContext),
+                      child: Text('Ok'),
+                    ),
+                  ],
+                );
+              },
+            );
+            return;
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  'Login again to start Shift ',
+                  style: TextStyle(
+                    color: FlutterFlowTheme.of(context).primaryText,
+                  ),
+                ),
+                duration: Duration(milliseconds: 4000),
+                backgroundColor: Color(0x00000000),
+              ),
+            );
+            return;
+          }
+        } else {
+          await Future.delayed(const Duration(milliseconds: 2000));
+          _model.taxmaster2 = await queryTaxMasterRecordOnce();
+          _model.outletdoc2 = await queryOutletRecordOnce(
+            queryBuilder: (outletRecord) => outletRecord.where(
+              'id',
+              isEqualTo: FFAppState().outletIdRef?.id,
+            ),
+            singleRecord: true,
+          ).then((s) => s.firstOrNull);
+          _model.appsetting1 = await queryAppSettingsRecordOnce(
+            parent: FFAppState().outletIdRef,
+            singleRecord: true,
+          ).then((s) => s.firstOrNull);
+          _model.rm = await actions.removeFromAllBillList(
+            FFAppState().selBill,
+          );
+          await actions.clearValue();
+          FFAppState().subTotal = 0.0;
+          FFAppState().update(() {});
+          FFAppState().finalAmt = 0.0;
+          FFAppState().billAmt = 0.0;
+          FFAppState().count = FFAppState().count;
+          FFAppState().cartItem = [];
+          FFAppState().isBillPrinted = true;
+          FFAppState().noOfItems = 0;
+          FFAppState().delCharges = 0.0;
+          FFAppState().transactionid = '';
+          FFAppState().update(() {});
+          await showDialog(
+            context: context,
+            builder: (alertDialogContext) {
+              return AlertDialog(
+                content: Text('Failed'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(alertDialogContext),
+                    child: Text('Ok'),
+                  ),
+                ],
+              );
+            },
+          );
+          return;
+        }
+      }
+    });
+
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -52,6 +323,8 @@ class _ResponseOrderWidgetState extends State<ResponseOrderWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Title(
         title: 'responseOrder',
         color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
@@ -71,145 +344,329 @@ class _ResponseOrderWidgetState extends State<ResponseOrderWidget> {
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).primaryBackground,
                 ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 500.0,
-                      height: 500.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                FFLocalizations.of(context).getText(
-                                  'vktoj9tj' /* Thank you ! */,
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .displaySmall
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .displaySmallFamily,
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .displaySmallFamily),
-                                    ),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 200.0, 0.0, 0.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      if (true)
+                        Padding(
+                          padding: EdgeInsets.all(12.0),
+                          child: Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  Color(0x38FFAC47),
+                                  Color(0xFF673AB7),
+                                  Colors.blue
+                                ],
+                                stops: [0.0, 1.0, 1.0, 1.0],
+                                begin: AlignmentDirectional(0.0, -1.0),
+                                end: AlignmentDirectional(0, 1.0),
                               ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: Stack(
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          50.0, 0.0, 50.0, 0.0),
-                                      child: Container(
-                                        width: 399.0,
-                                        height: 223.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          image: DecorationImage(
-                                            fit: BoxFit.contain,
-                                            image: Image.network(
-                                              'https://firebasestorage.googleapis.com/v0/b/uvpixcel.appspot.com/o/importantImages%2Fload-8510_256.gif?alt=media&token=70ff4e43-a606-4f04-b9b0-e199ed2b16c4',
-                                            ).image,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      width: double.infinity,
-                                      height: 500.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
-                                      child: wrapWithModel(
-                                        model: _model.transactionStatusModel,
-                                        updateCallback: () =>
-                                            safeSetState(() {}),
-                                        child: TransactionStatusWidget(),
-                                      ),
-                                    ),
-                                    Container(
-                                      width: double.infinity,
-                                      height: 500.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
-                                      child: wrapWithModel(
-                                        model:
-                                            _model.transactionStatusFailedModel,
-                                        updateCallback: () =>
-                                            safeSetState(() {}),
-                                        child: TransactionStatusFailedWidget(),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(6.0),
+                                bottomRight: Radius.circular(6.0),
+                                topLeft: Radius.circular(6.0),
+                                topRight: Radius.circular(6.0),
                               ),
-                            ],
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 30.0, 0.0, 0.0),
-                            child: Row(
+                              border: Border.all(
+                                color: FlutterFlowTheme.of(context).tertiary,
+                                width: 2.0,
+                              ),
+                            ),
+                            child: Column(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {},
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 20.0),
                                   child: Text(
                                     FFLocalizations.of(context).getText(
-                                      'atni9g2j' /* Click here to continue */,
+                                      'd66ogc2g' /* Thank You ! */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
-                                        .headlineMedium
+                                        .displayLarge
                                         .override(
                                           fontFamily:
                                               FlutterFlowTheme.of(context)
-                                                  .headlineMediumFamily,
+                                                  .displayLargeFamily,
                                           color: FlutterFlowTheme.of(context)
-                                              .tertiary,
+                                              .success,
+                                          fontSize: 20.0,
                                           letterSpacing: 0.0,
-                                          decoration: TextDecoration.underline,
+                                          fontWeight: FontWeight.w600,
+                                          fontStyle: FontStyle.italic,
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
                                                   FlutterFlowTheme.of(context)
-                                                      .headlineMediumFamily),
+                                                      .displayLargeFamily),
                                         ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 20.0),
+                                  child: Text(
+                                    FFLocalizations.of(context).getText(
+                                      'jvuqki25' /* Show Below Token No To Collect... */,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                    style: FlutterFlowTheme.of(context)
+                                        .displayLarge
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .displayLargeFamily,
+                                          color:
+                                              FlutterFlowTheme.of(context).info,
+                                          fontSize: 15.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                          fontStyle: FontStyle.italic,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .displayLargeFamily),
+                                        ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 50.0),
+                                  child: Text(
+                                    'TOKEN NO :${_model.docInvoicekiosk?.count?.toString()}',
+                                    style: FlutterFlowTheme.of(context)
+                                        .displayLarge
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .displayLargeFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          fontSize: 20.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                          fontStyle: FontStyle.italic,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .displayLargeFamily),
+                                        ),
+                                  ),
+                                ),
+                                Container(
+                                  width: 500.0,
+                                  height: 400.0,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFF04A24C),
+                                    borderRadius: BorderRadius.circular(0.0),
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 10.0),
+                                            child: Text(
+                                              FFLocalizations.of(context)
+                                                  .getText(
+                                                'jup6btjc' /* Receipt  */,
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .headlineLargeFamily,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryBtnText,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineLargeFamily),
+                                                      ),
+                                            ),
+                                          ),
+                                          Text(
+                                            FFAppState().msg,
+                                            style: FlutterFlowTheme.of(context)
+                                                .headlineLarge
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .headlineLargeFamily,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBtnText,
+                                                  letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(FlutterFlowTheme
+                                                              .of(context)
+                                                          .headlineLargeFamily),
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(22.0),
+                                              child: Image.asset(
+                                                'assets/images/TwitterVerifiedIconGIF-TwitterVerifiedIcon-DiscoverShareGIFs-ezgif.com-gif-maker.gif',
+                                                width: 200.0,
+                                                height: 150.0,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            FFLocalizations.of(context).getText(
+                                              'l69zys7a' /* Payment 
+Successful */
+                                              ,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .displayMedium
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .displayMediumFamily,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBtnText,
+                                                  fontSize: 20.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w600,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(FlutterFlowTheme
+                                                              .of(context)
+                                                          .displayMediumFamily),
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Text(
+                                            ' ₹ ${valueOrDefault<String>(
+                                              FFAppState().kioskAmt.toString(),
+                                              '0',
+                                            )}',
+                                            style: FlutterFlowTheme.of(context)
+                                                .headlineMedium
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .headlineMediumFamily,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBackground,
+                                                  fontSize: 20.0,
+                                                  letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(FlutterFlowTheme
+                                                              .of(context)
+                                                          .headlineMediumFamily),
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            valueOrDefault<String>(
+                                              _model.docInvoicekiosk?.invoice,
+                                              '0',
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .labelLarge
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelLargeFamily,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                  fontSize: 24.0,
+                                                  letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelLargeFamily),
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [],
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                  ],
+                        ),
+                    ],
+                  ),
                 ),
               ),
             ),
