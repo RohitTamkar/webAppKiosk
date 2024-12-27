@@ -42,14 +42,6 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
         FFAppState().outletIdRef!.id,
       );
       if (true) {
-        _model.qrTransaction = await queryQrTransactionsRecordOnce(
-          parent: FFAppState().outletIdRef,
-          queryBuilder: (qrTransactionsRecord) => qrTransactionsRecord.where(
-            'orderId',
-            isEqualTo: FFAppState().paytmOrderId,
-          ),
-          singleRecord: true,
-        ).then((s) => s.firstOrNull);
         FFAppState().shiftDetailsNEw = _model.shiftDetailsNewweb!;
         FFAppState().msg = 'msg';
         safeSetState(() {});
@@ -58,7 +50,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
         safeSetState(() {});
         FFAppState().shiftexist = 'True';
         safeSetState(() {});
-        if (_model.qrTransaction!.status) {
+        if (true) {
           _model.prdListkiosk = await actions.filterProducts(
             FFAppState().selBill,
             FFAppState().allBillsList.toList(),
@@ -356,7 +348,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  if (_model.qrTransaction?.status ?? true)
+                  if (true)
                     Expanded(
                       flex: 7,
                       child: Padding(
@@ -667,7 +659,7 @@ Successful */
                         ),
                       ),
                     ),
-                  if (!_model.qrTransaction!.status)
+                  if (!true)
                     Expanded(
                       flex: 7,
                       child: Padding(

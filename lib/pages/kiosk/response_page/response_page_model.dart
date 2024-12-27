@@ -21,8 +21,6 @@ class ResponsePageModel extends FlutterFlowModel<ResponsePageWidget> {
 
   // Stores action output result for [Custom Action - shiftExists] action in responsePage widget.
   dynamic? shiftDetailsNewweb;
-  // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
-  QrTransactionsRecord? qrTransaction;
   // Stores action output result for [Custom Action - filterProducts] action in responsePage widget.
   List<SelItemListStruct>? prdListkiosk;
   // Stores action output result for [Backend Call - Create Document] action in responsePage widget.
