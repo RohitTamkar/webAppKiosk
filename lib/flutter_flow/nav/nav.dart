@@ -48,408 +48,406 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: '_initialize',
           path: '/',
           builder: (context, _) => LoadingScreenkiosknewWidget(),
-          routes: [
-            FFRoute(
-              name: 'welcomeScreen',
-              path: 'welcomeScreen',
-              builder: (context, params) => WelcomeScreenWidget(),
-            ),
-            FFRoute(
-              name: 'StartScreen',
-              path: 'startScreen',
-              builder: (context, params) => StartScreenWidget(),
-            ),
-            FFRoute(
-              name: 'welcomeScreenNew',
-              path: 'welcomeScreenNew',
-              builder: (context, params) => WelcomeScreenNewWidget(),
-            ),
-            FFRoute(
-              name: 'printSettingkiosk',
-              path: 'printSettingkiosk',
-              builder: (context, params) => PrintSettingkioskWidget(),
-            ),
-            FFRoute(
-              name: 'KioskPayment',
-              path: 'kioskPayment',
-              asyncParams: {
-                'appsettings': getDoc(
-                    ['OUTLET', 'APP_SETTINGS'], AppSettingsRecord.fromSnapshot),
-                'taxcollection':
-                    getDocList(['TAX_MASTER'], TaxMasterRecord.fromSnapshot),
-              },
-              builder: (context, params) => KioskPaymentWidget(
-                doc: params.getParam(
-                  'doc',
-                  ParamType.DocumentReference,
-                  isList: false,
-                  collectionNamePath: ['USER_PROFILE'],
-                ),
-                shiftdetails: params.getParam(
-                  'shiftdetails',
-                  ParamType.JSON,
-                ),
-                qrJson: params.getParam(
-                  'qrJson',
-                  ParamType.JSON,
-                ),
-                paytmOrderId: params.getParam(
-                  'paytmOrderId',
-                  ParamType.String,
-                ),
-                isPaytm: params.getParam(
-                  'isPaytm',
-                  ParamType.bool,
-                ),
-                appsettings: params.getParam(
-                  'appsettings',
-                  ParamType.Document,
-                ),
-                taxcollection: params.getParam<TaxMasterRecord>(
-                  'taxcollection',
-                  ParamType.Document,
-                  isList: true,
-                ),
-              ),
-            ),
-            FFRoute(
-              name: 'KioskCart',
-              path: 'kioskCart',
-              asyncParams: {
-                'appsetting': getDoc(
-                    ['OUTLET', 'APP_SETTINGS'], AppSettingsRecord.fromSnapshot),
-                'taxcollection':
-                    getDocList(['TAX_MASTER'], TaxMasterRecord.fromSnapshot),
-              },
-              builder: (context, params) => KioskCartWidget(
-                doc: params.getParam(
-                  'doc',
-                  ParamType.DocumentReference,
-                  isList: false,
-                  collectionNamePath: ['USER_PROFILE'],
-                ),
-                shiftdetails: params.getParam(
-                  'shiftdetails',
-                  ParamType.JSON,
-                ),
-                appsetting: params.getParam(
-                  'appsetting',
-                  ParamType.Document,
-                ),
-                taxcollection: params.getParam<TaxMasterRecord>(
-                  'taxcollection',
-                  ParamType.Document,
-                  isList: true,
-                ),
-              ),
-            ),
-            FFRoute(
-              name: 'AboutUs',
-              path: 'aboutUs',
-              builder: (context, params) => AboutUsWidget(),
-            ),
-            FFRoute(
-              name: 'KioskBillScreen',
-              path: 'kioskBillScreen',
-              asyncParams: {
-                'appsetting': getDoc(
-                    ['OUTLET', 'APP_SETTINGS'], AppSettingsRecord.fromSnapshot),
-                'taxcollection':
-                    getDocList(['TAX_MASTER'], TaxMasterRecord.fromSnapshot),
-              },
-              builder: (context, params) => KioskBillScreenWidget(
-                doc: params.getParam(
-                  'doc',
-                  ParamType.DocumentReference,
-                  isList: false,
-                  collectionNamePath: ['USER_PROFILE'],
-                ),
-                shiftdoc: params.getParam(
-                  'shiftdoc',
-                  ParamType.JSON,
-                ),
-                billdetails: params.getParam(
-                  'billdetails',
-                  ParamType.DocumentReference,
-                  isList: false,
-                  collectionNamePath: ['OUTLET', 'INVOICE'],
-                ),
-                appsetting: params.getParam(
-                  'appsetting',
-                  ParamType.Document,
-                ),
-                taxcollection: params.getParam<TaxMasterRecord>(
-                  'taxcollection',
-                  ParamType.Document,
-                  isList: true,
-                ),
-              ),
-            ),
-            FFRoute(
-              name: 'responsePage',
-              path: 'responsePage',
-              builder: (context, params) => ResponsePageWidget(),
-            ),
-            FFRoute(
-              name: 'KioskWelcome',
-              path: 'kioskWelcome',
-              builder: (context, params) => KioskWelcomeWidget(),
-            ),
-            FFRoute(
-              name: 'KioskDineParcel',
-              path: 'kioskDineParcel',
-              asyncParams: {
-                'appSetting': getDoc(
-                    ['OUTLET', 'APP_SETTINGS'], AppSettingsRecord.fromSnapshot),
-                'taxcollection':
-                    getDocList(['TAX_MASTER'], TaxMasterRecord.fromSnapshot),
-              },
-              builder: (context, params) => KioskDineParcelWidget(
-                userdoc: params.getParam(
-                  'userdoc',
-                  ParamType.DocumentReference,
-                  isList: false,
-                  collectionNamePath: ['USER_PROFILE'],
-                ),
-                shiftdoc: params.getParam(
-                  'shiftdoc',
-                  ParamType.JSON,
-                ),
-                appSetting: params.getParam(
-                  'appSetting',
-                  ParamType.Document,
-                ),
-                taxcollection: params.getParam<TaxMasterRecord>(
-                  'taxcollection',
-                  ParamType.Document,
-                  isList: true,
-                ),
-              ),
-            ),
-            FFRoute(
-              name: 'KioskAdvertising',
-              path: 'kioskAdvertising',
-              asyncParams: {
-                'appsetting': getDoc(
-                    ['OUTLET', 'APP_SETTINGS'], AppSettingsRecord.fromSnapshot),
-                'taxcollection':
-                    getDocList(['TAX_MASTER'], TaxMasterRecord.fromSnapshot),
-              },
-              builder: (context, params) => KioskAdvertisingWidget(
-                userDoc: params.getParam(
-                  'userDoc',
-                  ParamType.DocumentReference,
-                  isList: false,
-                  collectionNamePath: ['USER_PROFILE'],
-                ),
-                shiftdoc: params.getParam(
-                  'shiftdoc',
-                  ParamType.JSON,
-                ),
-                appsetting: params.getParam(
-                  'appsetting',
-                  ParamType.Document,
-                ),
-                taxcollection: params.getParam<TaxMasterRecord>(
-                  'taxcollection',
-                  ParamType.Document,
-                  isList: true,
-                ),
-              ),
-            ),
-            FFRoute(
-              name: 'KioskSplashScreen',
-              path: 'kioskSplashScreen',
-              builder: (context, params) => KioskSplashScreenWidget(),
-            ),
-            FFRoute(
-              name: 'loadingScreenkiosknew',
-              path: 'loadingScreenkiosknew',
-              builder: (context, params) => LoadingScreenkiosknewWidget(),
-            ),
-            FFRoute(
-              name: 'KotOrderScreen',
-              path: 'kotOrderScreen',
-              builder: (context, params) => KotOrderScreenWidget(),
-            ),
-            FFRoute(
-              name: 'TokenDisplay',
-              path: 'tokenDisplay',
-              builder: (context, params) => TokenDisplayWidget(),
-            ),
-            FFRoute(
-              name: 'responseOrder',
-              path: 'responseOrder',
-              asyncParams: {
-                'doc': getDoc(['OUTLET', 'QR_TRANSACTIONS'],
-                    QrTransactionsRecord.fromSnapshot),
-                'appsetting': getDoc(
-                    ['OUTLET', 'APP_SETTINGS'], AppSettingsRecord.fromSnapshot),
-                'taxcoollectipon':
-                    getDocList(['TAX_MASTER'], TaxMasterRecord.fromSnapshot),
-              },
-              builder: (context, params) => ResponseOrderWidget(
-                doc: params.getParam(
-                  'doc',
-                  ParamType.Document,
-                ),
-                shiftdetails: params.getParam(
-                  'shiftdetails',
-                  ParamType.JSON,
-                ),
-                appsetting: params.getParam(
-                  'appsetting',
-                  ParamType.Document,
-                ),
-                taxcoollectipon: params.getParam<TaxMasterRecord>(
-                  'taxcoollectipon',
-                  ParamType.Document,
-                  isList: true,
-                ),
-              ),
-            ),
-            FFRoute(
-              name: 'KioskPaymentCopy',
-              path: 'kioskPaymentCopy',
-              builder: (context, params) => KioskPaymentCopyWidget(
-                data: params.getParam(
-                  'data',
-                  ParamType.String,
-                ),
-              ),
-            ),
-            FFRoute(
-              name: 'KioskChoosePaymentMode',
-              path: 'kioskChoosePaymentMode',
-              asyncParams: {
-                'appSettings': getDoc(
-                    ['OUTLET', 'APP_SETTINGS'], AppSettingsRecord.fromSnapshot),
-                'taxcollection':
-                    getDocList(['TAX_MASTER'], TaxMasterRecord.fromSnapshot),
-              },
-              builder: (context, params) => KioskChoosePaymentModeWidget(
-                doc: params.getParam(
-                  'doc',
-                  ParamType.DocumentReference,
-                  isList: false,
-                  collectionNamePath: ['USER_PROFILE'],
-                ),
-                shiftdetails: params.getParam(
-                  'shiftdetails',
-                  ParamType.JSON,
-                ),
-                appSettings: params.getParam(
-                  'appSettings',
-                  ParamType.Document,
-                ),
-                taxcollection: params.getParam<TaxMasterRecord>(
-                  'taxcollection',
-                  ParamType.Document,
-                  isList: true,
-                ),
-                qrJson: params.getParam(
-                  'qrJson',
-                  ParamType.JSON,
-                ),
-                paytmOrderId: params.getParam(
-                  'paytmOrderId',
-                  ParamType.String,
-                ),
-                isPaytm: params.getParam(
-                  'isPaytm',
-                  ParamType.bool,
-                ),
-              ),
-            ),
-            FFRoute(
-              name: 'cashResponsePage',
-              path: 'cashResponsePage',
-              asyncParams: {
-                'appsetting': getDoc(
-                    ['OUTLET', 'APP_SETTINGS'], AppSettingsRecord.fromSnapshot),
-                'taxcoollectipon':
-                    getDocList(['TAX_MASTER'], TaxMasterRecord.fromSnapshot),
-              },
-              builder: (context, params) => CashResponsePageWidget(
-                shiftdetails: params.getParam(
-                  'shiftdetails',
-                  ParamType.JSON,
-                ),
-                appsetting: params.getParam(
-                  'appsetting',
-                  ParamType.Document,
-                ),
-                taxcoollectipon: params.getParam<TaxMasterRecord>(
-                  'taxcoollectipon',
-                  ParamType.Document,
-                  isList: true,
-                ),
-              ),
-            ),
-            FFRoute(
-              name: 'kioskCustomerInfo',
-              path: 'kioskCustomerInfo',
-              asyncParams: {
-                'appSetting': getDoc(
-                    ['OUTLET', 'APP_SETTINGS'], AppSettingsRecord.fromSnapshot),
-                'taxcollection':
-                    getDocList(['TAX_MASTER'], TaxMasterRecord.fromSnapshot),
-              },
-              builder: (context, params) => KioskCustomerInfoWidget(
-                userdoc: params.getParam(
-                  'userdoc',
-                  ParamType.DocumentReference,
-                  isList: false,
-                  collectionNamePath: ['USER_PROFILE'],
-                ),
-                shiftdoc: params.getParam(
-                  'shiftdoc',
-                  ParamType.JSON,
-                ),
-                appSetting: params.getParam(
-                  'appSetting',
-                  ParamType.Document,
-                ),
-                taxcollection: params.getParam<TaxMasterRecord>(
-                  'taxcollection',
-                  ParamType.Document,
-                  isList: true,
-                ),
-              ),
-            ),
-            FFRoute(
-              name: 'KioskCartCopy',
-              path: 'kioskCartCopy',
-              asyncParams: {
-                'appsetting': getDoc(
-                    ['OUTLET', 'APP_SETTINGS'], AppSettingsRecord.fromSnapshot),
-                'taxcollection':
-                    getDocList(['TAX_MASTER'], TaxMasterRecord.fromSnapshot),
-              },
-              builder: (context, params) => KioskCartCopyWidget(
-                doc: params.getParam(
-                  'doc',
-                  ParamType.DocumentReference,
-                  isList: false,
-                  collectionNamePath: ['USER_PROFILE'],
-                ),
-                shiftdetails: params.getParam(
-                  'shiftdetails',
-                  ParamType.JSON,
-                ),
-                appsetting: params.getParam(
-                  'appsetting',
-                  ParamType.Document,
-                ),
-                taxcollection: params.getParam<TaxMasterRecord>(
-                  'taxcollection',
-                  ParamType.Document,
-                  isList: true,
-                ),
-              ),
-            )
-          ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),
+        FFRoute(
+          name: 'welcomeScreen',
+          path: '/welcomeScreen',
+          builder: (context, params) => WelcomeScreenWidget(),
+        ),
+        FFRoute(
+          name: 'StartScreen',
+          path: '/startScreen',
+          builder: (context, params) => StartScreenWidget(),
+        ),
+        FFRoute(
+          name: 'welcomeScreenNew',
+          path: '/welcomeScreenNew',
+          builder: (context, params) => WelcomeScreenNewWidget(),
+        ),
+        FFRoute(
+          name: 'printSettingkiosk',
+          path: '/printSettingkiosk',
+          builder: (context, params) => PrintSettingkioskWidget(),
+        ),
+        FFRoute(
+          name: 'KioskPayment',
+          path: '/kioskPayment',
+          asyncParams: {
+            'appsettings': getDoc(
+                ['OUTLET', 'APP_SETTINGS'], AppSettingsRecord.fromSnapshot),
+            'taxcollection':
+                getDocList(['TAX_MASTER'], TaxMasterRecord.fromSnapshot),
+          },
+          builder: (context, params) => KioskPaymentWidget(
+            doc: params.getParam(
+              'doc',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['USER_PROFILE'],
+            ),
+            shiftdetails: params.getParam(
+              'shiftdetails',
+              ParamType.JSON,
+            ),
+            qrJson: params.getParam(
+              'qrJson',
+              ParamType.JSON,
+            ),
+            paytmOrderId: params.getParam(
+              'paytmOrderId',
+              ParamType.String,
+            ),
+            isPaytm: params.getParam(
+              'isPaytm',
+              ParamType.bool,
+            ),
+            appsettings: params.getParam(
+              'appsettings',
+              ParamType.Document,
+            ),
+            taxcollection: params.getParam<TaxMasterRecord>(
+              'taxcollection',
+              ParamType.Document,
+              isList: true,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'KioskCart',
+          path: '/kioskCart',
+          asyncParams: {
+            'appsetting': getDoc(
+                ['OUTLET', 'APP_SETTINGS'], AppSettingsRecord.fromSnapshot),
+            'taxcollection':
+                getDocList(['TAX_MASTER'], TaxMasterRecord.fromSnapshot),
+          },
+          builder: (context, params) => KioskCartWidget(
+            doc: params.getParam(
+              'doc',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['USER_PROFILE'],
+            ),
+            shiftdetails: params.getParam(
+              'shiftdetails',
+              ParamType.JSON,
+            ),
+            appsetting: params.getParam(
+              'appsetting',
+              ParamType.Document,
+            ),
+            taxcollection: params.getParam<TaxMasterRecord>(
+              'taxcollection',
+              ParamType.Document,
+              isList: true,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'AboutUs',
+          path: '/aboutUs',
+          builder: (context, params) => AboutUsWidget(),
+        ),
+        FFRoute(
+          name: 'KioskBillScreen',
+          path: '/kioskBillScreen',
+          asyncParams: {
+            'appsetting': getDoc(
+                ['OUTLET', 'APP_SETTINGS'], AppSettingsRecord.fromSnapshot),
+            'taxcollection':
+                getDocList(['TAX_MASTER'], TaxMasterRecord.fromSnapshot),
+          },
+          builder: (context, params) => KioskBillScreenWidget(
+            doc: params.getParam(
+              'doc',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['USER_PROFILE'],
+            ),
+            shiftdoc: params.getParam(
+              'shiftdoc',
+              ParamType.JSON,
+            ),
+            billdetails: params.getParam(
+              'billdetails',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['OUTLET', 'INVOICE'],
+            ),
+            appsetting: params.getParam(
+              'appsetting',
+              ParamType.Document,
+            ),
+            taxcollection: params.getParam<TaxMasterRecord>(
+              'taxcollection',
+              ParamType.Document,
+              isList: true,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'responsePage',
+          path: '/responsePage',
+          builder: (context, params) => ResponsePageWidget(),
+        ),
+        FFRoute(
+          name: 'KioskWelcome',
+          path: '/kioskWelcome',
+          builder: (context, params) => KioskWelcomeWidget(),
+        ),
+        FFRoute(
+          name: 'KioskDineParcel',
+          path: '/kioskDineParcel',
+          asyncParams: {
+            'appSetting': getDoc(
+                ['OUTLET', 'APP_SETTINGS'], AppSettingsRecord.fromSnapshot),
+            'taxcollection':
+                getDocList(['TAX_MASTER'], TaxMasterRecord.fromSnapshot),
+          },
+          builder: (context, params) => KioskDineParcelWidget(
+            userdoc: params.getParam(
+              'userdoc',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['USER_PROFILE'],
+            ),
+            shiftdoc: params.getParam(
+              'shiftdoc',
+              ParamType.JSON,
+            ),
+            appSetting: params.getParam(
+              'appSetting',
+              ParamType.Document,
+            ),
+            taxcollection: params.getParam<TaxMasterRecord>(
+              'taxcollection',
+              ParamType.Document,
+              isList: true,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'KioskAdvertising',
+          path: '/kioskAdvertising',
+          asyncParams: {
+            'appsetting': getDoc(
+                ['OUTLET', 'APP_SETTINGS'], AppSettingsRecord.fromSnapshot),
+            'taxcollection':
+                getDocList(['TAX_MASTER'], TaxMasterRecord.fromSnapshot),
+          },
+          builder: (context, params) => KioskAdvertisingWidget(
+            userDoc: params.getParam(
+              'userDoc',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['USER_PROFILE'],
+            ),
+            shiftdoc: params.getParam(
+              'shiftdoc',
+              ParamType.JSON,
+            ),
+            appsetting: params.getParam(
+              'appsetting',
+              ParamType.Document,
+            ),
+            taxcollection: params.getParam<TaxMasterRecord>(
+              'taxcollection',
+              ParamType.Document,
+              isList: true,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'KioskSplashScreen',
+          path: '/kioskSplashScreen',
+          builder: (context, params) => KioskSplashScreenWidget(),
+        ),
+        FFRoute(
+          name: 'loadingScreenkiosknew',
+          path: '/loadingScreenkiosknew',
+          builder: (context, params) => LoadingScreenkiosknewWidget(),
+        ),
+        FFRoute(
+          name: 'KotOrderScreen',
+          path: '/kotOrderScreen',
+          builder: (context, params) => KotOrderScreenWidget(),
+        ),
+        FFRoute(
+          name: 'TokenDisplay',
+          path: '/tokenDisplay',
+          builder: (context, params) => TokenDisplayWidget(),
+        ),
+        FFRoute(
+          name: 'responseOrder',
+          path: '/responseOrder',
+          asyncParams: {
+            'doc': getDoc(['OUTLET', 'QR_TRANSACTIONS'],
+                QrTransactionsRecord.fromSnapshot),
+            'appsetting': getDoc(
+                ['OUTLET', 'APP_SETTINGS'], AppSettingsRecord.fromSnapshot),
+            'taxcoollectipon':
+                getDocList(['TAX_MASTER'], TaxMasterRecord.fromSnapshot),
+          },
+          builder: (context, params) => ResponseOrderWidget(
+            doc: params.getParam(
+              'doc',
+              ParamType.Document,
+            ),
+            shiftdetails: params.getParam(
+              'shiftdetails',
+              ParamType.JSON,
+            ),
+            appsetting: params.getParam(
+              'appsetting',
+              ParamType.Document,
+            ),
+            taxcoollectipon: params.getParam<TaxMasterRecord>(
+              'taxcoollectipon',
+              ParamType.Document,
+              isList: true,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'KioskPaymentCopy',
+          path: '/kioskPaymentCopy',
+          builder: (context, params) => KioskPaymentCopyWidget(
+            data: params.getParam(
+              'data',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'KioskChoosePaymentMode',
+          path: '/kioskChoosePaymentMode',
+          asyncParams: {
+            'appSettings': getDoc(
+                ['OUTLET', 'APP_SETTINGS'], AppSettingsRecord.fromSnapshot),
+            'taxcollection':
+                getDocList(['TAX_MASTER'], TaxMasterRecord.fromSnapshot),
+          },
+          builder: (context, params) => KioskChoosePaymentModeWidget(
+            doc: params.getParam(
+              'doc',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['USER_PROFILE'],
+            ),
+            shiftdetails: params.getParam(
+              'shiftdetails',
+              ParamType.JSON,
+            ),
+            appSettings: params.getParam(
+              'appSettings',
+              ParamType.Document,
+            ),
+            taxcollection: params.getParam<TaxMasterRecord>(
+              'taxcollection',
+              ParamType.Document,
+              isList: true,
+            ),
+            qrJson: params.getParam(
+              'qrJson',
+              ParamType.JSON,
+            ),
+            paytmOrderId: params.getParam(
+              'paytmOrderId',
+              ParamType.String,
+            ),
+            isPaytm: params.getParam(
+              'isPaytm',
+              ParamType.bool,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'cashResponsePage',
+          path: '/cashResponsePage',
+          asyncParams: {
+            'appsetting': getDoc(
+                ['OUTLET', 'APP_SETTINGS'], AppSettingsRecord.fromSnapshot),
+            'taxcoollectipon':
+                getDocList(['TAX_MASTER'], TaxMasterRecord.fromSnapshot),
+          },
+          builder: (context, params) => CashResponsePageWidget(
+            shiftdetails: params.getParam(
+              'shiftdetails',
+              ParamType.JSON,
+            ),
+            appsetting: params.getParam(
+              'appsetting',
+              ParamType.Document,
+            ),
+            taxcoollectipon: params.getParam<TaxMasterRecord>(
+              'taxcoollectipon',
+              ParamType.Document,
+              isList: true,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'kioskCustomerInfo',
+          path: '/kioskCustomerInfo',
+          asyncParams: {
+            'appSetting': getDoc(
+                ['OUTLET', 'APP_SETTINGS'], AppSettingsRecord.fromSnapshot),
+            'taxcollection':
+                getDocList(['TAX_MASTER'], TaxMasterRecord.fromSnapshot),
+          },
+          builder: (context, params) => KioskCustomerInfoWidget(
+            userdoc: params.getParam(
+              'userdoc',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['USER_PROFILE'],
+            ),
+            shiftdoc: params.getParam(
+              'shiftdoc',
+              ParamType.JSON,
+            ),
+            appSetting: params.getParam(
+              'appSetting',
+              ParamType.Document,
+            ),
+            taxcollection: params.getParam<TaxMasterRecord>(
+              'taxcollection',
+              ParamType.Document,
+              isList: true,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'KioskCartCopy',
+          path: '/kioskCartCopy',
+          asyncParams: {
+            'appsetting': getDoc(
+                ['OUTLET', 'APP_SETTINGS'], AppSettingsRecord.fromSnapshot),
+            'taxcollection':
+                getDocList(['TAX_MASTER'], TaxMasterRecord.fromSnapshot),
+          },
+          builder: (context, params) => KioskCartCopyWidget(
+            doc: params.getParam(
+              'doc',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['USER_PROFILE'],
+            ),
+            shiftdetails: params.getParam(
+              'shiftdetails',
+              ParamType.JSON,
+            ),
+            appsetting: params.getParam(
+              'appsetting',
+              ParamType.Document,
+            ),
+            taxcollection: params.getParam<TaxMasterRecord>(
+              'taxcollection',
+              ParamType.Document,
+              isList: true,
+            ),
+          ),
+        )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
 

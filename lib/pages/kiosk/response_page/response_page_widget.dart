@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/transaction_status_failed/transaction_status_failed_widget.dart';
@@ -41,16 +42,31 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
         '0',
         FFAppState().outletIdRef!.id,
       );
-      if (true) {
+      _model.checkStatus = await CheckStatusCall.call(
+        merchantId: 'PGTESTPAYUAT131',
+        merchantTransactionId: FFAppState().transactionid,
+        outletId: FFAppState().outletIdRef?.id,
+        orderId: FFAppState().paytmOrderId,
+      );
+
+      if ((_model.checkStatus?.succeeded ?? true)) {
+        _model.qrTransaction = await queryQrTransactionsRecordOnce(
+          parent: FFAppState().outletIdRef,
+          queryBuilder: (qrTransactionsRecord) => qrTransactionsRecord.where(
+            'orderId',
+            isEqualTo: FFAppState().paytmOrderId,
+          ),
+          singleRecord: true,
+        ).then((s) => s.firstOrNull);
         FFAppState().shiftDetailsNEw = _model.shiftDetailsNewweb!;
-        FFAppState().msg = 'msg';
+        FFAppState().msg = _model.qrTransaction!.msg;
         safeSetState(() {});
         FFAppState().shiftDetailsJson = _model.shiftDetailsNewweb!;
         FFAppState().kioskAmt = FFAppState().finalAmt;
         safeSetState(() {});
         FFAppState().shiftexist = 'True';
         safeSetState(() {});
-        if (true) {
+        if (_model.qrTransaction!.status) {
           _model.prdListkiosk = await actions.filterProducts(
             FFAppState().selBill,
             FFAppState().allBillsList.toList(),
@@ -348,7 +364,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  if (true)
+                  if (_model.qrTransaction?.status ?? true)
                     Expanded(
                       flex: 7,
                       child: Padding(
@@ -659,7 +675,7 @@ Successful */
                         ),
                       ),
                     ),
-                  if (!true)
+                  if (!_model.qrTransaction!.status)
                     Expanded(
                       flex: 7,
                       child: Padding(
