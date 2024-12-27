@@ -45,7 +45,7 @@ class _KioskHeaderWidgetState extends State<KioskHeaderWidget> {
 
     return Container(
       width: double.infinity,
-      height: 55.0,
+      height: 45.0,
       decoration: BoxDecoration(
         color: Color(0xDAFFFFFF),
         borderRadius: BorderRadius.circular(10.0),
