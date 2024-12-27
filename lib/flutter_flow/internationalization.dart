@@ -601,13 +601,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'mr': '',
       'ta': '',
     },
-    'fte141e1': {
-      'en': 'Redirects Automatically',
-      'hi': '',
-      'kn': '',
-      'mr': '',
-      'ta': '',
-    },
     '0av9brxy': {
       'en': 'Home',
       'hi': '',
