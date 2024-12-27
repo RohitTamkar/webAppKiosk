@@ -55,11 +55,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
         orderId: FFAppState().paytmOrderId,
       );
 
-      if ('true' ==
-          getJsonField(
-            (_model.checkStatus?.jsonBody ?? ''),
-            r'''$[1].success''',
-          ).toString().toString()) {
+      if ((_model.checkStatus?.succeeded ?? true)) {
         _model.qrTransaction = await queryQrTransactionsRecordOnce(
           parent: FFAppState().outletIdRef,
           queryBuilder: (qrTransactionsRecord) => qrTransactionsRecord.where(
@@ -335,6 +331,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget>
           context: context,
           builder: (alertDialogContext) {
             return AlertDialog(
+              title: Text('API'),
               content: Text('Failed'),
               actions: [
                 TextButton(
