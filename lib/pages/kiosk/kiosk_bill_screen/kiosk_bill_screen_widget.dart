@@ -665,7 +665,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                                     .primary
                                                                 : FlutterFlowTheme.of(
                                                                         context)
-                                                                    .primaryBackground,
+                                                                    .customColor2,
                                                             width: 0.5,
                                                           ),
                                                         ),
@@ -798,9 +798,9 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                     gridDelegate:
                                         SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 2,
-                                      crossAxisSpacing: 5.0,
+                                      crossAxisSpacing: 10.0,
                                       mainAxisSpacing: 20.0,
-                                      childAspectRatio: 0.8,
+                                      childAspectRatio: 0.9,
                                     ),
                                     scrollDirection: Axis.vertical,
                                     itemCount: kioskBillScreenVar.length,
@@ -869,7 +869,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                 width: double.infinity,
                                                 decoration: BoxDecoration(),
                                                 child: Padding(
-                                                  padding: EdgeInsets.all(7.0),
+                                                  padding: EdgeInsets.all(10.0),
                                                   child: Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -880,53 +880,45 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                             .start,
                                                     children: [
                                                       Expanded(
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          5.0),
-                                                              child: Text(
-                                                                valueOrDefault<
-                                                                    String>(
-                                                                  functions.returnTitlecase(
-                                                                      kioskBillScreenVarItem
-                                                                          .name),
-                                                                  'null',
-                                                                ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineLarge
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .headlineLargeFamily,
-                                                                      color: Color(
-                                                                          0xFF594A38),
-                                                                      fontSize:
-                                                                          13.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).headlineLargeFamily),
-                                                                    ),
-                                                              ),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      5.0),
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              functions.returnTitlecase(
+                                                                  kioskBillScreenVarItem
+                                                                      .name),
+                                                              'null',
                                                             ),
-                                                          ],
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .headlineLarge
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineLargeFamily,
+                                                                  color: Color(
+                                                                      0xFF594A38),
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .headlineLargeFamily),
+                                                                ),
+                                                          ),
                                                         ),
                                                       ),
                                                       Row(
@@ -1394,7 +1386,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                                         ),
                                                                         Expanded(
                                                                           flex:
-                                                                              4,
+                                                                              3,
                                                                           child:
                                                                               Align(
                                                                             alignment:
