@@ -146,14 +146,6 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                         context.goNamed(
                                           'KioskBillScreen',
                                           queryParameters: {
-                                            'doc': serializeParam(
-                                              widget!.doc,
-                                              ParamType.DocumentReference,
-                                            ),
-                                            'shiftdoc': serializeParam(
-                                              widget!.shiftdetails,
-                                              ParamType.JSON,
-                                            ),
                                             'appsetting': serializeParam(
                                               widget!.appsetting,
                                               ParamType.Document,
@@ -1118,14 +1110,6 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                           context.pushNamed(
                                             'KioskBillScreen',
                                             queryParameters: {
-                                              'doc': serializeParam(
-                                                widget!.doc,
-                                                ParamType.DocumentReference,
-                                              ),
-                                              'shiftdoc': serializeParam(
-                                                widget!.shiftdetails,
-                                                ParamType.JSON,
-                                              ),
                                               'appsetting': serializeParam(
                                                 widget!.appsetting,
                                                 ParamType.Document,
@@ -1461,15 +1445,6 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                 context.goNamed(
                                                   'KioskBillScreen',
                                                   queryParameters: {
-                                                    'doc': serializeParam(
-                                                      widget!.doc,
-                                                      ParamType
-                                                          .DocumentReference,
-                                                    ),
-                                                    'shiftdoc': serializeParam(
-                                                      widget!.shiftdetails,
-                                                      ParamType.JSON,
-                                                    ),
                                                     'appsetting':
                                                         serializeParam(
                                                       widget!.appsetting,

@@ -446,14 +446,6 @@ class _CashResponsePageWidgetState extends State<CashResponsePageWidget>
               context.goNamed(
                 'KioskBillScreen',
                 queryParameters: {
-                  'doc': serializeParam(
-                    _model.outletdoc?.userRef,
-                    ParamType.DocumentReference,
-                  ),
-                  'shiftdoc': serializeParam(
-                    _model.shiftSummarRkiosk,
-                    ParamType.JSON,
-                  ),
                   'appsetting': serializeParam(
                     _model.appsetting,
                     ParamType.Document,

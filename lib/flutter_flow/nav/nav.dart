@@ -158,16 +158,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 getDocList(['TAX_MASTER'], TaxMasterRecord.fromSnapshot),
           },
           builder: (context, params) => KioskBillScreenWidget(
-            doc: params.getParam(
-              'doc',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['USER_PROFILE'],
-            ),
-            shiftdoc: params.getParam(
-              'shiftdoc',
-              ParamType.JSON,
-            ),
             billdetails: params.getParam(
               'billdetails',
               ParamType.DocumentReference,
@@ -408,37 +398,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             appSetting: params.getParam(
               'appSetting',
-              ParamType.Document,
-            ),
-            taxcollection: params.getParam<TaxMasterRecord>(
-              'taxcollection',
-              ParamType.Document,
-              isList: true,
-            ),
-          ),
-        ),
-        FFRoute(
-          name: 'KioskCartCopy',
-          path: '/kioskCartCopy',
-          asyncParams: {
-            'appsetting': getDoc(
-                ['OUTLET', 'APP_SETTINGS'], AppSettingsRecord.fromSnapshot),
-            'taxcollection':
-                getDocList(['TAX_MASTER'], TaxMasterRecord.fromSnapshot),
-          },
-          builder: (context, params) => KioskCartCopyWidget(
-            doc: params.getParam(
-              'doc',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['USER_PROFILE'],
-            ),
-            shiftdetails: params.getParam(
-              'shiftdetails',
-              ParamType.JSON,
-            ),
-            appsetting: params.getParam(
-              'appsetting',
               ParamType.Document,
             ),
             taxcollection: params.getParam<TaxMasterRecord>(

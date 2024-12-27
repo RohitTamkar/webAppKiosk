@@ -233,14 +233,6 @@ class _KioskDineParcelWidgetState extends State<KioskDineParcelWidget>
                                     context.goNamed(
                                       'KioskBillScreen',
                                       queryParameters: {
-                                        'doc': serializeParam(
-                                          widget!.userdoc,
-                                          ParamType.DocumentReference,
-                                        ),
-                                        'shiftdoc': serializeParam(
-                                          widget!.shiftdoc,
-                                          ParamType.JSON,
-                                        ),
                                         'appsetting': serializeParam(
                                           widget!.appSetting,
                                           ParamType.Document,
@@ -389,14 +381,6 @@ class _KioskDineParcelWidgetState extends State<KioskDineParcelWidget>
                                       context.goNamed(
                                         'KioskBillScreen',
                                         queryParameters: {
-                                          'doc': serializeParam(
-                                            widget!.userdoc,
-                                            ParamType.DocumentReference,
-                                          ),
-                                          'shiftdoc': serializeParam(
-                                            widget!.shiftdoc,
-                                            ParamType.JSON,
-                                          ),
                                           'appsetting': serializeParam(
                                             widget!.appSetting,
                                             ParamType.Document,

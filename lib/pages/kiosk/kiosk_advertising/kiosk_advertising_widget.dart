@@ -221,34 +221,6 @@ class _KioskAdvertisingWidgetState extends State<KioskAdvertisingWidget> {
                                         FFAppState().orderType = 'DINE IN';
                                         FFAppState().delCharges = 0.0;
                                         safeSetState(() {});
-
-                                        context.goNamed(
-                                          'KioskBillScreen',
-                                          queryParameters: {
-                                            'doc': serializeParam(
-                                              widget!.userDoc,
-                                              ParamType.DocumentReference,
-                                            ),
-                                            'shiftdoc': serializeParam(
-                                              widget!.shiftdoc,
-                                              ParamType.JSON,
-                                            ),
-                                            'taxcollection': serializeParam(
-                                              widget!.taxcollection,
-                                              ParamType.Document,
-                                              isList: true,
-                                            ),
-                                            'appsetting': serializeParam(
-                                              widget!.appsetting,
-                                              ParamType.Document,
-                                            ),
-                                          }.withoutNulls,
-                                          extra: <String, dynamic>{
-                                            'taxcollection':
-                                                widget!.taxcollection,
-                                            'appsetting': widget!.appsetting,
-                                          },
-                                        );
                                       } else {
                                         context.goNamed(
                                           'KioskDineParcel',

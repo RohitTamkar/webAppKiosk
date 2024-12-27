@@ -541,6 +541,16 @@ class FFAppState extends ChangeNotifier {
       _targetPlatform = prefs.getString('ff_targetPlatform') ?? _targetPlatform;
     });
     _safeInit(() {
+      if (prefs.containsKey('ff_shiftDetailsNEw')) {
+        try {
+          _shiftDetailsNEw =
+              jsonDecode(prefs.getString('ff_shiftDetailsNEw') ?? '');
+        } catch (e) {
+          print("Can't decode persisted json. Error: $e.");
+        }
+      }
+    });
+    _safeInit(() {
       _barcodeSetting = prefs.getBool('ff_barcodeSetting') ?? _barcodeSetting;
     });
     _safeInit(() {
@@ -2626,6 +2636,7 @@ class FFAppState extends ChangeNotifier {
   dynamic get shiftDetailsNEw => _shiftDetailsNEw;
   set shiftDetailsNEw(dynamic value) {
     _shiftDetailsNEw = value;
+    prefs.setString('ff_shiftDetailsNEw', jsonEncode(value));
   }
 
   List<CategoryStructStruct> _categoryHive = [];

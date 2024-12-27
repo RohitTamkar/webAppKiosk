@@ -368,14 +368,6 @@ class _KioskCustomerInfoWidgetState extends State<KioskCustomerInfoWidget> {
                                         context.pushNamed(
                                           'KioskBillScreen',
                                           queryParameters: {
-                                            'shiftdoc': serializeParam(
-                                              widget!.shiftdoc,
-                                              ParamType.JSON,
-                                            ),
-                                            'doc': serializeParam(
-                                              widget!.userdoc,
-                                              ParamType.DocumentReference,
-                                            ),
                                             'appsetting': serializeParam(
                                               widget!.appSetting,
                                               ParamType.Document,
@@ -466,14 +458,6 @@ class _KioskCustomerInfoWidgetState extends State<KioskCustomerInfoWidget> {
                                         context.pushNamed(
                                           'KioskBillScreen',
                                           queryParameters: {
-                                            'shiftdoc': serializeParam(
-                                              widget!.shiftdoc,
-                                              ParamType.JSON,
-                                            ),
-                                            'doc': serializeParam(
-                                              widget!.userdoc,
-                                              ParamType.DocumentReference,
-                                            ),
                                             'appsetting': serializeParam(
                                               widget!.appSetting,
                                               ParamType.Document,

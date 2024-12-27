@@ -171,6 +171,8 @@ class _LoadingScreenkiosknewWidgetState
               invoiceRecord.orderBy('invoiceDate', descending: true),
           singleRecord: true,
         ).then((s) => s.firstOrNull);
+        FFAppState().shiftDetailsNEw = _model.shiftDetailsNew2!;
+        safeSetState(() {});
         if (_model.appsetting!.settingList
             .where((e) => e.title == 'resetserialNoDaily')
             .toList()
@@ -188,13 +190,9 @@ class _LoadingScreenkiosknewWidgetState
           }
         }
 
-        context.pushNamed(
+        context.goNamed(
           'KioskBillScreen',
           queryParameters: {
-            'shiftdoc': serializeParam(
-              _model.shiftDetailsNew2,
-              ParamType.JSON,
-            ),
             'appsetting': serializeParam(
               _model.appsetting,
               ParamType.Document,
@@ -233,6 +231,8 @@ class _LoadingScreenkiosknewWidgetState
               invoiceRecord.orderBy('invoiceDate', descending: true),
           singleRecord: true,
         ).then((s) => s.firstOrNull);
+        FFAppState().shiftDetailsNEw = _model.shiftDetailsNewresumed!;
+        safeSetState(() {});
         if (_model.appsetting2!.settingList
             .where((e) => e.title == 'resetserialNoDaily')
             .toList()
@@ -265,13 +265,9 @@ class _LoadingScreenkiosknewWidgetState
           }
         }
 
-        context.pushNamed(
+        context.goNamed(
           'KioskBillScreen',
           queryParameters: {
-            'shiftdoc': serializeParam(
-              _model.shiftDetailsNewresumed,
-              ParamType.JSON,
-            ),
             'appsetting': serializeParam(
               _model.appsetting2,
               ParamType.Document,
