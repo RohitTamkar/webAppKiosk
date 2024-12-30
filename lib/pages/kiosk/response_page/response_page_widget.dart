@@ -752,7 +752,7 @@ Successful */
                         ),
                       ),
                     ),
-                  if (_model.qrTransaction?.status == null)
+                  if (_model.qrTransaction != null)
                     Expanded(
                       flex: 7,
                       child: Padding(
@@ -796,6 +796,7 @@ Successful */
                                     .override(
                                       fontFamily: FlutterFlowTheme.of(context)
                                           .bodyMediumFamily,
+                                      fontSize: 15.0,
                                       letterSpacing: 0.0,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
