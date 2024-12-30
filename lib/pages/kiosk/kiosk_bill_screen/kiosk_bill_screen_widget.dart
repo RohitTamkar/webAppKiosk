@@ -88,7 +88,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
     });
 
     animationsMap.addAll({
-      'containerOnPageLoadAnimation': AnimationInfo(
+      'containerOnPageLoadAnimation1': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
           FadeEffect(
@@ -97,6 +97,18 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
             duration: 600.0.ms,
             begin: 0.0,
             end: 1.0,
+          ),
+        ],
+      ),
+      'containerOnPageLoadAnimation2': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          FlipEffect(
+            curve: Curves.easeIn,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: 1.0,
+            end: 2.0,
           ),
         ],
       ),
@@ -1415,6 +1427,39 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                                                   ),
                                                                                   FFAppState().delCharges,
                                                                                 );
+                                                                              } else {
+                                                                                _model.res20Copy = await actions.removeHoldListItem(
+                                                                                  functions
+                                                                                      .filterBillList(FFAppState().selBill, FFAppState().allBillsList.toList())
+                                                                                      .where((e) =>
+                                                                                          kioskBillScreenVarItem.id ==
+                                                                                          valueOrDefault<String>(
+                                                                                            getJsonField(
+                                                                                              e,
+                                                                                              r'''$.id''',
+                                                                                            )?.toString(),
+                                                                                            '0',
+                                                                                          ))
+                                                                                      .toList()
+                                                                                      .firstOrNull!,
+                                                                                  FFAppState().selBill,
+                                                                                );
+                                                                                _model.res21Copy = await actions.calSubTotalForHoldList(
+                                                                                  FFAppState().selBill.toString(),
+                                                                                  FFAppState().allBillsList.toList(),
+                                                                                );
+                                                                                _model.reuslt22Copy = await actions.calBillAmt(
+                                                                                  valueOrDefault<double>(
+                                                                                    FFAppState().disAmt,
+                                                                                    0.0,
+                                                                                  ),
+                                                                                  valueOrDefault<double>(
+                                                                                    FFAppState().delCharges,
+                                                                                    0.0,
+                                                                                  ),
+                                                                                );
+                                                                                FFAppState().removeFromCartItem(kioskBillScreenVarItem.reference);
+                                                                                safeSetState(() {});
                                                                               }
 
                                                                               safeSetState(() {});
@@ -1574,7 +1619,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                                     ),
                                                                   ).animateOnPageLoad(
                                                                       animationsMap[
-                                                                          'containerOnPageLoadAnimation']!),
+                                                                          'containerOnPageLoadAnimation1']!),
                                                               ],
                                                             ),
                                                           ),
@@ -1598,320 +1643,249 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                       ),
                     ),
                   ),
-                  Align(
-                    alignment: AlignmentDirectional(0.0, 1.0),
-                    child: Container(
-                      width: double.infinity,
-                      height: 50.0,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFD1DFFF),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          FFButtonWidget(
-                            onPressed: () async {
-                              var confirmDialogResponse =
-                                  await showDialog<bool>(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            content: Text(
-                                                'Are You Sure You Want To Cancel This Order ?'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, false),
-                                                child: Text('Cancel'),
-                                              ),
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, true),
-                                                child: Text('Confirm'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      ) ??
-                                      false;
-                              if (confirmDialogResponse) {
-                                await actions.removeFromAllBillList(
-                                  FFAppState().selBill,
-                                );
-                                await actions.clearValue();
-                                FFAppState().subTotal = 0.0;
-                                FFAppState().update(() {});
-                                FFAppState().finalAmt = 0.0;
-                                FFAppState().billAmt = 0.0;
-                                FFAppState().count = FFAppState().count;
-                                FFAppState().cartItem = [];
-                                FFAppState().isBillPrinted = true;
-                                FFAppState().noOfItems = 0;
-                                FFAppState().update(() {});
-                              }
-                            },
-                            text: FFLocalizations.of(context).getText(
-                              '2wg5nblz' /* Cancel */,
-                            ),
-                            icon: Icon(
-                              Icons.close_sharp,
-                              color: FlutterFlowTheme.of(context).primary,
-                              size: 15.0,
-                            ),
-                            options: FFButtonOptions(
-                              height: 95.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 0.0, 12.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: Color(0x00FFAC47),
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .displayMedium
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .displayMediumFamily,
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    fontSize: 5.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .displayMediumFamily),
-                                  ),
-                              elevation: 0.0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
+                  if (functions
+                      .filterBillList(FFAppState().selBill,
+                          FFAppState().allBillsList.toList())
+                      .isNotEmpty)
+                    Align(
+                      alignment: AlignmentDirectional(0.0, 1.0),
+                      child: Container(
+                        width: double.infinity,
+                        height: 50.0,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFD1DFFF),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            FFButtonWidget(
+                              onPressed: () async {
+                                var confirmDialogResponse =
+                                    await showDialog<bool>(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return AlertDialog(
+                                              content: Text(
+                                                  'Are You Sure You Want To Cancel This Order ?'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          false),
+                                                  child: Text('Cancel'),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          true),
+                                                  child: Text('Confirm'),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        ) ??
+                                        false;
+                                if (confirmDialogResponse) {
+                                  await actions.removeFromAllBillList(
+                                    FFAppState().selBill,
+                                  );
+                                  await actions.clearValue();
+                                  FFAppState().subTotal = 0.0;
+                                  FFAppState().update(() {});
+                                  FFAppState().finalAmt = 0.0;
+                                  FFAppState().billAmt = 0.0;
+                                  FFAppState().count = FFAppState().count;
+                                  FFAppState().cartItem = [];
+                                  FFAppState().isBillPrinted = true;
+                                  FFAppState().noOfItems = 0;
+                                  FFAppState().update(() {});
+                                }
+                              },
+                              text: FFLocalizations.of(context).getText(
+                                '2wg5nblz' /* Cancel */,
                               ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                          Flexible(
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 5.0, 0.0),
-                                  child: Icon(
-                                    Icons.shopping_cart_rounded,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 17.0,
-                                  ),
-                                ),
-                                Flexible(
-                                  child: Text(
-                                    valueOrDefault<String>(
-                                      FFAppState().noOfItems.toString(),
-                                      '0',
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .displayLarge
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .displayLargeFamily,
-                                          fontSize: 15.0,
-                                          letterSpacing: 0.0,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .displayLargeFamily),
-                                        ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Flexible(
-                            child: RichText(
-                              textScaler: MediaQuery.of(context).textScaler,
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: FFLocalizations.of(context).getText(
-                                      'g1lljtgj' /* ₹  */,
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .displayMedium
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .displayMediumFamily,
-                                          fontSize: 18.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.normal,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .displayMediumFamily),
-                                        ),
-                                  ),
-                                  TextSpan(
-                                    text: valueOrDefault<String>(
-                                      FFAppState().finalAmt.toString(),
-                                      '0',
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .displayMedium
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .displayMediumFamily,
-                                          fontSize: 18.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .displayMediumFamily),
-                                        ),
-                                  )
-                                ],
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
+                              icon: Icon(
+                                Icons.close_sharp,
+                                color: FlutterFlowTheme.of(context).primary,
+                                size: 15.0,
+                              ),
+                              options: FFButtonOptions(
+                                height: 95.0,
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    12.0, 0.0, 12.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: Color(0x00FFAC47),
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .displayMedium
                                     .override(
                                       fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily,
-                                      fontSize: 12.0,
+                                          .displayMediumFamily,
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      fontSize: 5.0,
                                       letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w600,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
                                               FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily),
+                                                  .displayMediumFamily),
                                     ),
+                                elevation: 0.0,
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
                             ),
-                          ),
-                          FFButtonWidget(
-                            onPressed: () async {
-                              _model.pressed = true;
-                              safeSetState(() {});
-                              if (functions
-                                  .filterBillList(FFAppState().selBill,
-                                      FFAppState().allBillsList.toList())
-                                  .isNotEmpty) {
-                                FFAppState().isBillPrinted = false;
-                                safeSetState(() {});
-                                if (!(FFAppState().orderType != null &&
-                                    FFAppState().orderType != '')) {
-                                  FFAppState().orderType = 'DINE IN';
-                                  safeSetState(() {});
-                                }
-
-                                context.goNamed(
-                                  'KioskCart',
-                                  queryParameters: {
-                                    'shiftdetails': serializeParam(
-                                      FFAppState().shiftDetailsNEw,
-                                      ParamType.JSON,
+                            Flexible(
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 5.0, 0.0),
+                                    child: Icon(
+                                      Icons.shopping_cart_rounded,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      size: 17.0,
                                     ),
-                                    'appsetting': serializeParam(
-                                      widget!.appsetting,
-                                      ParamType.Document,
-                                    ),
-                                    'taxcollection': serializeParam(
-                                      widget!.taxcollection,
-                                      ParamType.Document,
-                                      isList: true,
-                                    ),
-                                  }.withoutNulls,
-                                  extra: <String, dynamic>{
-                                    'appsetting': widget!.appsetting,
-                                    'taxcollection': widget!.taxcollection,
-                                  },
-                                );
-                              } else {
-                                await showDialog(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      content: Text(
-                                          'Choose Menu For Proceed Order !'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              }
-                            },
-                            text: FFLocalizations.of(context).getText(
-                              '7t41axvs' /* Proceed Order */,
-                            ),
-                            icon: Icon(
-                              Icons.chevron_right,
-                              color:
-                                  FlutterFlowTheme.of(context).primaryBtnText,
-                              size: 20.0,
-                            ),
-                            options: FFButtonOptions(
-                              height: 50.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 0.0, 12.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).info,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .displayMedium
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .displayMediumFamily,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBtnText,
-                                    fontSize: 12.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .displayMediumFamily),
                                   ),
-                              elevation: 3.0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(10.0),
-                                bottomRight: Radius.circular(0.0),
-                                topLeft: Radius.circular(10.0),
-                                topRight: Radius.circular(0.0),
+                                  Flexible(
+                                    child: Text(
+                                      valueOrDefault<String>(
+                                        FFAppState().noOfItems.toString(),
+                                        '0',
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .displayLarge
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .displayLargeFamily,
+                                            fontSize: 15.0,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .displayLargeFamily),
+                                          ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                          ),
-                          if (false)
+                            Flexible(
+                              child: RichText(
+                                textScaler: MediaQuery.of(context).textScaler,
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: FFLocalizations.of(context).getText(
+                                        'g1lljtgj' /* ₹  */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .displayMedium
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .displayMediumFamily,
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.normal,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .displayMediumFamily),
+                                          ),
+                                    ),
+                                    TextSpan(
+                                      text: valueOrDefault<String>(
+                                        FFAppState().finalAmt.toString(),
+                                        '0',
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .displayMedium
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .displayMediumFamily,
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w600,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .displayMediumFamily),
+                                          ),
+                                    )
+                                  ],
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodyMediumFamily,
+                                        fontSize: 12.0,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily),
+                                      ),
+                                ),
+                              ),
+                            ),
                             FFButtonWidget(
                               onPressed: () async {
-                                _model.phonePedata = await PhonePeQRCall.call(
-                                  merchantId: 'SENSIBLEQRTESTUAT',
-                                  transactionId: getCurrentTimestamp
-                                      .millisecondsSinceEpoch
-                                      .toString(),
-                                  merchantOrderId: FFAppState().paytmOrderId,
-                                  amount: functions
-                                      .toDecimal(FFAppState().finalAmt),
-                                  storeId: FFAppState().userdoc?.id,
-                                  expiresIn: 1800,
-                                );
+                                _model.pressed = true;
+                                safeSetState(() {});
+                                if (functions
+                                    .filterBillList(FFAppState().selBill,
+                                        FFAppState().allBillsList.toList())
+                                    .isNotEmpty) {
+                                  FFAppState().isBillPrinted = false;
+                                  safeSetState(() {});
+                                  if (!(FFAppState().orderType != null &&
+                                      FFAppState().orderType != '')) {
+                                    FFAppState().orderType = 'DINE IN';
+                                    safeSetState(() {});
+                                  }
 
-                                if ((_model.phonePedata?.succeeded ?? true)) {
+                                  context.goNamed(
+                                    'KioskCart',
+                                    queryParameters: {
+                                      'shiftdetails': serializeParam(
+                                        FFAppState().shiftDetailsNEw,
+                                        ParamType.JSON,
+                                      ),
+                                      'appsetting': serializeParam(
+                                        widget!.appsetting,
+                                        ParamType.Document,
+                                      ),
+                                      'taxcollection': serializeParam(
+                                        widget!.taxcollection,
+                                        ParamType.Document,
+                                        isList: true,
+                                      ),
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      'appsetting': widget!.appsetting,
+                                      'taxcollection': widget!.taxcollection,
+                                    },
+                                  );
+                                } else {
                                   await showDialog(
                                     context: context,
                                     builder: (alertDialogContext) {
                                       return AlertDialog(
-                                        title: Text(getJsonField(
-                                          (_model.phonePedata?.jsonBody ?? ''),
-                                          r'''$''',
-                                        ).toString()),
+                                        content: Text(
+                                            'Choose Menu For Proceed Order !'),
                                         actions: [
                                           TextButton(
                                             onPressed: () => Navigator.pop(
@@ -1922,57 +1896,140 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                       );
                                     },
                                   );
-
-                                  context.pushNamed(
-                                    'KioskPaymentCopy',
-                                    queryParameters: {
-                                      'data': serializeParam(
-                                        getJsonField(
-                                          (_model.phonePedata?.jsonBody ?? ''),
-                                          r'''$.data.qrString''',
-                                        ).toString(),
-                                        ParamType.String,
-                                      ),
-                                    }.withoutNulls,
-                                  );
                                 }
-
-                                safeSetState(() {});
                               },
                               text: FFLocalizations.of(context).getText(
-                                'f5wun5so' /* PhonePe */,
+                                '7t41axvs' /* Proceed Order */,
+                              ),
+                              icon: Icon(
+                                Icons.chevron_right,
+                                color:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                                size: 20.0,
                               ),
                               options: FFButtonOptions(
-                                height: 80.0,
+                                height: 50.0,
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 0.0, 24.0, 0.0),
+                                    12.0, 0.0, 12.0, 0.0),
                                 iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).primary,
+                                color: FlutterFlowTheme.of(context).info,
                                 textStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
+                                    .displayMedium
                                     .override(
                                       fontFamily: FlutterFlowTheme.of(context)
-                                          .titleSmallFamily,
-                                      color: Colors.white,
+                                          .displayMediumFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBtnText,
+                                      fontSize: 12.0,
                                       letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w600,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
                                               FlutterFlowTheme.of(context)
-                                                  .titleSmallFamily),
+                                                  .displayMediumFamily),
                                     ),
                                 elevation: 3.0,
                                 borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(10.0),
+                                  bottomRight: Radius.circular(0.0),
+                                  topLeft: Radius.circular(10.0),
+                                  topRight: Radius.circular(0.0),
+                                ),
                               ),
                             ),
-                        ],
-                      ),
+                            if (false)
+                              FFButtonWidget(
+                                onPressed: () async {
+                                  _model.phonePedata = await PhonePeQRCall.call(
+                                    merchantId: 'SENSIBLEQRTESTUAT',
+                                    transactionId: getCurrentTimestamp
+                                        .millisecondsSinceEpoch
+                                        .toString(),
+                                    merchantOrderId: FFAppState().paytmOrderId,
+                                    amount: functions
+                                        .toDecimal(FFAppState().finalAmt),
+                                    storeId: FFAppState().userdoc?.id,
+                                    expiresIn: 1800,
+                                  );
+
+                                  if ((_model.phonePedata?.succeeded ?? true)) {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return AlertDialog(
+                                          title: Text(getJsonField(
+                                            (_model.phonePedata?.jsonBody ??
+                                                ''),
+                                            r'''$''',
+                                          ).toString()),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: Text('Ok'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+
+                                    context.pushNamed(
+                                      'KioskPaymentCopy',
+                                      queryParameters: {
+                                        'data': serializeParam(
+                                          getJsonField(
+                                            (_model.phonePedata?.jsonBody ??
+                                                ''),
+                                            r'''$.data.qrString''',
+                                          ).toString(),
+                                          ParamType.String,
+                                        ),
+                                      }.withoutNulls,
+                                    );
+                                  }
+
+                                  safeSetState(() {});
+                                },
+                                text: FFLocalizations.of(context).getText(
+                                  'f5wun5so' /* PhonePe */,
+                                ),
+                                options: FFButtonOptions(
+                                  height: 80.0,
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .titleSmallFamily,
+                                        color: Colors.white,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmallFamily),
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                              ),
+                          ],
+                        ),
+                      ).animateOnPageLoad(
+                          animationsMap['containerOnPageLoadAnimation2']!),
                     ),
-                  ),
                 ],
               ),
             ),
