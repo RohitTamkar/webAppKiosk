@@ -103,12 +103,12 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
       'containerOnPageLoadAnimation2': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
-          FlipEffect(
+          MoveEffect(
             curve: Curves.easeIn,
             delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: 1.0,
-            end: 2.0,
+            duration: 510.0.ms,
+            begin: Offset(0.0, 47.0),
+            end: Offset(0.0, 5.0),
           ),
         ],
       ),
@@ -1385,7 +1385,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                                             ),
                                                                             onPressed:
                                                                                 () async {
-                                                                              if (FFAppState().qty > 0.0) {
+                                                                              if (FFAppState().qty > 1.0) {
                                                                                 FFAppState().qty = FFAppState().qty + -1.0;
                                                                                 safeSetState(() {});
                                                                                 _model.resultkiosk = await actions.reduceQuantityHoldListkiosk(
