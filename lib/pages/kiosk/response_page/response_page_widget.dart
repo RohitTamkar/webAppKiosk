@@ -752,7 +752,7 @@ Successful */
                         ),
                       ),
                     ),
-                  if (_model.qrTransaction != null)
+                  if (!(_model.qrTransaction != null))
                     Expanded(
                       flex: 7,
                       child: Padding(
