@@ -48,7 +48,6 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
         parent: FFAppState().outletIdRef,
         singleRecord: true,
       ).then((s) => s.firstOrNull);
-      await Future.delayed(const Duration(milliseconds: 3000));
       _model.checkStatus = await CheckStatusCall.call(
         merchantId: 'PGTESTPAYUAT131',
         merchantTransactionId: FFAppState().transactionid,
@@ -57,6 +56,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
       );
 
       if ((_model.checkStatus?.succeeded ?? true)) {
+        await Future.delayed(const Duration(milliseconds: 3000));
         _model.qrTransaction = await queryQrTransactionsRecordOnce(
           parent: FFAppState().outletIdRef,
           queryBuilder: (qrTransactionsRecord) => qrTransactionsRecord.where(
@@ -383,7 +383,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  if (_model.qrTransaction?.reference == null)
+                  if (!(_model.qrTransaction != null))
                     Expanded(
                       flex: 7,
                       child: Padding(
