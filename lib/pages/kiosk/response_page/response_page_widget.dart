@@ -728,7 +728,10 @@ Successful */
                         ),
                       ),
                     ),
-                  if (_model.status)
+                  if (valueOrDefault<bool>(
+                    _model.status,
+                    true,
+                  ))
                     Expanded(
                       flex: 7,
                       child: Padding(
