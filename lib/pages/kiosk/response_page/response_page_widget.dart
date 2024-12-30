@@ -53,7 +53,10 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
             },
             child: Padding(
               padding: MediaQuery.viewInsetsOf(context),
-              child: PaymentcheckstatusWidget(),
+              child: Container(
+                height: 300.0,
+                child: PaymentcheckstatusWidget(),
+              ),
             ),
           );
         },
@@ -101,6 +104,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
                 invoiceRecord.orderBy('invoiceDate', descending: true),
             singleRecord: true,
           ).then((s) => s.firstOrNull);
+          Navigator.pop(context);
           Navigator.pop(context);
           if (_model.appsettings!.settingList
               .where((e) => e.title == 'resetserialNoDaily')
@@ -305,7 +309,6 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
             FFAppState().paytmOrderId = '';
             FFAppState().orderType = '';
             FFAppState().update(() {});
-            Navigator.pop(context);
             return;
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
