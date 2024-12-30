@@ -386,7 +386,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  if (_model.qrTransaction != null)
+                  if (_model.qrTransaction?.status == null)
                     Expanded(
                       flex: 7,
                       child: Padding(
