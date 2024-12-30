@@ -152,6 +152,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
               orderType: FFAppState().orderType,
               kotStatus: 'PENDING',
               count: FFAppState().count,
+              source: 'WEBAPP',
             ),
             ...mapToFirestore(
               {
@@ -194,6 +195,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
               orderType: FFAppState().orderType,
               kotStatus: 'PENDING',
               count: FFAppState().count,
+              source: 'WEBAPP',
             ),
             ...mapToFirestore(
               {
@@ -384,7 +386,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  if (!(_model.qrTransaction != null))
+                  if (_model.qrTransaction != null)
                     Expanded(
                       flex: 7,
                       child: Padding(
