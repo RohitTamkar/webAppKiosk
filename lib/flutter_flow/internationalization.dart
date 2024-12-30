@@ -1333,6 +1333,16 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ta': '',
     },
   },
+  // Paymentcheckstatus
+  {
+    'vpr7w2s2': {
+      'en': 'Please Wait Checking Payment Status..',
+      'hi': '',
+      'kn': '',
+      'mr': '',
+      'ta': '',
+    },
+  },
   // Miscellaneous
   {
     'c0tsq8sj': {

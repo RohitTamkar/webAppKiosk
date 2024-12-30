@@ -1,6 +1,7 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/paymentcheckstatus_widget.dart';
 import '/components/transaction_status_failed/transaction_status_failed_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -39,6 +40,28 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.status = true;
       safeSetState(() {});
+      await showModalBottomSheet(
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        enableDrag: false,
+        context: context,
+        builder: (context) {
+          return GestureDetector(
+            onTap: () {
+              FocusScope.of(context).unfocus();
+              FocusManager.instance.primaryFocus?.unfocus();
+            },
+            child: Padding(
+              padding: MediaQuery.viewInsetsOf(context),
+              child: Container(
+                height: 300.0,
+                child: PaymentcheckstatusWidget(),
+              ),
+            ),
+          );
+        },
+      ).then((value) => safeSetState(() {}));
+
       _model.shiftDetailsNewweb = await actions.shiftExists(
         functions.getDayId(),
         '0',
@@ -284,6 +307,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
             FFAppState().paytmOrderId = '';
             FFAppState().orderType = '';
             FFAppState().update(() {});
+            Navigator.pop(context);
             return;
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
