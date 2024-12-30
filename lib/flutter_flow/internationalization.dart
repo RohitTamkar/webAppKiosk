@@ -580,6 +580,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'mr': '',
       'ta': '',
     },
+    'e8xv42wg': {
+      'en': 'Click here To Order Again...!',
+      'hi': '',
+      'kn': '',
+      'mr': '',
+      'ta': '',
+    },
     'y4rnysxj': {
       'en': 'Thank You !',
       'hi': '',
@@ -587,7 +594,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'mr': '',
       'ta': '',
     },
-    'e8xv42wg': {
+    'zilnpb2n': {
       'en': 'Show Below Token No To Collect Your Order At Counter',
       'hi': '',
       'kn': '',

@@ -477,6 +477,43 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              Flexible(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 20.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      context.goNamed('loadingScreenkiosknew');
+                                    },
+                                    child: Text(
+                                      FFLocalizations.of(context).getText(
+                                        'e8xv42wg' /* Click here To Order Again...! */,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .displayLarge
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .displayLargeFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            fontSize: 15.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w600,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .displayLargeFamily),
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                              ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 20.0),
@@ -508,7 +545,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
                                       0.0, 0.0, 0.0, 20.0),
                                   child: Text(
                                     FFLocalizations.of(context).getText(
-                                      'e8xv42wg' /* Show Below Token No To Collect... */,
+                                      'zilnpb2n' /* Show Below Token No To Collect... */,
                                     ),
                                     textAlign: TextAlign.center,
                                     style: FlutterFlowTheme.of(context)
