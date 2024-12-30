@@ -56,7 +56,6 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
       );
 
       if ((_model.checkStatus?.succeeded ?? true)) {
-        await Future.delayed(const Duration(milliseconds: 3000));
         _model.qrTransaction = await queryQrTransactionsRecordOnce(
           parent: FFAppState().outletIdRef,
           queryBuilder: (qrTransactionsRecord) => qrTransactionsRecord.where(
