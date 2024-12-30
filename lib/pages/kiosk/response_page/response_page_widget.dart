@@ -46,6 +46,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
         parent: FFAppState().outletIdRef,
         singleRecord: true,
       ).then((s) => s.firstOrNull);
+      await Future.delayed(const Duration(milliseconds: 3000));
       _model.checkStatus = await CheckStatusCall.call(
         merchantId: 'PGTESTPAYUAT131',
         merchantTransactionId: FFAppState().transactionid,
@@ -788,7 +789,7 @@ Successful */
                               ),
                               Text(
                                 FFLocalizations.of(context).getText(
-                                  'f21ec1m4' /* Please Wait Tour Payment Proce... */,
+                                  'f21ec1m4' /* Please Wait Checking Payment S... */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
