@@ -37,6 +37,8 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.status = true;
+      safeSetState(() {});
       _model.shiftDetailsNewweb = await actions.shiftExists(
         functions.getDayId(),
         '0',
@@ -381,6 +383,66 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  if (valueOrDefault<bool>(
+                    _model.status,
+                    true,
+                  ))
+                    Expanded(
+                      flex: 7,
+                      child: Padding(
+                        padding: EdgeInsets.all(14.0),
+                        child: Container(
+                          width: double.infinity,
+                          height: 100.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(6.0),
+                              bottomRight: Radius.circular(6.0),
+                              topLeft: Radius.circular(6.0),
+                              topRight: Radius.circular(6.0),
+                            ),
+                            border: Border.all(
+                              color: FlutterFlowTheme.of(context).tertiary,
+                              width: 2.0,
+                            ),
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.asset(
+                                  'assets/images/10-11-02-622_512.gif',
+                                  width: 50.0,
+                                  height: 50.0,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              Text(
+                                FFLocalizations.of(context).getText(
+                                  'f21ec1m4' /* Please Wait Checking Payment S... */,
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
+                                      fontSize: 15.0,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
                   if (_model.qrTransaction?.status ?? true)
                     Expanded(
                       flex: 7,
@@ -722,66 +784,6 @@ Successful */
                                 model: _model.transactionStatusFailedModel,
                                 updateCallback: () => safeSetState(() {}),
                                 child: TransactionStatusFailedWidget(),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  if (valueOrDefault<bool>(
-                    _model.status,
-                    true,
-                  ))
-                    Expanded(
-                      flex: 7,
-                      child: Padding(
-                        padding: EdgeInsets.all(14.0),
-                        child: Container(
-                          width: double.infinity,
-                          height: 100.0,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(6.0),
-                              bottomRight: Radius.circular(6.0),
-                              topLeft: Radius.circular(6.0),
-                              topRight: Radius.circular(6.0),
-                            ),
-                            border: Border.all(
-                              color: FlutterFlowTheme.of(context).tertiary,
-                              width: 2.0,
-                            ),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.asset(
-                                  'assets/images/10-11-02-622_512.gif',
-                                  width: 50.0,
-                                  height: 50.0,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              Text(
-                                FFLocalizations.of(context).getText(
-                                  'f21ec1m4' /* Please Wait Checking Payment S... */,
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily,
-                                      fontSize: 15.0,
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily),
-                                    ),
                               ),
                             ],
                           ),

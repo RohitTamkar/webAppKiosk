@@ -573,6 +573,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // responsePage
   {
+    'f21ec1m4': {
+      'en': 'Please Wait Checking Payment Status..',
+      'hi': '',
+      'kn': '',
+      'mr': '',
+      'ta': '',
+    },
     'y4rnysxj': {
       'en': 'Thank You !',
       'hi': '',
@@ -596,13 +603,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '33p1y43u': {
       'en': 'Payment \nSuccessful',
-      'hi': '',
-      'kn': '',
-      'mr': '',
-      'ta': '',
-    },
-    'f21ec1m4': {
-      'en': 'Please Wait Checking Payment Status..',
       'hi': '',
       'kn': '',
       'mr': '',
