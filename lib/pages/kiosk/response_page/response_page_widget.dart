@@ -283,20 +283,6 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
             FFAppState().paytmOrderId = '';
             FFAppState().orderType = '';
             FFAppState().update(() {});
-            await showDialog(
-              context: context,
-              builder: (alertDialogContext) {
-                return AlertDialog(
-                  content: Text('DONE'),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(alertDialogContext),
-                      child: Text('Ok'),
-                    ),
-                  ],
-                );
-              },
-            );
             return;
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -343,20 +329,6 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
           FFAppState().transactionid = '';
           FFAppState().shiftDetailsNEw = _model.shiftDetailsNewweb!;
           FFAppState().update(() {});
-          await showDialog(
-            context: context,
-            builder: (alertDialogContext) {
-              return AlertDialog(
-                content: Text('Failed'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
-              );
-            },
-          );
           return;
         }
       } else {
