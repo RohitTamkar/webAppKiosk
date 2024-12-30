@@ -1797,6 +1797,11 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                   .isNotEmpty) {
                                 FFAppState().isBillPrinted = false;
                                 safeSetState(() {});
+                                if (!(FFAppState().orderType != null &&
+                                    FFAppState().orderType != '')) {
+                                  FFAppState().orderType = 'DINE IN';
+                                  safeSetState(() {});
+                                }
 
                                 context.goNamed(
                                   'KioskCart',

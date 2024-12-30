@@ -601,6 +601,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'mr': '',
       'ta': '',
     },
+    'f21ec1m4': {
+      'en': 'Please Wait Tour Payment Processing..',
+      'hi': '',
+      'kn': '',
+      'mr': '',
+      'ta': '',
+    },
     '0av9brxy': {
       'en': 'Home',
       'hi': '',
