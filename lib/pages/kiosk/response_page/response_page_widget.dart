@@ -63,6 +63,8 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
           ),
           singleRecord: true,
         ).then((s) => s.firstOrNull);
+        _model.status = false;
+        safeSetState(() {});
         FFAppState().shiftDetailsNEw = _model.shiftDetailsNewweb!;
         FFAppState().msg = _model.qrTransaction!.msg;
         safeSetState(() {});
@@ -278,6 +280,8 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
             FFAppState().noOfItems = 0;
             FFAppState().delCharges = 0.0;
             FFAppState().shiftDetailsNEw = _model.shiftSummarRkiosk!;
+            FFAppState().paytmOrderId = '';
+            FFAppState().orderType = '';
             FFAppState().update(() {});
             await showDialog(
               context: context,
@@ -752,7 +756,7 @@ Successful */
                         ),
                       ),
                     ),
-                  if (!(_model.qrTransaction != null))
+                  if (_model.status)
                     Expanded(
                       flex: 7,
                       child: Padding(

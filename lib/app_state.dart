@@ -605,6 +605,12 @@ class FFAppState extends ChangeNotifier {
       _orderId = prefs.getInt('ff_orderId') ?? _orderId;
     });
     _safeInit(() {
+      _paytmOrderId = prefs.getString('ff_paytmOrderId') ?? _paytmOrderId;
+    });
+    _safeInit(() {
+      _orderType = prefs.getString('ff_orderType') ?? _orderType;
+    });
+    _safeInit(() {
       _ethernetPrint = prefs.getBool('ff_ethernetPrint') ?? _ethernetPrint;
     });
     _safeInit(() {
@@ -3236,6 +3242,7 @@ class FFAppState extends ChangeNotifier {
   String get paytmOrderId => _paytmOrderId;
   set paytmOrderId(String value) {
     _paytmOrderId = value;
+    prefs.setString('ff_paytmOrderId', value);
   }
 
   bool _isBillPrinted = false;
@@ -3248,6 +3255,7 @@ class FFAppState extends ChangeNotifier {
   String get orderType => _orderType;
   set orderType(String value) {
     _orderType = value;
+    prefs.setString('ff_orderType', value);
   }
 
   String _shiftexist = '';
