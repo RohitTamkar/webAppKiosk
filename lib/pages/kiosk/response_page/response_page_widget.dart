@@ -53,10 +53,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
             },
             child: Padding(
               padding: MediaQuery.viewInsetsOf(context),
-              child: Container(
-                height: 300.0,
-                child: PaymentcheckstatusWidget(),
-              ),
+              child: PaymentcheckstatusWidget(),
             ),
           );
         },
@@ -104,6 +101,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
                 invoiceRecord.orderBy('invoiceDate', descending: true),
             singleRecord: true,
           ).then((s) => s.firstOrNull);
+          Navigator.pop(context);
           if (_model.appsettings!.settingList
               .where((e) => e.title == 'resetserialNoDaily')
               .toList()
