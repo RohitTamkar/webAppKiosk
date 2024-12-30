@@ -152,7 +152,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
               orderType: FFAppState().orderType,
               kotStatus: 'PENDING',
               count: FFAppState().count,
-              source: 'WEBAPP',
+              source: 'WEB ORDER',
             ),
             ...mapToFirestore(
               {
@@ -195,7 +195,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
               orderType: FFAppState().orderType,
               kotStatus: 'PENDING',
               count: FFAppState().count,
-              source: 'WEBAPP',
+              source: 'WEB ORDER',
             ),
             ...mapToFirestore(
               {
