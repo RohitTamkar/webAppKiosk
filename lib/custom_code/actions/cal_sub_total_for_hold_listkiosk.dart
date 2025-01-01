@@ -57,7 +57,7 @@ Future<double> calSubTotalForHoldListkiosk(
           FFAppState().taxamt = tax.toDouble();
           FFAppState().billAmt = total.toDouble();
           FFAppState().totalQuantity = qty.toDouble();
-          if (qtywiseparcelcharge) {
+          if (true) {
             FFAppState().noOfItems = qty.toInt();
           } else {
             FFAppState().noOfItems = itemList.length;
