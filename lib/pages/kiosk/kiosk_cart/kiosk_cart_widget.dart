@@ -1124,13 +1124,27 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                           );
                                                           _model.res21Copy =
                                                               await actions
-                                                                  .calSubTotalForHoldList(
+                                                                  .calSubTotalForHoldListkiosk(
                                                             FFAppState()
                                                                 .selBill
                                                                 .toString(),
                                                             FFAppState()
                                                                 .allBillsList
                                                                 .toList(),
+                                                            functions
+                                                                .enabletaxinclusive(
+                                                                    valueOrDefault<
+                                                                        bool>(
+                                                              widget!.appsetting
+                                                                  ?.settingList
+                                                                  ?.where((e) =>
+                                                                      e.title ==
+                                                                      'enableInclusiveTax')
+                                                                  .toList()
+                                                                  ?.firstOrNull
+                                                                  ?.value,
+                                                              false,
+                                                            )),
                                                           );
                                                           _model.reuslt22Copy =
                                                               await actions

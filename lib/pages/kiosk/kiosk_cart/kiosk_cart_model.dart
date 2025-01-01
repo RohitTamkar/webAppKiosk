@@ -57,7 +57,7 @@ class KioskCartModel extends FlutterFlowModel<KioskCartWidget> {
   double? reuslt12;
   // Stores action output result for [Custom Action - removeHoldListItem] action in IconButton widget.
   List<dynamic>? res20Copy;
-  // Stores action output result for [Custom Action - calSubTotalForHoldList] action in IconButton widget.
+  // Stores action output result for [Custom Action - calSubTotalForHoldListkiosk] action in IconButton widget.
   double? res21Copy;
   // Stores action output result for [Custom Action - calBillAmt] action in IconButton widget.
   double? reuslt22Copy;
