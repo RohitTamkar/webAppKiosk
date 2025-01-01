@@ -192,36 +192,156 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         Flexible(
-                                          child: Container(
-                                            height: 35.0,
-                                            decoration: BoxDecoration(),
-                                            child: FlutterFlowChoiceChips(
-                                              options: [
-                                                ChipData(
-                                                    FFLocalizations.of(context)
+                                          child:
+                                              StreamBuilder<List<FooterRecord>>(
+                                            stream: queryFooterRecord(
+                                              parent: FFAppState().outletIdRef,
+                                              singleRecord: true,
+                                            ),
+                                            builder: (context, snapshot) {
+                                              // Customize what your widget looks like when it's loading.
+                                              if (!snapshot.hasData) {
+                                                return Center(
+                                                  child: SizedBox(
+                                                    width: 40.0,
+                                                    height: 40.0,
+                                                    child: SpinKitFadingCircle(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      size: 40.0,
+                                                    ),
+                                                  ),
+                                                );
+                                              }
+                                              List<FooterRecord>
+                                                  containerFooterRecordList =
+                                                  snapshot.data!;
+                                              final containerFooterRecord =
+                                                  containerFooterRecordList
+                                                          .isNotEmpty
+                                                      ? containerFooterRecordList
+                                                          .first
+                                                      : null;
+
+                                              return Container(
+                                                height: 35.0,
+                                                decoration: BoxDecoration(),
+                                                child: FlutterFlowChoiceChips(
+                                                  options: [
+                                                    ChipData(FFLocalizations.of(
+                                                            context)
                                                         .getText(
-                                                  'm630vqg2' /* DINE IN */,
-                                                )),
-                                                ChipData(
-                                                    FFLocalizations.of(context)
+                                                      'm630vqg2' /* DINE IN */,
+                                                    )),
+                                                    ChipData(FFLocalizations.of(
+                                                            context)
                                                         .getText(
-                                                  '9hqpozct' /* PARCEL */,
-                                                ))
-                                              ],
-                                              onChanged: (val) async {
-                                                safeSetState(() =>
-                                                    _model.choiceChipsValue =
+                                                      '9hqpozct' /* PARCEL */,
+                                                    ))
+                                                  ],
+                                                  onChanged: (val) async {
+                                                    safeSetState(() => _model
+                                                            .choiceChipsValue =
                                                         val?.firstOrNull);
-                                                FFAppState().orderType =
-                                                    _model.choiceChipsValue!;
-                                                safeSetState(() {});
-                                              },
-                                              selectedChipStyle: ChipStyle(
-                                                backgroundColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
+                                                    FFAppState().orderType =
+                                                        _model
+                                                            .choiceChipsValue!;
+                                                    safeSetState(() {});
+                                                    if (FFAppState()
+                                                            .orderType ==
+                                                        'PARCEL') {
+                                                      FFAppState().delCharges =
+                                                          containerFooterRecord!
+                                                              .parcelCharges;
+                                                      safeSetState(() {});
+                                                      _model.res2345677 =
+                                                          await actions
+                                                              .calSubTotalForHoldListkiosk(
+                                                        valueOrDefault<String>(
+                                                          FFAppState()
+                                                              .selBill
+                                                              .toString(),
+                                                          '1',
+                                                        ),
+                                                        FFAppState()
+                                                            .allBillsList
+                                                            .toList(),
+                                                        functions
+                                                            .enabletaxinclusive(
+                                                                valueOrDefault<
+                                                                    bool>(
+                                                          widget!.appsetting
+                                                              ?.settingList
+                                                              ?.where((e) =>
+                                                                  e.title ==
+                                                                  'enableInclusiveTax')
+                                                              .toList()
+                                                              ?.firstOrNull
+                                                              ?.value,
+                                                          false,
+                                                        )),
+                                                      );
+                                                      _model.reuslt1288 =
+                                                          await actions
+                                                              .calBillAmt(
+                                                        valueOrDefault<double>(
+                                                          FFAppState().disAmt,
+                                                          0.0,
+                                                        ),
+                                                        FFAppState().delCharges,
+                                                      );
+                                                    } else {
+                                                      FFAppState().delCharges =
+                                                          0.0;
+                                                      safeSetState(() {});
+                                                      _model.res23rd = await actions
+                                                          .calSubTotalForHoldListkiosk(
+                                                        valueOrDefault<String>(
+                                                          FFAppState()
+                                                              .selBill
+                                                              .toString(),
+                                                          '1',
+                                                        ),
+                                                        FFAppState()
+                                                            .allBillsList
+                                                            .toList(),
+                                                        functions
+                                                            .enabletaxinclusive(
+                                                                valueOrDefault<
+                                                                    bool>(
+                                                          widget!.appsetting
+                                                              ?.settingList
+                                                              ?.where((e) =>
+                                                                  e.title ==
+                                                                  'enableInclusiveTax')
+                                                              .toList()
+                                                              ?.firstOrNull
+                                                              ?.value,
+                                                          false,
+                                                        )),
+                                                      );
+                                                      _model.reuslt1dr =
+                                                          await actions
+                                                              .calBillAmt(
+                                                        valueOrDefault<double>(
+                                                          FFAppState().disAmt,
+                                                          0.0,
+                                                        ),
+                                                        FFAppState().delCharges,
+                                                      );
+                                                    }
+
+                                                    safeSetState(() {});
+                                                  },
+                                                  selectedChipStyle: ChipStyle(
+                                                    backgroundColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primary,
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
@@ -240,19 +360,22 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                                           context)
                                                                       .bodyMediumFamily),
                                                         ),
-                                                iconColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .info,
-                                                iconSize: 10.0,
-                                                elevation: 0.0,
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                              ),
-                                              unselectedChipStyle: ChipStyle(
-                                                backgroundColor:
-                                                    Color(0xFFD7D4E8),
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
+                                                    iconColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .info,
+                                                    iconSize: 10.0,
+                                                    elevation: 0.0,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                  ),
+                                                  unselectedChipStyle:
+                                                      ChipStyle(
+                                                    backgroundColor:
+                                                        Color(0xFFD7D4E8),
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
@@ -270,29 +393,34 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                                           context)
                                                                       .bodyMediumFamily),
                                                         ),
-                                                iconColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                iconSize: 12.0,
-                                                elevation: 0.0,
-                                                borderRadius:
-                                                    BorderRadius.circular(6.0),
-                                              ),
-                                              chipSpacing: 10.0,
-                                              rowSpacing: 8.0,
-                                              multiselect: false,
-                                              initialized:
-                                                  _model.choiceChipsValue !=
-                                                      null,
-                                              alignment: WrapAlignment.start,
-                                              controller: _model
-                                                      .choiceChipsValueController ??=
-                                                  FormFieldController<
-                                                      List<String>>(
-                                                [FFAppState().orderType],
-                                              ),
-                                              wrapped: false,
-                                            ),
+                                                    iconColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .secondaryText,
+                                                    iconSize: 12.0,
+                                                    elevation: 0.0,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            6.0),
+                                                  ),
+                                                  chipSpacing: 10.0,
+                                                  rowSpacing: 8.0,
+                                                  multiselect: false,
+                                                  initialized:
+                                                      _model.choiceChipsValue !=
+                                                          null,
+                                                  alignment:
+                                                      WrapAlignment.start,
+                                                  controller: _model
+                                                          .choiceChipsValueController ??=
+                                                      FormFieldController<
+                                                          List<String>>(
+                                                    [FFAppState().orderType],
+                                                  ),
+                                                  wrapped: false,
+                                                ),
+                                              );
+                                            },
                                           ),
                                         ),
                                       ],
@@ -1172,41 +1300,103 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                             BorderRadius.circular(8.0),
                                       ),
                                     ),
-                                    Row(
+                                    Column(
                                       mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 5.0, 0.0),
-                                          child: Icon(
-                                            Icons.shopping_cart_rounded,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            size: 18.0,
-                                          ),
-                                        ),
-                                        Text(
-                                          valueOrDefault<String>(
-                                            FFAppState().noOfItems.toString(),
-                                            '0',
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .displayLarge
-                                              .override(
-                                                fontFamily:
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 5.0, 0.0),
+                                              child: Icon(
+                                                Icons.shopping_cart_rounded,
+                                                color:
                                                     FlutterFlowTheme.of(context)
-                                                        .displayLargeFamily,
-                                                fontSize: 20.0,
-                                                letterSpacing: 0.0,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .displayLargeFamily),
+                                                        .primaryText,
+                                                size: 18.0,
                                               ),
+                                            ),
+                                            Text(
+                                              valueOrDefault<String>(
+                                                FFAppState()
+                                                    .noOfItems
+                                                    .toString(),
+                                                '0',
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .displayLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .displayLargeFamily,
+                                                        fontSize: 20.0,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .displayLargeFamily),
+                                                      ),
+                                            ),
+                                          ],
                                         ),
+                                        if (FFAppState().delCharges > 0.0)
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                                  'jecyiyzq' /* Parcel:₹  */,
+                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .displayLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .displayLargeFamily,
+                                                          fontSize: 11.0,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .displayLargeFamily),
+                                                        ),
+                                              ),
+                                              Text(
+                                                (FFAppState().delCharges *
+                                                        FFAppState().noOfItems)
+                                                    .toString(),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .displayLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .displayLargeFamily,
+                                                          fontSize: 11.0,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .displayLargeFamily),
+                                                        ),
+                                              ),
+                                            ],
+                                          ),
                                       ],
                                     ),
                                     RichText(

@@ -1385,9 +1385,23 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                                             ),
                                                                             onPressed:
                                                                                 () async {
-                                                                              if (FFAppState().qty > 1.0) {
-                                                                                FFAppState().qty = FFAppState().qty + -1.0;
-                                                                                safeSetState(() {});
+                                                                              if (FFAppState().qty <
+                                                                                  getJsonField(
+                                                                                    functions
+                                                                                        .filterBillList(FFAppState().selBill, FFAppState().allBillsList.toList())
+                                                                                        .where((e) =>
+                                                                                            kioskBillScreenVarItem.id ==
+                                                                                            valueOrDefault<String>(
+                                                                                              getJsonField(
+                                                                                                e,
+                                                                                                r'''$.id''',
+                                                                                              )?.toString(),
+                                                                                              '0',
+                                                                                            ))
+                                                                                        .toList()
+                                                                                        .firstOrNull,
+                                                                                    r'''$.quantity''',
+                                                                                  )) {
                                                                                 _model.resultkiosk = await actions.reduceQuantityHoldListkiosk(
                                                                                   functions
                                                                                       .filterBillList(FFAppState().selBill, FFAppState().allBillsList.toList())
@@ -1444,9 +1458,16 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                                                       .firstOrNull!,
                                                                                   FFAppState().selBill,
                                                                                 );
-                                                                                _model.res21Copy = await actions.calSubTotalForHoldList(
-                                                                                  FFAppState().selBill.toString(),
+                                                                                _model.res23456 = await actions.calSubTotalForHoldListkiosk(
+                                                                                  valueOrDefault<String>(
+                                                                                    FFAppState().selBill.toString(),
+                                                                                    '1',
+                                                                                  ),
                                                                                   FFAppState().allBillsList.toList(),
+                                                                                  functions.enabletaxinclusive(valueOrDefault<bool>(
+                                                                                    widget!.appsetting?.settingList?.where((e) => e.title == 'enableInclusiveTax').toList()?.firstOrNull?.value,
+                                                                                    false,
+                                                                                  )),
                                                                                 );
                                                                                 _model.reuslt22Copy = await actions.calBillAmt(
                                                                                   valueOrDefault<double>(
@@ -1566,8 +1587,6 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                                                   return;
                                                                                 }
                                                                               }
-                                                                              FFAppState().qty = FFAppState().qty + 1.0;
-                                                                              safeSetState(() {});
                                                                               _model.kioskresult = await actions.plusQuantityHoldListkiosk(
                                                                                 functions
                                                                                     .filterBillList(FFAppState().selBill, FFAppState().allBillsList.toList())
@@ -1744,40 +1763,98 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                               ),
                             ),
                             Flexible(
-                              child: Row(
+                              child: Column(
                                 mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 5.0, 0.0),
-                                    child: Icon(
-                                      Icons.shopping_cart_rounded,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 17.0,
-                                    ),
-                                  ),
-                                  Flexible(
-                                    child: Text(
-                                      valueOrDefault<String>(
-                                        FFAppState().noOfItems.toString(),
-                                        '0',
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 5.0, 0.0),
+                                        child: Icon(
+                                          Icons.shopping_cart_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          size: 17.0,
+                                        ),
                                       ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .displayLarge
-                                          .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .displayLargeFamily,
-                                            fontSize: 15.0,
-                                            letterSpacing: 0.0,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .displayLargeFamily),
+                                      Flexible(
+                                        child: Text(
+                                          valueOrDefault<String>(
+                                            FFAppState().noOfItems.toString(),
+                                            '0',
                                           ),
-                                    ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .displayLarge
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .displayLargeFamily,
+                                                fontSize: 15.0,
+                                                letterSpacing: 0.0,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .displayLargeFamily),
+                                              ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
+                                  if (FFAppState().delCharges > 0.0)
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Text(
+                                          FFLocalizations.of(context).getText(
+                                            'lffvqew8' /* Parcel :₹  */,
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .displayLarge
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .displayLargeFamily,
+                                                fontSize: 11.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.normal,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .displayLargeFamily),
+                                              ),
+                                        ),
+                                        Flexible(
+                                          child: Text(
+                                            (FFAppState().delCharges *
+                                                    FFAppState().noOfItems)
+                                                .toString(),
+                                            style: FlutterFlowTheme.of(context)
+                                                .displayLarge
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .displayLargeFamily,
+                                                  fontSize: 11.0,
+                                                  letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .displayLargeFamily),
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                 ],
                               ),
                             ),

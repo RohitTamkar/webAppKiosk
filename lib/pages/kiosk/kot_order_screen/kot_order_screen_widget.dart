@@ -1068,7 +1068,9 @@ class _KotOrderScreenWidgetState extends State<KotOrderScreenWidget>
                                               width: double.infinity,
                                               height: 70.0,
                                               decoration: BoxDecoration(
-                                                color: Color(0xFF362E25),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
                                                 borderRadius: BorderRadius.only(
                                                   bottomLeft:
                                                       Radius.circular(0.0),

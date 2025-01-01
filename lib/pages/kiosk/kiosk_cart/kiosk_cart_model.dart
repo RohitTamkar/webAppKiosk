@@ -35,6 +35,14 @@ class KioskCartModel extends FlutterFlowModel<KioskCartWidget> {
       choiceChipsValueController?.value?.firstOrNull;
   set choiceChipsValue(String? val) =>
       choiceChipsValueController?.value = val != null ? [val] : [];
+  // Stores action output result for [Custom Action - calSubTotalForHoldListkiosk] action in ChoiceChips widget.
+  double? res2345677;
+  // Stores action output result for [Custom Action - calBillAmt] action in ChoiceChips widget.
+  double? reuslt1288;
+  // Stores action output result for [Custom Action - calSubTotalForHoldListkiosk] action in ChoiceChips widget.
+  double? res23rd;
+  // Stores action output result for [Custom Action - calBillAmt] action in ChoiceChips widget.
+  double? reuslt1dr;
   // Stores action output result for [Custom Action - reduceQuantityHoldListkiosk] action in IconButton widget.
   List<dynamic>? res2cart;
   // Stores action output result for [Custom Action - calSubTotalForHoldListkiosk] action in IconButton widget.

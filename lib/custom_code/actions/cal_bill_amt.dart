@@ -23,7 +23,7 @@ Future<double> calBillAmt(
   }
   if (delChargs > 0) {
     // FFAppState().delCharges = delChargs * FFAppState().noOfItems;
-    billAmt += delChargs * FFAppState().noOfItems;
+    // billAmt += delChargs * FFAppState().noOfItems;
     print(delChargs);
   }
 

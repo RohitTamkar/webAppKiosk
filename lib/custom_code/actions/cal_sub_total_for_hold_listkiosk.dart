@@ -17,6 +17,7 @@ Future<double> calSubTotalForHoldListkiosk(
   double total = 0;
   double qty = 0;
   double tax = 0;
+  double delCharges = 0;
 
 //  print(obj.length);
   List<dynamic> itemList = [];
@@ -42,7 +43,12 @@ Future<double> calSubTotalForHoldListkiosk(
                 total += itemList[i]["quantity"] * itemList[i]["price"];
               }
               // total += itemList[i]["total"];
+              if (true) {
+                delCharges = itemList[i]["quantity"] * FFAppState().delCharges;
+                total += delCharges;
+              }
               qty += itemList[i]["quantity"];
+
               print("total");
               print(total);
             }
@@ -51,7 +57,11 @@ Future<double> calSubTotalForHoldListkiosk(
           FFAppState().taxamt = tax.toDouble();
           FFAppState().billAmt = total.toDouble();
           FFAppState().totalQuantity = qty.toDouble();
-          FFAppState().noOfItems = itemList.length;
+          if (qtywiseparcelcharge) {
+            FFAppState().noOfItems = qty.toInt();
+          } else {
+            FFAppState().noOfItems = itemList.length;
+          }
           break;
         }
       }

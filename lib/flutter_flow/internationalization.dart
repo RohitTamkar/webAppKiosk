@@ -389,6 +389,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'mr': '',
       'ta': '',
     },
+    'jecyiyzq': {
+      'en': 'Parcel:₹ ',
+      'hi': '',
+      'kn': '',
+      'mr': '',
+      'ta': '',
+    },
     '9dk0mden': {
       'en': '₹ ',
       'hi': '',
@@ -537,6 +544,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '2wg5nblz': {
       'en': 'Cancel',
+      'hi': '',
+      'kn': '',
+      'mr': '',
+      'ta': '',
+    },
+    'lffvqew8': {
+      'en': 'Parcel :₹ ',
       'hi': '',
       'kn': '',
       'mr': '',
