@@ -33,23 +33,9 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       FFAppState().htmlview =
-          '<h1><span style=\"font-size:18px\"><span style=\"color:#000000\">About us</span></span></h1><h2><span style=\"font-size:14px\">Business Name :<span style=\"font-size:16px\"><strong> </strong></span><strong><span style=\"color:#2c3e50\">Sensible Connect Solutions Pvt lmt</span></strong></span></h2><h3><span style=\"font-size:14px\">Business Description :</span><span style=\"font-size:20px\"> </span></h3><span style=\"font-size:12px\">Founded in 2016, Sensible Connect Solutions Pvt. Ltd. has become a highly regarded entity involved in manufacturing and wholesaling best series of Billing Machine, POS Machine, Weighing Scale, Weighing Systems and many more. These are widely acknowledged for their application specific design, accurate dimension, high performance, lightweight and durable finish standard.</span><h2><span style=\"font-size:14px\">Compact Billing Machine Series:</span></h2><span style=\"font-size:12px\">We provide compact billing solutions facing a point of sale for various retail &amp; wholesale applications. We offer supermarket billing software and restaurant billing software from India.<br />* Cloud software with free customisation<br />* Mobile Application with Reporting Features<br />* Quick Billing Mode with Hot Keys<br />* Software subscription starts from INR 3000 +gst per outlet/device per year.</span><h4><span style=\"font-size:10px\"><span style=\"color:#999999\">&nbsp;</span></span></h4>';
-      FFAppState().colorab = 1;
+          '<p style=\"font-size:18px\" ><strong><B>Terms &amp; Conditions</B></strong></p>  <p>Last updated on Jan 30th 2024</p>  <p>For the purpose of these Terms and Conditions, The term &quot;we&quot;, &quot;us&quot;, &quot;our&quot; used anywhere on this page shall mean SENSIBLE CONNECT SOLUTIONS PRIVATE LIMITED, whose registered/operational office is Mayur Appartments, Survey     No 39/3, Plot No 4, Behind Mhatoba Mandir, Kothrud, Pune Pune MAHARASHTRA 411038 . &quot;you&quot;, &ldquo;your&rdquo;, &quot;user&quot;, &ldquo;visitor&rdquo; shall mean any natural or legal person who is visiting our website and/or agreed to purchase     from us.</p>  <p><B>Your use of the website and/or purchase from us are governed by following Terms and Conditions:</B></p>  <ul>     <li>The content of the pages of this website is subject to change without notice.</li>          <li>Neither we nor any third parties provide any warranty or guarantee as to the accuracy, timeliness, performance, completeness or suitability of the information and materials found or offered on this website for any particular purpose. You acknowledge that         such information and materials may contain inaccuracies or errors and we expressly exclude liability for any such inaccuracies or errors to the fullest extent permitted by law.</li>     <li>Your use of any information or materials on our website and/or product pages is entirely at your own risk, for which we shall not be liable. It shall be your own responsibility to ensure that any products, services or information available through our         website and/or product pages meet your specific requirements.</li>     <li>Our website contains material which is owned by or licensed to us. This material includes, but are not limited to, the design, layout, look, appearance and graphics. Reproduction is prohibited other than in accordance with the copyright notice, which         forms part of these terms and conditions.</li>     <li>All trademarks reproduced in our website which are not the property of, or licensed to, the operator are acknowledged on the website.</li>     <li>Unauthorized use of information provided by us shall give rise to a claim for damages and/or be a criminal offense.</li>     <li>From time to time our website may also include links to other websites. These links are provided for your convenience to provide further information.</li>     <li>You may not create a link to our website from another website or document without SENSIBLE CONNECT SOLUTIONS PRIVATE LIMITED&rsquo;s prior written consent.</li>     <li>Any dispute arising out of use of our website and/or purchase with us and/or any engagement with us is subject to the laws of India .</li>     <li>We, shall be under no liability whatsoever in respect of any loss or damage arising directly or indirectly out of the decline of authorization for any Transaction, on Account of the Cardholder having exceeded the preset limit mutually agreed by us with our acquiring bank from time to time</li> </ul>';
+      FFAppState().colorab = 2;
       safeSetState(() {});
-      await showDialog(
-        context: context,
-        builder: (alertDialogContext) {
-          return AlertDialog(
-            content: Text(FFAppState().htmlview),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
-              ),
-            ],
-          );
-        },
-      );
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -109,71 +95,74 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                5.0, 5.0, 5.0, 0.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                FFAppState().htmlview =
-                                    '<h1><span style=\"font-size:18px\"><span style=\"color:#000000\">About us</span></span></h1><h2><span style=\"font-size:14px\">Business Name :<span style=\"font-size:16px\"><strong> </strong></span><strong><span style=\"color:#2c3e50\">Sensible Connect Solutions Pvt lmt</span></strong></span></h2><h3><span style=\"font-size:14px\">Business Description :</span><span style=\"font-size:20px\"> </span></h3><span style=\"font-size:12px\">Founded in 2016, Sensible Connect Solutions Pvt. Ltd. has become a highly regarded entity involved in manufacturing and wholesaling best series of Billing Machine, POS Machine, Weighing Scale, Weighing Systems and many more. These are widely acknowledged for their application specific design, accurate dimension, high performance, lightweight and durable finish standard.</span><h2><span style=\"font-size:14px\">Compact Billing Machine Series:</span></h2><span style=\"font-size:12px\">We provide compact billing solutions facing a point of sale for various retail &amp; wholesale applications. We offer supermarket billing software and restaurant billing software from India.<br />* Cloud software with free customisation<br />* Mobile Application with Reporting Features<br />* Quick Billing Mode with Hot Keys<br />* Software subscription starts from INR 3000 +gst per outlet/device per year.</span><h4><span style=\"font-size:10px\"><span style=\"color:#999999\">&nbsp;</span></span></h4>';
-                                FFAppState().colorab = 1;
-                                safeSetState(() {});
-                              },
-                              child: Container(
-                                width: MediaQuery.sizeOf(context).width * 0.2,
-                                height:
-                                    MediaQuery.sizeOf(context).height * 0.05,
-                                decoration: BoxDecoration(
-                                  color: valueOrDefault<Color>(
-                                    FFAppState().colorab == 1
-                                        ? FlutterFlowTheme.of(context).alternate
-                                        : FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                    FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                  ),
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  border: Border.all(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Flexible(
-                                      child: Text(
-                                        FFLocalizations.of(context).getText(
-                                          'hr61zqxk' /* About Us */,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .titleMedium
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleMediumFamily,
-                                              fontSize: 10.0,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleMediumFamily),
-                                            ),
-                                      ),
+                          if (false)
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  5.0, 5.0, 5.0, 0.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  FFAppState().htmlview =
+                                      '<h1><span style=\"font-size:18px\"><span style=\"color:#000000\">About us</span></span></h1><h2><span style=\"font-size:14px\">Business Name :<span style=\"font-size:16px\"><strong> </strong></span><strong><span style=\"color:#2c3e50\">Sensible Connect Solutions Pvt lmt</span></strong></span></h2><h3><span style=\"font-size:14px\">Business Description :</span><span style=\"font-size:20px\"> </span></h3><span style=\"font-size:12px\">Founded in 2016, Sensible Connect Solutions Pvt. Ltd. has become a highly regarded entity involved in manufacturing and wholesaling best series of Billing Machine, POS Machine, Weighing Scale, Weighing Systems and many more. These are widely acknowledged for their application specific design, accurate dimension, high performance, lightweight and durable finish standard.</span><h2><span style=\"font-size:14px\">Compact Billing Machine Series:</span></h2><span style=\"font-size:12px\">We provide compact billing solutions facing a point of sale for various retail &amp; wholesale applications. We offer supermarket billing software and restaurant billing software from India.<br />* Cloud software with free customisation<br />* Mobile Application with Reporting Features<br />* Quick Billing Mode with Hot Keys<br />* Software subscription starts from INR 3000 +gst per outlet/device per year.</span><h4><span style=\"font-size:10px\"><span style=\"color:#999999\">&nbsp;</span></span></h4>';
+                                  FFAppState().colorab = 1;
+                                  safeSetState(() {});
+                                },
+                                child: Container(
+                                  width: MediaQuery.sizeOf(context).width * 0.2,
+                                  height:
+                                      MediaQuery.sizeOf(context).height * 0.05,
+                                  decoration: BoxDecoration(
+                                    color: valueOrDefault<Color>(
+                                      FFAppState().colorab == 1
+                                          ? FlutterFlowTheme.of(context)
+                                              .alternate
+                                          : FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                      FlutterFlowTheme.of(context)
+                                          .primaryBackground,
                                     ),
-                                  ],
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Flexible(
+                                        child: Text(
+                                          FFLocalizations.of(context).getText(
+                                            'hr61zqxk' /* About Us */,
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .titleMedium
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleMediumFamily,
+                                                fontSize: 10.0,
+                                                letterSpacing: 0.0,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleMediumFamily),
+                                              ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 5.0, 5.0, 5.0, 0.0),
@@ -241,72 +230,75 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                5.0, 5.0, 5.0, 0.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                FFAppState().htmlview =
-                                    '<h1><span style=\"font-size:18px\">Contact Us :</span></h1><h4><span style=\"font-size:14px\">Contact Person:</span> <span style=\"font-size:12px\">Amrut Nerlikar (Founder)</span><br /><span style=\"font-size:14px\">Contact Numbers:</span> <strong><span style=\"font-size:12px\"><span style=\"color:#2c3e50\">+91-9561673253</span> ,<span style=\"color:#2c3e50\">+91-8669695333</span></span></strong></h4><h3><span style=\"font-size:14px\">Address : </span></h3><span style=\"font-size:12px\">&nbsp; &nbsp; &nbsp; 4 Anand Complex Alkapuri Society,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Opposite Kinara Hotel Near Vanaz Factory<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Paud Road<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kothrud<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Pune, Maharashtra 411038<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; India</span><h4><span style=\"font-size:14px\">Website :&nbsp;&nbsp;</span><span style=\"color:#2c3e50\"><strong> <span style=\"font-size:12px\">https://www.sensibleconnect.com</span></strong></span></h4> <h4><span style=\"font-size:14px\">Email ID :&nbsp;&nbsp;</span><span style=\"color:#2c3e50\"><strong> <span style=\"font-size:12px\"> info@sensibleconnect.com</span></strong></span></h4>';
-                                safeSetState(() {});
-                                FFAppState().colorab = 3;
-                                safeSetState(() {});
-                              },
-                              child: Container(
-                                width: MediaQuery.sizeOf(context).width * 0.2,
-                                height:
-                                    MediaQuery.sizeOf(context).height * 0.05,
-                                decoration: BoxDecoration(
-                                  color: valueOrDefault<Color>(
-                                    FFAppState().colorab == 3
-                                        ? FlutterFlowTheme.of(context).alternate
-                                        : FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                    FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                  ),
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  border: Border.all(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Flexible(
-                                      child: Text(
-                                        FFLocalizations.of(context).getText(
-                                          '5w04qx7d' /* Contact Us */,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .titleMedium
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleMediumFamily,
-                                              fontSize: 10.0,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleMediumFamily),
-                                            ),
-                                      ),
+                          if (false)
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  5.0, 5.0, 5.0, 0.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  FFAppState().htmlview =
+                                      '<h1><span style=\"font-size:18px\">Contact Us :</span></h1><h4><span style=\"font-size:14px\">Contact Person:</span> <span style=\"font-size:12px\">Amrut Nerlikar (Founder)</span><br /><span style=\"font-size:14px\">Contact Numbers:</span> <strong><span style=\"font-size:12px\"><span style=\"color:#2c3e50\">+91-9561673253</span> ,<span style=\"color:#2c3e50\">+91-8669695333</span></span></strong></h4><h3><span style=\"font-size:14px\">Address : </span></h3><span style=\"font-size:12px\">&nbsp; &nbsp; &nbsp; 4 Anand Complex Alkapuri Society,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Opposite Kinara Hotel Near Vanaz Factory<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Paud Road<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kothrud<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Pune, Maharashtra 411038<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; India</span><h4><span style=\"font-size:14px\">Website :&nbsp;&nbsp;</span><span style=\"color:#2c3e50\"><strong> <span style=\"font-size:12px\">https://www.sensibleconnect.com</span></strong></span></h4> <h4><span style=\"font-size:14px\">Email ID :&nbsp;&nbsp;</span><span style=\"color:#2c3e50\"><strong> <span style=\"font-size:12px\"> info@sensibleconnect.com</span></strong></span></h4>';
+                                  safeSetState(() {});
+                                  FFAppState().colorab = 3;
+                                  safeSetState(() {});
+                                },
+                                child: Container(
+                                  width: MediaQuery.sizeOf(context).width * 0.2,
+                                  height:
+                                      MediaQuery.sizeOf(context).height * 0.05,
+                                  decoration: BoxDecoration(
+                                    color: valueOrDefault<Color>(
+                                      FFAppState().colorab == 3
+                                          ? FlutterFlowTheme.of(context)
+                                              .alternate
+                                          : FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                      FlutterFlowTheme.of(context)
+                                          .primaryBackground,
                                     ),
-                                  ],
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Flexible(
+                                        child: Text(
+                                          FFLocalizations.of(context).getText(
+                                            '5w04qx7d' /* Contact Us */,
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .titleMedium
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleMediumFamily,
+                                                fontSize: 10.0,
+                                                letterSpacing: 0.0,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleMediumFamily),
+                                              ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 5.0, 5.0, 5.0, 0.0),
