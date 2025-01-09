@@ -229,15 +229,15 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'mr': '',
       'ta': '',
     },
-    'ro1vrnjk': {
-      'en': 'Option 1',
+    '1liauibr': {
+      'en': 'Select Paper Size...',
       'hi': '',
       'kn': '',
       'mr': '',
       'ta': '',
     },
-    '1liauibr': {
-      'en': 'Select Paper Size...',
+    'ro1vrnjk': {
+      'en': 'Option 1',
       'hi': '',
       'kn': '',
       'mr': '',
@@ -250,15 +250,15 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'mr': '',
       'ta': '',
     },
-    'y5stenaq': {
-      'en': 'Option 1',
+    'rf5i3neo': {
+      'en': 'Select printer mode',
       'hi': '',
       'kn': '',
       'mr': '',
       'ta': '',
     },
-    'rf5i3neo': {
-      'en': 'Select printer mode',
+    'y5stenaq': {
+      'en': 'Option 1',
       'hi': '',
       'kn': '',
       'mr': '',
