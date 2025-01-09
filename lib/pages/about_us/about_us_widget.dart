@@ -130,7 +130,7 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
                                 decoration: BoxDecoration(
                                   color: valueOrDefault<Color>(
                                     FFAppState().colorab == 1
-                                        ? FlutterFlowTheme.of(context).primary
+                                        ? FlutterFlowTheme.of(context).alternate
                                         : FlutterFlowTheme.of(context)
                                             .primaryBackground,
                                     FlutterFlowTheme.of(context)
@@ -195,8 +195,8 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
                                     MediaQuery.sizeOf(context).height * 0.05,
                                 decoration: BoxDecoration(
                                   color: valueOrDefault<Color>(
-                                    FFAppState().colorab == 1
-                                        ? FlutterFlowTheme.of(context).primary
+                                    FFAppState().colorab == 2
+                                        ? FlutterFlowTheme.of(context).alternate
                                         : FlutterFlowTheme.of(context)
                                             .primaryBackground,
                                     FlutterFlowTheme.of(context)
@@ -262,8 +262,8 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
                                     MediaQuery.sizeOf(context).height * 0.05,
                                 decoration: BoxDecoration(
                                   color: valueOrDefault<Color>(
-                                    FFAppState().colorab == 1
-                                        ? FlutterFlowTheme.of(context).primary
+                                    FFAppState().colorab == 3
+                                        ? FlutterFlowTheme.of(context).alternate
                                         : FlutterFlowTheme.of(context)
                                             .primaryBackground,
                                     FlutterFlowTheme.of(context)
@@ -328,7 +328,7 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
                                     MediaQuery.sizeOf(context).height * 0.05,
                                 decoration: BoxDecoration(
                                   color: valueOrDefault<Color>(
-                                    FFAppState().colorab == 1
+                                    FFAppState().colorab == 4
                                         ? FlutterFlowTheme.of(context).alternate
                                         : FlutterFlowTheme.of(context)
                                             .primaryBackground,
@@ -383,7 +383,7 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 FFAppState().htmlview =
-                                    '<p style=\"font-size:18px\"><b>Cancellation &amp; Refund Policy</b></p>  <p>Last updated on Jan 30th 2024</p>  <p>No cancellations &amp; Refunds are entertained</p>';
+                                    '<!DOCTYPE html> <html>  <head>     <title>Shipping & Delivery Policy</title> </head>  <body>      <h1>Shipping &amp; Delivery Policy</h1>       <p><b>Last updated on March 8th 2024</b></p>      <p>         For domestic buyers, orders are shipped through registered domestic courier         companies and Transport  only. </p>     <p> Orders are shipped within 0-7 days or as per the delivery date agreed         at the time of order confirmation and delivering of the shipment subject to Courier Company & Transport norms.     </p>     <p> <b>SENSIBLE CONNECT SOLUTIONS PRIVATE LIMITED</b> is not liable for any delay in delivery by the courier company         /         Transport authorities and only guarantees to hand over the consignment to the courier company or Transport authorities         within 0-7 days rom the date of the order         and payment or as per the delivery date agreed at the time of order confirmation.</p>     <p>          Delivery of all orders will be to the address provided by the buyer. Delivery of our services will         be confirmed on your mail ID as specified during registration. For any issues in utilizing         our services you may contact us on email <span style=\"color:#2c3e50\"><strong>  \t\tinfo@sensibleconnect.com</strong> </span>.         </p>    </body>  </html>';
                                 safeSetState(() {});
                                 FFAppState().colorab = 5;
                                 safeSetState(() {});
@@ -394,8 +394,8 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
                                     MediaQuery.sizeOf(context).height * 0.05,
                                 decoration: BoxDecoration(
                                   color: valueOrDefault<Color>(
-                                    FFAppState().colorab == 1
-                                        ? FlutterFlowTheme.of(context).primary
+                                    FFAppState().colorab == 5
+                                        ? FlutterFlowTheme.of(context).alternate
                                         : FlutterFlowTheme.of(context)
                                             .primaryBackground,
                                     FlutterFlowTheme.of(context)
@@ -460,8 +460,8 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
                                     MediaQuery.sizeOf(context).height * 0.05,
                                 decoration: BoxDecoration(
                                   color: valueOrDefault<Color>(
-                                    FFAppState().colorab == 1
-                                        ? FlutterFlowTheme.of(context).primary
+                                    FFAppState().colorab == 6
+                                        ? FlutterFlowTheme.of(context).alternate
                                         : FlutterFlowTheme.of(context)
                                             .primaryBackground,
                                     FlutterFlowTheme.of(context)
