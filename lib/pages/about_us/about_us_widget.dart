@@ -1,14 +1,11 @@
-import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,13 +20,10 @@ class AboutUsWidget extends StatefulWidget {
   State<AboutUsWidget> createState() => _AboutUsWidgetState();
 }
 
-class _AboutUsWidgetState extends State<AboutUsWidget>
-    with TickerProviderStateMixin {
+class _AboutUsWidgetState extends State<AboutUsWidget> {
   late AboutUsModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -41,94 +35,21 @@ class _AboutUsWidgetState extends State<AboutUsWidget>
       FFAppState().htmlview =
           '<h1><span style=\"font-size:18px\"><span style=\"color:#000000\">About us</span></span></h1><h2><span style=\"font-size:14px\">Business Name :<span style=\"font-size:16px\"><strong> </strong></span><strong><span style=\"color:#2c3e50\">Sensible Connect Solutions Pvt lmt</span></strong></span></h2><h3><span style=\"font-size:14px\">Business Description :</span><span style=\"font-size:20px\"> </span></h3><span style=\"font-size:12px\">Founded in 2016, Sensible Connect Solutions Pvt. Ltd. has become a highly regarded entity involved in manufacturing and wholesaling best series of Billing Machine, POS Machine, Weighing Scale, Weighing Systems and many more. These are widely acknowledged for their application specific design, accurate dimension, high performance, lightweight and durable finish standard.</span><h2><span style=\"font-size:14px\">Compact Billing Machine Series:</span></h2><span style=\"font-size:12px\">We provide compact billing solutions facing a point of sale for various retail &amp; wholesale applications. We offer supermarket billing software and restaurant billing software from India.<br />* Cloud software with free customisation<br />* Mobile Application with Reporting Features<br />* Quick Billing Mode with Hot Keys<br />* Software subscription starts from INR 3000 +gst per outlet/device per year.</span><h4><span style=\"font-size:10px\"><span style=\"color:#999999\">&nbsp;</span></span></h4>';
       safeSetState(() {});
+      await showDialog(
+        context: context,
+        builder: (alertDialogContext) {
+          return AlertDialog(
+            content: Text(FFAppState().htmlview),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          );
+        },
+      );
     });
-
-    animationsMap.addAll({
-      'containerOnActionTriggerAnimation1': AnimationInfo(
-        trigger: AnimationTrigger.onActionTrigger,
-        applyInitialState: true,
-        effectsBuilder: () => [
-          SaturateEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 400.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
-      'containerOnActionTriggerAnimation2': AnimationInfo(
-        trigger: AnimationTrigger.onActionTrigger,
-        applyInitialState: true,
-        effectsBuilder: () => [
-          SaturateEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 400.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
-      'containerOnActionTriggerAnimation3': AnimationInfo(
-        trigger: AnimationTrigger.onActionTrigger,
-        applyInitialState: true,
-        effectsBuilder: () => [
-          SaturateEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 400.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
-      'containerOnActionTriggerAnimation4': AnimationInfo(
-        trigger: AnimationTrigger.onActionTrigger,
-        applyInitialState: true,
-        effectsBuilder: () => [
-          SaturateEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 400.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
-      'containerOnActionTriggerAnimation5': AnimationInfo(
-        trigger: AnimationTrigger.onActionTrigger,
-        applyInitialState: true,
-        effectsBuilder: () => [
-          SaturateEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 400.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
-      'containerOnActionTriggerAnimation6': AnimationInfo(
-        trigger: AnimationTrigger.onActionTrigger,
-        applyInitialState: true,
-        effectsBuilder: () => [
-          SaturateEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 400.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
-    });
-    setupAnimations(
-      animationsMap.values.where((anim) =>
-          anim.trigger == AnimationTrigger.onActionTrigger ||
-          !anim.applyInitialState),
-      this,
-    );
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -162,10 +83,10 @@ class _AboutUsWidgetState extends State<AboutUsWidget>
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      FlutterFlowIconButton(
+                  Flexible(
+                    child: Align(
+                      alignment: AlignmentDirectional(-1.0, 0.0),
+                      child: FlutterFlowIconButton(
                         borderColor: Colors.transparent,
                         borderRadius: 30.0,
                         borderWidth: 1.0,
@@ -179,7 +100,7 @@ class _AboutUsWidgetState extends State<AboutUsWidget>
                           context.pop();
                         },
                       ),
-                    ],
+                    ),
                   ),
                   Flexible(
                     child: SingleChildScrollView(
@@ -250,9 +171,6 @@ class _AboutUsWidgetState extends State<AboutUsWidget>
                                   ],
                                 ),
                               ),
-                            ).animateOnActionTrigger(
-                              animationsMap[
-                                  'containerOnActionTriggerAnimation1']!,
                             ),
                           ),
                           Padding(
@@ -320,9 +238,6 @@ class _AboutUsWidgetState extends State<AboutUsWidget>
                                   ],
                                 ),
                               ),
-                            ).animateOnActionTrigger(
-                              animationsMap[
-                                  'containerOnActionTriggerAnimation2']!,
                             ),
                           ),
                           Padding(
@@ -389,9 +304,6 @@ class _AboutUsWidgetState extends State<AboutUsWidget>
                                   ],
                                 ),
                               ),
-                            ).animateOnActionTrigger(
-                              animationsMap[
-                                  'containerOnActionTriggerAnimation3']!,
                             ),
                           ),
                           Padding(
@@ -416,7 +328,7 @@ class _AboutUsWidgetState extends State<AboutUsWidget>
                                 decoration: BoxDecoration(
                                   color: valueOrDefault<Color>(
                                     FFAppState().colorab == 1
-                                        ? FlutterFlowTheme.of(context).primary
+                                        ? FlutterFlowTheme.of(context).alternate
                                         : FlutterFlowTheme.of(context)
                                             .primaryBackground,
                                     FlutterFlowTheme.of(context)
@@ -458,9 +370,6 @@ class _AboutUsWidgetState extends State<AboutUsWidget>
                                   ],
                                 ),
                               ),
-                            ).animateOnActionTrigger(
-                              animationsMap[
-                                  'containerOnActionTriggerAnimation4']!,
                             ),
                           ),
                           Padding(
@@ -527,9 +436,6 @@ class _AboutUsWidgetState extends State<AboutUsWidget>
                                   ],
                                 ),
                               ),
-                            ).animateOnActionTrigger(
-                              animationsMap[
-                                  'containerOnActionTriggerAnimation5']!,
                             ),
                           ),
                           Padding(
@@ -595,16 +501,13 @@ class _AboutUsWidgetState extends State<AboutUsWidget>
                                   ],
                                 ),
                               ),
-                            ).animateOnActionTrigger(
-                              animationsMap[
-                                  'containerOnActionTriggerAnimation6']!,
                             ),
                           ),
                         ],
                       ),
                     ),
                   ),
-                  Expanded(
+                  Flexible(
                     flex: 13,
                     child: Padding(
                       padding:
