@@ -493,6 +493,22 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                       safeSetState(() {});
                                                     },
                                                   ),
+                                                  FlutterFlowIconButton(
+                                                    borderRadius: 10.0,
+                                                    buttonSize: 40.0,
+                                                    icon: Icon(
+                                                      Icons.info_rounded,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .info,
+                                                      size: 20.0,
+                                                    ),
+                                                    onPressed: () async {
+                                                      context
+                                                          .pushNamed('AboutUs');
+                                                    },
+                                                  ),
                                                 ],
                                               ),
                                             ],
