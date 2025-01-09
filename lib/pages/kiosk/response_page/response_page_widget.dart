@@ -64,7 +64,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
           ),
           singleRecord: true,
         ).then((s) => s.firstOrNull);
-        _model.status = false;
+        _model.status = (_model.checkStatus?.succeeded ?? true);
         safeSetState(() {});
         FFAppState().shiftDetailsNEw = _model.shiftDetailsNewweb!;
         FFAppState().msg = _model.qrTransaction!.msg;
@@ -386,7 +386,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  if (_model.qrTransaction?.status == null)
+                  if (!_model.status)
                     Expanded(
                       flex: 7,
                       child: Padding(

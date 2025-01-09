@@ -20,7 +20,7 @@ import 'package:provider/provider.dart';
 class ResponsePageModel extends FlutterFlowModel<ResponsePageWidget> {
   ///  Local state fields for this page.
 
-  bool status = true;
+  bool status = false;
 
   ///  State fields for stateful widgets in this page.
 
