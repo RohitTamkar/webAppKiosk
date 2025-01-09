@@ -420,49 +420,42 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // AboutUs
   {
-    '68087x3c': {
-      'en': 'Sensible Connect Solution',
-      'hi': '',
-      'kn': '',
-      'mr': '',
-      'ta': '',
-    },
-    'sf3dvh6y': {
+    'hr61zqxk': {
       'en': 'About Us',
       'hi': '',
       'kn': '',
       'mr': '',
       'ta': '',
     },
-    '0n0cohzo': {
+    'epj8n2b0': {
       'en': 'Terms And Conditions',
       'hi': '',
       'kn': '',
       'mr': '',
       'ta': '',
     },
-    '6cxebvsj': {
+    '5w04qx7d': {
       'en': 'Contact Us',
       'hi': '',
       'kn': '',
       'mr': '',
       'ta': '',
     },
-    'hz3o56ow': {
+    'o0i1ghlz': {
       'en': 'Cancellation and Refund Policy ',
       'hi': '',
       'kn': '',
       'mr': '',
       'ta': '',
     },
-    'bv6op3ws': {
+    'x7wkohjs': {
       'en': 'Shipping and Delivery Policy',
       'hi': '',
       'kn': '',
       'mr': '',
       'ta': '',
     },
-    'aq2otstn': {
+    'kcz10syk': {
       'en': 'Privacy Policy',
       'hi': '',
       'kn': '',
