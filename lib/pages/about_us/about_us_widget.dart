@@ -34,6 +34,7 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       FFAppState().htmlview =
           '<h1><span style=\"font-size:18px\"><span style=\"color:#000000\">About us</span></span></h1><h2><span style=\"font-size:14px\">Business Name :<span style=\"font-size:16px\"><strong> </strong></span><strong><span style=\"color:#2c3e50\">Sensible Connect Solutions Pvt lmt</span></strong></span></h2><h3><span style=\"font-size:14px\">Business Description :</span><span style=\"font-size:20px\"> </span></h3><span style=\"font-size:12px\">Founded in 2016, Sensible Connect Solutions Pvt. Ltd. has become a highly regarded entity involved in manufacturing and wholesaling best series of Billing Machine, POS Machine, Weighing Scale, Weighing Systems and many more. These are widely acknowledged for their application specific design, accurate dimension, high performance, lightweight and durable finish standard.</span><h2><span style=\"font-size:14px\">Compact Billing Machine Series:</span></h2><span style=\"font-size:12px\">We provide compact billing solutions facing a point of sale for various retail &amp; wholesale applications. We offer supermarket billing software and restaurant billing software from India.<br />* Cloud software with free customisation<br />* Mobile Application with Reporting Features<br />* Quick Billing Mode with Hot Keys<br />* Software subscription starts from INR 3000 +gst per outlet/device per year.</span><h4><span style=\"font-size:10px\"><span style=\"color:#999999\">&nbsp;</span></span></h4>';
+      FFAppState().colorab = 1;
       safeSetState(() {});
       await showDialog(
         context: context,
@@ -522,7 +523,7 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Expanded(
+                            Flexible(
                               child: Container(
                                 height: double.infinity,
                                 decoration: BoxDecoration(
@@ -534,12 +535,10 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Flexible(
-                                        child: Html(
-                                          data: FFAppState().htmlview,
-                                          onLinkTap: (url, _, __) =>
-                                              launchURL(url!),
-                                        ),
+                                      Html(
+                                        data: FFAppState().htmlview,
+                                        onLinkTap: (url, _, __) =>
+                                            launchURL(url!),
                                       ),
                                       RichText(
                                         textScaler:
