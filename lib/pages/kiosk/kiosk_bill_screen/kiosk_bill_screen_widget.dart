@@ -161,7 +161,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Expanded(
-                            flex: 8,
+                            flex: 7,
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 10.0),
@@ -179,16 +179,18 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 5.0),
-                                        child: wrapWithModel(
-                                          model: _model.kioskHeaderModel,
-                                          updateCallback: () =>
-                                              safeSetState(() {}),
-                                          child: KioskHeaderWidget(),
+                                      if (false)
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 5.0),
+                                          child: wrapWithModel(
+                                            model: _model.kioskHeaderModel,
+                                            updateCallback: () =>
+                                                safeSetState(() {}),
+                                            child: KioskHeaderWidget(),
+                                          ),
                                         ),
-                                      ),
                                       Expanded(
                                         flex: 5,
                                         child: Padding(
@@ -237,7 +239,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                                           context)
                                                                       .primary,
                                                                   fontSize:
-                                                                      10.0,
+                                                                      12.0,
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight:
@@ -548,6 +550,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                   safeSetState(() {});
                                                 },
                                                 child: Container(
+                                                  width: 65.0,
                                                   height: double.infinity,
                                                   decoration: BoxDecoration(
                                                     color: Color(0xFFF5F5FA),
@@ -833,9 +836,9 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                     gridDelegate:
                                         SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 2,
-                                      crossAxisSpacing: 10.0,
+                                      crossAxisSpacing: 12.0,
                                       mainAxisSpacing: 20.0,
-                                      childAspectRatio: 0.9,
+                                      childAspectRatio: 0.8,
                                     ),
                                     scrollDirection: Axis.vertical,
                                     itemCount: kioskBillScreenVar.length,
@@ -849,7 +852,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                             BorderRadius.circular(20.0),
                                         child: Container(
                                           width: 80.0,
-                                          height: 50.0,
+                                          height: 60.0,
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,

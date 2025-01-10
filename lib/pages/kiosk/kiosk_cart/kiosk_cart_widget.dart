@@ -111,15 +111,16 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 5.0),
-                                child: wrapWithModel(
-                                  model: _model.kioskHeaderModel,
-                                  updateCallback: () => safeSetState(() {}),
-                                  child: KioskHeaderWidget(),
+                              if (false)
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 5.0),
+                                  child: wrapWithModel(
+                                    model: _model.kioskHeaderModel,
+                                    updateCallback: () => safeSetState(() {}),
+                                    child: KioskHeaderWidget(),
+                                  ),
                                 ),
-                              ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:
