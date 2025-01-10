@@ -441,6 +441,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'mr': '',
       'ta': '',
     },
+    'kcz10syk': {
+      'en': 'Privacy Policy',
+      'hi': '',
+      'kn': '',
+      'mr': '',
+      'ta': '',
+    },
     'o0i1ghlz': {
       'en': 'Cancellation and Refund Policy ',
       'hi': '',
@@ -450,13 +457,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'x7wkohjs': {
       'en': 'Shipping and Delivery Policy',
-      'hi': '',
-      'kn': '',
-      'mr': '',
-      'ta': '',
-    },
-    'kcz10syk': {
-      'en': 'Privacy Policy',
       'hi': '',
       'kn': '',
       'mr': '',

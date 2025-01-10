@@ -297,6 +297,68 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               FFAppState().htmlview =
+                                  '<!DOCTYPE html><html lang=\"en\"><head>    <meta charset=\"UTF-8\">    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">    <title>Privacy Policy</title>    <style>        body {            font-family: Arial, sans-serif;            margin: 0;            padding: 0;            line-height: 1.6;            color: #333;        }        header {            background: #f4f4f4;            padding: 20px;            text-align: center;            font-size: 24px;        }        .container {            padding: 20px;        }        h1, h2 {            color: #444;        }        ul {            list-style: disc;            margin: 10px 0 10px 20px;        }    </style></head><body>    <header>        Privacy Policy    </header>    <div class=\"container\">        <h1>Welcome to The Magic Ice Cream Factory</h1>        <p>Your privacy is important to us. This Privacy Policy outlines how we collect, use, and safeguard your information when you use our website <a href=\"https://themagicicecreamfactory.in\" target=\"_blank\">themagicicecreamfactory.in</a>.</p>        <h2>1. Information We Collect</h2>        <ul>            <li>Personal Information: Name, email address, phone number, and delivery address provided during the order process.</li>            <li>Payment Information: Payment details processed securely through our payment gateways.</li>            <li>Usage Data: Information about how you use our website, including IP address, browser type, and pages visited.</li>        </ul>        <h2>2. How We Use Your Information</h2>        <ul>            <li>To process and deliver your orders efficiently.</li>            <li>To communicate with you regarding your orders or inquiries.</li>            <li>To improve our website and services based on user feedback.</li>            <li>To comply with legal requirements and prevent fraudulent activities.</li>        </ul>        <h2>3. Sharing of Information</h2>        <ul>            <li>We do not sell or rent your personal information to third parties.</li>            <li>We may share your information with delivery partners to fulfill your orders.</li>            <li>Information may be disclosed if required by law or to protect our legal rights.</li>        </ul>        <h2>4. Security of Your Information</h2>        <p>We implement industry-standard security measures to protect your information from unauthorized access, alteration, disclosure, or destruction. However, no online platform can guarantee complete security.</p>        <h2>5. Cookies</h2>        <p>Our website uses cookies to enhance your browsing experience. You can manage your cookie preferences through your browser settings.</p>        <h2>6. Third-Party Links</h2>        <p>Our website may contain links to third-party websites. We are not responsible for the privacy practices of these external sites and encourage you to review their policies.</p>        <h2>7. Changes to This Privacy Policy</h2>        <p>We reserve the right to update this Privacy Policy at any time. Any changes will be posted on this page with an updated \"Last Updated\" date.</p>        <h2>Contact Us</h2>        <p>If you have any questions or concerns about this Privacy Policy, please contact us at <a href=\"mailto:YOUR EMAIL ID\">YOUR EMAIL ID</a>.</p>        <p>Last Updated: 10 Jan 2025</p>    </div></body></html>';
+                              safeSetState(() {});
+                              FFAppState().colorab = 6;
+                              safeSetState(() {});
+                            },
+                            child: Container(
+                              width: MediaQuery.sizeOf(context).width * 0.2,
+                              height: MediaQuery.sizeOf(context).height * 0.05,
+                              decoration: BoxDecoration(
+                                color: valueOrDefault<Color>(
+                                  FFAppState().colorab == 6
+                                      ? FlutterFlowTheme.of(context).alternate
+                                      : FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                  FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                ),
+                                borderRadius: BorderRadius.circular(10.0),
+                                border: Border.all(
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Flexible(
+                                    child: Text(
+                                      FFLocalizations.of(context).getText(
+                                        'kcz10syk' /* Privacy Policy */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .titleMedium
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleMediumFamily,
+                                            fontSize: 10.0,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleMediumFamily),
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              5.0, 5.0, 5.0, 0.0),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              FFAppState().htmlview =
                                   '<!DOCTYPE html><html lang=\"en\"><head>    <meta charset=\"UTF-8\">    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">        <style>        body {            font-family: Arial, sans-serif;            margin: 0;            padding: 0;            line-height: 1.6;            color: #333;        }        header {            background: #f4f4f4;            padding: 20px;            text-align: center;            font-size: 24px;        }        .container {            padding: 20px;        }        h1, h2 {            color: #444;        }        ul {            list-style: disc;            margin: 10px 0 10px 20px;        }    </style></head><body>    <header>        Cancellations & Refunds    </header>    <div class=\"container\">                                 <ul>            <li>Orders once placed cannot be canceled if preparation has already started.</li>            <li>Refunds will only be issued for valid reasons other wise no refunds available.</li>        </ul>           </div></body></html>';
                               safeSetState(() {});
                               FFAppState().colorab = 4;
@@ -393,68 +455,6 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
                                         'x7wkohjs' /* Shipping and Delivery Policy */,
                                       ),
                                       textAlign: TextAlign.center,
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleMediumFamily,
-                                            fontSize: 10.0,
-                                            letterSpacing: 0.0,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleMediumFamily),
-                                          ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              5.0, 5.0, 5.0, 0.0),
-                          child: InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              FFAppState().htmlview =
-                                  '<!DOCTYPE html><html lang=\"en\"><head>    <meta charset=\"UTF-8\">    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">    <title>Privacy Policy</title>    <style>        body {            font-family: Arial, sans-serif;            margin: 0;            padding: 0;            line-height: 1.6;            color: #333;        }        header {            background: #f4f4f4;            padding: 20px;            text-align: center;            font-size: 24px;        }        .container {            padding: 20px;        }        h1, h2 {            color: #444;        }        ul {            list-style: disc;            margin: 10px 0 10px 20px;        }    </style></head><body>    <header>        Privacy Policy    </header>    <div class=\"container\">        <h1>Welcome to The Magic Ice Cream Factory</h1>        <p>Your privacy is important to us. This Privacy Policy outlines how we collect, use, and safeguard your information when you use our website <a href=\"https://themagicicecreamfactory.in\" target=\"_blank\">themagicicecreamfactory.in</a>.</p>        <h2>1. Information We Collect</h2>        <ul>            <li>Personal Information: Name, email address, phone number, and delivery address provided during the order process.</li>            <li>Payment Information: Payment details processed securely through our payment gateways.</li>            <li>Usage Data: Information about how you use our website, including IP address, browser type, and pages visited.</li>        </ul>        <h2>2. How We Use Your Information</h2>        <ul>            <li>To process and deliver your orders efficiently.</li>            <li>To communicate with you regarding your orders or inquiries.</li>            <li>To improve our website and services based on user feedback.</li>            <li>To comply with legal requirements and prevent fraudulent activities.</li>        </ul>        <h2>3. Sharing of Information</h2>        <ul>            <li>We do not sell or rent your personal information to third parties.</li>            <li>We may share your information with delivery partners to fulfill your orders.</li>            <li>Information may be disclosed if required by law or to protect our legal rights.</li>        </ul>        <h2>4. Security of Your Information</h2>        <p>We implement industry-standard security measures to protect your information from unauthorized access, alteration, disclosure, or destruction. However, no online platform can guarantee complete security.</p>        <h2>5. Cookies</h2>        <p>Our website uses cookies to enhance your browsing experience. You can manage your cookie preferences through your browser settings.</p>        <h2>6. Third-Party Links</h2>        <p>Our website may contain links to third-party websites. We are not responsible for the privacy practices of these external sites and encourage you to review their policies.</p>        <h2>7. Changes to This Privacy Policy</h2>        <p>We reserve the right to update this Privacy Policy at any time. Any changes will be posted on this page with an updated \"Last Updated\" date.</p>        <h2>Contact Us</h2>        <p>If you have any questions or concerns about this Privacy Policy, please contact us at <a href=\"mailto:YOUR EMAIL ID\">YOUR EMAIL ID</a>.</p>        <p>Last Updated: 10 Jan 2025</p>    </div></body></html>';
-                              safeSetState(() {});
-                              FFAppState().colorab = 6;
-                              safeSetState(() {});
-                            },
-                            child: Container(
-                              width: MediaQuery.sizeOf(context).width * 0.2,
-                              height: MediaQuery.sizeOf(context).height * 0.05,
-                              decoration: BoxDecoration(
-                                color: valueOrDefault<Color>(
-                                  FFAppState().colorab == 6
-                                      ? FlutterFlowTheme.of(context).alternate
-                                      : FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                  FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                ),
-                                borderRadius: BorderRadius.circular(10.0),
-                                border: Border.all(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                ),
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Flexible(
-                                    child: Text(
-                                      FFLocalizations.of(context).getText(
-                                        'kcz10syk' /* Privacy Policy */,
-                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .titleMedium
                                           .override(
