@@ -470,14 +470,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ta': '',
     },
     't8hzxsqd': {
-      'en': 'SENSIBLE CONNECT SOLUTIONS PRIVATE LIMITED ',
+      'en': 'THE MAGIC ICE CREAM FACTORY ',
       'hi': '',
       'kn': '',
       'mr': '',
       'ta': '',
     },
     '28jmmi2s': {
-      'en': '2024 All rights reserved',
+      'en': '2025 All rights reserved',
       'hi': '',
       'kn': '',
       'mr': '',
