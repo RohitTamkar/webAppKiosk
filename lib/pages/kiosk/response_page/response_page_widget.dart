@@ -386,7 +386,10 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  if (!_model.status)
+                  if (!valueOrDefault<bool>(
+                    _model.status,
+                    true,
+                  ))
                     Expanded(
                       flex: 7,
                       child: Padding(
@@ -456,7 +459,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
                               colors: [
                                 FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                Color(0x38FFAC47),
+                                Color(0x38FFEB47),
                                 Color(0xFF673AB7),
                                 Colors.blue
                               ],
@@ -507,6 +510,8 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
                                             fontSize: 15.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w600,
+                                            decoration:
+                                                TextDecoration.underline,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
                                                     FlutterFlowTheme.of(context)
