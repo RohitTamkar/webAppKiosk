@@ -141,6 +141,16 @@ class OutletRecord extends FirestoreRecord {
   String get dealerCode => _dealerCode ?? '';
   bool hasDealerCode() => _dealerCode != null;
 
+  // "phonePeMid" field.
+  String? _phonePeMid;
+  String get phonePeMid => _phonePeMid ?? '';
+  bool hasPhonePeMid() => _phonePeMid != null;
+
+  // "phonePeMkey" field.
+  String? _phonePeMkey;
+  String get phonePeMkey => _phonePeMkey ?? '';
+  bool hasPhonePeMkey() => _phonePeMkey != null;
+
   void _initializeFields() {
     _branch = snapshotData['branch'] as String?;
     _createdDate = castToType<int>(snapshotData['createdDate']);
@@ -167,6 +177,8 @@ class OutletRecord extends FirestoreRecord {
     _billingType = snapshotData['billingType'] as String?;
     _isDemo = snapshotData['isDemo'] as bool?;
     _dealerCode = snapshotData['dealerCode'] as String?;
+    _phonePeMid = snapshotData['phonePeMid'] as String?;
+    _phonePeMkey = snapshotData['phonePeMkey'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -228,6 +240,8 @@ Map<String, dynamic> createOutletRecordData({
   String? billingType,
   bool? isDemo,
   String? dealerCode,
+  String? phonePeMid,
+  String? phonePeMkey,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -256,6 +270,8 @@ Map<String, dynamic> createOutletRecordData({
       'billingType': billingType,
       'isDemo': isDemo,
       'dealerCode': dealerCode,
+      'phonePeMid': phonePeMid,
+      'phonePeMkey': phonePeMkey,
     }.withoutNulls,
   );
 
@@ -291,7 +307,9 @@ class OutletRecordDocumentEquality implements Equality<OutletRecord> {
         e1?.isProd == e2?.isProd &&
         e1?.billingType == e2?.billingType &&
         e1?.isDemo == e2?.isDemo &&
-        e1?.dealerCode == e2?.dealerCode;
+        e1?.dealerCode == e2?.dealerCode &&
+        e1?.phonePeMid == e2?.phonePeMid &&
+        e1?.phonePeMkey == e2?.phonePeMkey;
   }
 
   @override
@@ -320,7 +338,9 @@ class OutletRecordDocumentEquality implements Equality<OutletRecord> {
         e?.isProd,
         e?.billingType,
         e?.isDemo,
-        e?.dealerCode
+        e?.dealerCode,
+        e?.phonePeMid,
+        e?.phonePeMkey
       ]);
 
   @override

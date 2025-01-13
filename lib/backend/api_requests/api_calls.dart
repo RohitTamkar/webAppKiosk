@@ -291,6 +291,8 @@ class PayApiCall {
     String? type = '',
     String? outletId = '',
     String? orderId = '',
+    String? merchantKey = '',
+    bool? isProd,
   }) async {
     final ffApiRequestBody = '''
 {
@@ -304,7 +306,9 @@ class PayApiCall {
   "mobileNumber": ${mobileNumber},
   "type": "${escapeStringForJson(type)}",
   "outletId": "${escapeStringForJson(outletId)}",
-  "orderId": "${escapeStringForJson(orderId)}"
+  "orderId": "${escapeStringForJson(orderId)}",
+  "merchantKey": "${escapeStringForJson(merchantKey)}",
+  "isProd": ${isProd}
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'payApi',

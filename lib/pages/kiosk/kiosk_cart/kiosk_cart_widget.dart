@@ -1548,8 +1548,8 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                   safeSetState(() {});
                                                   _model.apiResulttja =
                                                       await PayApiCall.call(
-                                                    merchantId:
-                                                        'PGTESTPAYUAT131',
+                                                    merchantId: _model
+                                                        .outletDOc?.phonePeMid,
                                                     merchantTransactionId:
                                                         FFAppState()
                                                             .transactionid,
@@ -1572,6 +1572,9 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                         ?.id,
                                                     orderId: FFAppState()
                                                         .paytmOrderId,
+                                                    merchantKey: _model
+                                                        .outletDOc?.phonePeMkey,
+                                                    isProd: true,
                                                   );
 
                                                   if ((_model.apiResulttja
