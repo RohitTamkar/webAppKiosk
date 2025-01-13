@@ -496,7 +496,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
                                     },
                                     child: Text(
                                       FFLocalizations.of(context).getText(
-                                        'e8xv42wg' /* Click here To Order Again...! */,
+                                        'e8xv42wg' /* Click Here To Order Again....! */,
                                       ),
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)

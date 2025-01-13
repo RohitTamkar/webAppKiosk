@@ -588,7 +588,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ta': '',
     },
     'e8xv42wg': {
-      'en': 'Click here To Order Again...!',
+      'en': 'Click Here To Order Again....!',
       'hi': '',
       'kn': '',
       'mr': '',
