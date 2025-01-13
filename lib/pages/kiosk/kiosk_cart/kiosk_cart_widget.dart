@@ -1565,7 +1565,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                     redirectMode: 'REDIRECT',
                                                     callbackUrl:
                                                         'https://themagicicecreamfactory.in/responsePage',
-                                                    mobileNumber: 9158724772,
+                                                    mobileNumber: 8669695333,
                                                     type: 'PAY_PAGE',
                                                     outletId: FFAppState()
                                                         .outletIdRef
@@ -1574,7 +1574,8 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                         .paytmOrderId,
                                                     merchantKey: _model
                                                         .outletDOc?.phonePeMkey,
-                                                    isProd: true,
+                                                    isProd: _model
+                                                        .outletDOc?.isProdWeb,
                                                   );
 
                                                   if ((_model.apiResulttja

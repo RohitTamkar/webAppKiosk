@@ -151,6 +151,11 @@ class OutletRecord extends FirestoreRecord {
   String get phonePeMkey => _phonePeMkey ?? '';
   bool hasPhonePeMkey() => _phonePeMkey != null;
 
+  // "isProdWeb" field.
+  bool? _isProdWeb;
+  bool get isProdWeb => _isProdWeb ?? false;
+  bool hasIsProdWeb() => _isProdWeb != null;
+
   void _initializeFields() {
     _branch = snapshotData['branch'] as String?;
     _createdDate = castToType<int>(snapshotData['createdDate']);
@@ -179,6 +184,7 @@ class OutletRecord extends FirestoreRecord {
     _dealerCode = snapshotData['dealerCode'] as String?;
     _phonePeMid = snapshotData['phonePeMid'] as String?;
     _phonePeMkey = snapshotData['phonePeMkey'] as String?;
+    _isProdWeb = snapshotData['isProdWeb'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -242,6 +248,7 @@ Map<String, dynamic> createOutletRecordData({
   String? dealerCode,
   String? phonePeMid,
   String? phonePeMkey,
+  bool? isProdWeb,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -272,6 +279,7 @@ Map<String, dynamic> createOutletRecordData({
       'dealerCode': dealerCode,
       'phonePeMid': phonePeMid,
       'phonePeMkey': phonePeMkey,
+      'isProdWeb': isProdWeb,
     }.withoutNulls,
   );
 
@@ -309,7 +317,8 @@ class OutletRecordDocumentEquality implements Equality<OutletRecord> {
         e1?.isDemo == e2?.isDemo &&
         e1?.dealerCode == e2?.dealerCode &&
         e1?.phonePeMid == e2?.phonePeMid &&
-        e1?.phonePeMkey == e2?.phonePeMkey;
+        e1?.phonePeMkey == e2?.phonePeMkey &&
+        e1?.isProdWeb == e2?.isProdWeb;
   }
 
   @override
@@ -340,7 +349,8 @@ class OutletRecordDocumentEquality implements Equality<OutletRecord> {
         e?.isDemo,
         e?.dealerCode,
         e?.phonePeMid,
-        e?.phonePeMkey
+        e?.phonePeMkey,
+        e?.isProdWeb
       ]);
 
   @override
