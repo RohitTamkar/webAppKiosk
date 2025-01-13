@@ -76,15 +76,6 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
       safeSetState(() {});
       _model.productDoc = _model.prodoc!.toList().cast<ProductRecord>();
       safeSetState(() {});
-      if (!functions.isPrinterSelected(FFAppState().printerDevice)!) {
-        _model.resDevice2Copy = await actions.scanPrinter(
-          FFAppState().posMode,
-        );
-      }
-      _model.connectdeviceCOPY23 = await actions.connectDevice(
-        FFAppState().printerDevice,
-        FFAppState().printerIndex,
-      );
     });
 
     animationsMap.addAll({

@@ -3,10 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.INTERNET"/>
 
-    <uses-permission android:name="android.permission.USB_PERMISSION"/>
-    <uses-permission android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"/>
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
-    <uses-permission android:name="android.permission.USB_DEVICE_ATTACHED"/>
     <application
         android:label="WebAppKiosk"
         tools:replace="android:label"

@@ -44,10 +44,6 @@ class KioskBillScreenModel extends FlutterFlowModel<KioskBillScreenWidget> {
   List<ProductRecord>? prodoc;
   // Stores action output result for [Firestore Query - Query a collection] action in KioskBillScreen widget.
   List<CategoryRecord>? categorydoc;
-  // Stores action output result for [Custom Action - scanPrinter] action in KioskBillScreen widget.
-  bool? resDevice2Copy;
-  // Stores action output result for [Custom Action - connectDevice] action in KioskBillScreen widget.
-  bool? connectdeviceCOPY23;
   // Model for KioskHeader component.
   late KioskHeaderModel kioskHeaderModel;
   // Stores action output result for [Firestore Query - Query a collection] action in IconButton widget.

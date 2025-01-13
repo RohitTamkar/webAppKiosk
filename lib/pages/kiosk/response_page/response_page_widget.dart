@@ -352,6 +352,8 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
             );
           },
         );
+
+        context.goNamed('loadingScreenkiosknew');
       }
     });
 
