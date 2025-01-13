@@ -1097,44 +1097,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ta': '',
     },
   },
-  // OutletDetailsHeader
-  {
-    'dk8fulps': {
-      'en': 'Outlet Name',
-      'hi': '',
-      'kn': '',
-      'mr': '',
-      'ta': '',
-    },
-    'ywji1i04': {
-      'en': 'Branch',
-      'hi': '',
-      'kn': '',
-      'mr': '',
-      'ta': '',
-    },
-    'd4dfhc6a': {
-      'en': 'User : ',
-      'hi': '',
-      'kn': '',
-      'mr': '',
-      'ta': '',
-    },
-    'ayrj79xx': {
-      'en': 'Rohit T',
-      'hi': '',
-      'kn': '',
-      'mr': '',
-      'ta': '',
-    },
-    'wiutyf8v': {
-      'en': 'Admin',
-      'hi': '',
-      'kn': '',
-      'mr': '',
-      'ta': '',
-    },
-  },
   // SelectionOption
   {
     'mebznz4i': {

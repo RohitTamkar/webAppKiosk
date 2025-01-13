@@ -374,8 +374,12 @@ class _LoadingScreenkiosknewWidgetState
                                       width: 85.0,
                                       height: 85.0,
                                       decoration: BoxDecoration(),
-                                      child: Image.network(
-                                        functions.imageurltostring(
+                                      child: CachedNetworkImage(
+                                        fadeInDuration:
+                                            Duration(milliseconds: 500),
+                                        fadeOutDuration:
+                                            Duration(milliseconds: 500),
+                                        imageUrl: functions.imageurltostring(
                                             containerHeaderRecord
                                                 ?.logoImageUrl),
                                         width: 100.0,

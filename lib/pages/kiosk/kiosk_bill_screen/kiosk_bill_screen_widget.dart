@@ -732,10 +732,14 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                                           0.0,
                                                                           0.0,
                                                                           5.0),
-                                                                      child: Image
-                                                                          .network(
-                                                                        valueOrDefault<
-                                                                            String>(
+                                                                      child:
+                                                                          CachedNetworkImage(
+                                                                        fadeInDuration:
+                                                                            Duration(milliseconds: 500),
+                                                                        fadeOutDuration:
+                                                                            Duration(milliseconds: 500),
+                                                                        imageUrl:
+                                                                            valueOrDefault<String>(
                                                                           listcatItem
                                                                               .catImageUrl,
                                                                           'https://as1.ftcdn.net/v2/jpg/04/34/72/82/1000_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg',

@@ -10,6 +10,7 @@ import '/pages/kiosk/kiosk_header/kiosk_header_widget.dart';
 import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/gestures.dart';
@@ -506,8 +507,18 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               8.0),
-                                                      child: Image.network(
-                                                        valueOrDefault<String>(
+                                                      child: CachedNetworkImage(
+                                                        fadeInDuration:
+                                                            Duration(
+                                                                milliseconds:
+                                                                    500),
+                                                        fadeOutDuration:
+                                                            Duration(
+                                                                milliseconds:
+                                                                    500),
+                                                        imageUrl:
+                                                            valueOrDefault<
+                                                                String>(
                                                           getJsonField(
                                                             listviewItem,
                                                             r'''$.imageUrl''',
