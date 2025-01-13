@@ -420,7 +420,7 @@ class _LoadingScreenkiosknewWidgetState
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                           child: Image.asset(
-                                            'assets/images/97930-loading.gif',
+                                            'assets/images/colorful_loader.gif',
                                             width: 100.0,
                                             height: 100.0,
                                             fit: BoxFit.cover,
