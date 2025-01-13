@@ -711,20 +711,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // loadingScreenkiosknew
   {
-    'qbvs5rrx': {
-      'en': 'SENSIBLE',
-      'hi': '',
-      'kn': '',
-      'mr': '',
-      'ta': '',
-    },
-    'laf4ajsw': {
-      'en': 'CONNECT',
-      'hi': '',
-      'kn': '',
-      'mr': '',
-      'ta': '',
-    },
     'ck3nd8pe': {
       'en': 'Home',
       'hi': '',
