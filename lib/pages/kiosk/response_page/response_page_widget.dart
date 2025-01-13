@@ -60,6 +60,8 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
         merchantTransactionId: FFAppState().transactionid,
         outletId: FFAppState().outletIdRef?.id,
         orderId: FFAppState().paytmOrderId,
+        merchantKey: _model.outletdoc?.merchantKey,
+        isProd: _model.outletdoc?.isProd,
       );
 
       if ((_model.checkStatus?.succeeded ?? true)) {

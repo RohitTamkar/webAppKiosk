@@ -335,13 +335,17 @@ class CheckStatusCall {
     String? merchantTransactionId = '',
     String? outletId = '',
     String? orderId = '',
+    String? merchantKey = '',
+    bool? isProd = true,
   }) async {
     final ffApiRequestBody = '''
 {
   "merchantId": "${escapeStringForJson(merchantId)}",
   "merchantTransactionId": "${escapeStringForJson(merchantTransactionId)}",
   "outletId": "${escapeStringForJson(outletId)}",
-  "orderId": "${escapeStringForJson(orderId)}"
+  "orderId": "${escapeStringForJson(orderId)}",
+  "merchantKey": "${escapeStringForJson(merchantKey)}",
+  "isProd": ${isProd}
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'checkStatus',
