@@ -48,8 +48,15 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
         parent: FFAppState().outletIdRef,
         singleRecord: true,
       ).then((s) => s.firstOrNull);
+      _model.outletdoc = await queryOutletRecordOnce(
+        queryBuilder: (outletRecord) => outletRecord.where(
+          'id',
+          isEqualTo: FFAppState().outletIdRef?.id,
+        ),
+        singleRecord: true,
+      ).then((s) => s.firstOrNull);
       _model.checkStatus = await CheckStatusCall.call(
-        merchantId: 'PGTESTPAYUAT131',
+        merchantId: _model.outletdoc?.phonePeMid,
         merchantTransactionId: FFAppState().transactionid,
         outletId: FFAppState().outletIdRef?.id,
         orderId: FFAppState().paytmOrderId,
