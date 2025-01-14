@@ -78,7 +78,10 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
+                child: Text(valueOrDefault<String>(
+                  FFAppState().paytmOrderId,
+                  '0',
+                )),
               ),
             ],
           );
