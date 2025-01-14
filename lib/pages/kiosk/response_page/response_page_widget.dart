@@ -60,7 +60,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
         orderId: FFAppState().paytmOrderId,
         merchantKey: _model.outletdoc?.phonePeMkey,
         isProd: _model.outletdoc?.isProdWeb,
-        amount: FFAppState().finalAmt.toString(),
+        amount: FFAppState().finalAmt,
       );
 
       await showDialog(
@@ -88,6 +88,14 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
         },
       );
       if ((_model.checkStatus?.succeeded ?? true)) {
+        _model.qrTransaction2 = await queryQrTransactionsRecordOnce(
+          parent: FFAppState().outletIdRef,
+          queryBuilder: (qrTransactionsRecord) => qrTransactionsRecord.where(
+            'orderId',
+            isEqualTo: FFAppState().paytmOrderId,
+          ),
+          singleRecord: true,
+        ).then((s) => s.firstOrNull);
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
@@ -116,10 +124,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
         safeSetState(() {});
         if ((FFAppState().paytmOrderId != null &&
                 FFAppState().paytmOrderId != '') &&
-            getJsonField(
-              (_model.checkStatus?.jsonBody ?? ''),
-              r'''$[0].status''',
-            )) {
+            _model.qrTransaction2!.status) {
           _model.invoice = await queryInvoiceRecordOnce(
             parent: FFAppState().outletIdRef,
             queryBuilder: (invoiceRecord) =>
@@ -445,7 +450,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  if ((_model.checkStatus?.jsonBody ?? '') == null)
+                  if (_model.qrTransaction2?.status == null)
                     Expanded(
                       flex: 7,
                       child: Padding(
@@ -502,10 +507,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
                         ),
                       ),
                     ),
-                  if (getJsonField(
-                    (_model.checkStatus?.jsonBody ?? ''),
-                    r'''$[0].status''',
-                  ))
+                  if (_model.qrTransaction2?.status ?? true)
                     Expanded(
                       flex: 7,
                       child: Padding(
@@ -855,10 +857,7 @@ Successful */
                         ),
                       ),
                     ),
-                  if (!getJsonField(
-                    (_model.checkStatus?.jsonBody ?? ''),
-                    r'''$[0].status''',
-                  ))
+                  if (!_model.qrTransaction2!.status)
                     Expanded(
                       flex: 7,
                       child: Padding(
