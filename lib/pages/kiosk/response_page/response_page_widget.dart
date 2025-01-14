@@ -74,10 +74,10 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
           singleRecord: true,
         ).then((s) => s.firstOrNull);
         FFAppState().shiftDetailsNEw = _model.shiftDetailsNewweb!;
-        FFAppState().msg = valueOrDefault<String>(
-          _model.qrTransaction2?.msg,
-          '0',
-        );
+        FFAppState().msg = getJsonField(
+          (_model.checkStatus?.jsonBody ?? ''),
+          r'''$[0].message''',
+        ).toString().toString();
         safeSetState(() {});
         FFAppState().shiftDetailsJson = _model.shiftDetailsNewweb!;
         FFAppState().kioskAmt = FFAppState().finalAmt;
