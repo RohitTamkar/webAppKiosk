@@ -13,6 +13,4 @@ import 'dart:html' as html;
 
 Future<void> clearCacheBeforeRun() async {
   // Calling the clearBrowserCache function defined in JavaScript
-  html.window.console.log("Clearing cache...");
-  html.window.callMethod('clearBrowserCache', []);
 }

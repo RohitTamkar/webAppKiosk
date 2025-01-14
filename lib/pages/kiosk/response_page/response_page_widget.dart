@@ -62,6 +62,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
         orderId: FFAppState().paytmOrderId,
         merchantKey: _model.outletdoc?.merchantKey,
         isProd: _model.outletdoc?.isProd,
+        amount: FFAppState().finalAmt.toString(),
       );
 
       if ((_model.checkStatus?.succeeded ?? true)) {
@@ -350,7 +351,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
           context: context,
           builder: (alertDialogContext) {
             return AlertDialog(
-              title: Text('API'),
+              title: Text('Payment Failed !'),
               content: Text('Failed'),
               actions: [
                 TextButton(
@@ -397,10 +398,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  if (!valueOrDefault<bool>(
-                    _model.status,
-                    true,
-                  ))
+                  if (!_model.qrTransaction!.status)
                     Expanded(
                       flex: 7,
                       child: Padding(

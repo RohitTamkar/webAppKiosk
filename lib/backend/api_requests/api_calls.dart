@@ -337,6 +337,7 @@ class CheckStatusCall {
     String? orderId = '',
     String? merchantKey = '',
     bool? isProd = true,
+    String? amount = '',
   }) async {
     final ffApiRequestBody = '''
 {
