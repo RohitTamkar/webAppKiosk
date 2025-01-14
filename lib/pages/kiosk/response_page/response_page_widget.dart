@@ -1,6 +1,7 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/loader_widget.dart';
 import '/components/transaction_status_failed/transaction_status_failed_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -395,14 +396,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
             body: Center(
-              child: SizedBox(
-                width: 40.0,
-                height: 40.0,
-                child: SpinKitFadingCircle(
-                  color: FlutterFlowTheme.of(context).primary,
-                  size: 40.0,
-                ),
-              ),
+              child: LoaderWidget(),
             ),
           );
         }
