@@ -88,20 +88,12 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
         },
       );
       if ((_model.checkStatus?.succeeded ?? true)) {
-        _model.qrTransaction = await queryQrTransactionsRecordOnce(
-          parent: FFAppState().outletIdRef,
-          queryBuilder: (qrTransactionsRecord) => qrTransactionsRecord.where(
-            'orderId',
-            isEqualTo: FFAppState().paytmOrderId,
-          ),
-          singleRecord: true,
-        ).then((s) => s.firstOrNull);
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
             return AlertDialog(
-              title: Text(_model.qrTransaction!.msg),
-              content: Text(_model.qrTransaction!.status.toString()),
+              title: Text('Payment Failed !'),
+              content: Text('Failed'),
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(alertDialogContext),
@@ -112,7 +104,10 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
           },
         );
         FFAppState().shiftDetailsNEw = _model.shiftDetailsNewweb!;
-        FFAppState().msg = _model.qrTransaction!.msg;
+        FFAppState().msg = getJsonField(
+          (_model.checkStatus?.jsonBody ?? ''),
+          r'''$[0].message''',
+        ).toString().toString();
         safeSetState(() {});
         FFAppState().shiftDetailsJson = _model.shiftDetailsNewweb!;
         FFAppState().kioskAmt = FFAppState().finalAmt;
@@ -357,8 +352,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
             context: context,
             builder: (alertDialogContext) {
               return AlertDialog(
-                title: Text(_model.qrTransaction!.msg),
-                content: Text(_model.qrTransaction!.status.toString()),
+                content: Text((_model.checkStatus?.jsonBody ?? '').toString()),
                 actions: [
                   TextButton(
                     onPressed: () => Navigator.pop(alertDialogContext),
@@ -451,7 +445,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  if (!_model.qrTransaction!.status)
+                  if ((_model.checkStatus?.jsonBody ?? '') == null)
                     Expanded(
                       flex: 7,
                       child: Padding(
@@ -508,7 +502,10 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
                         ),
                       ),
                     ),
-                  if (_model.qrTransaction?.status ?? true)
+                  if (getJsonField(
+                    (_model.checkStatus?.jsonBody ?? ''),
+                    r'''$[0].status''',
+                  ))
                     Expanded(
                       flex: 7,
                       child: Padding(

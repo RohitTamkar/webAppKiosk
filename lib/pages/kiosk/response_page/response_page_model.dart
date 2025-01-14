@@ -29,8 +29,6 @@ class ResponsePageModel extends FlutterFlowModel<ResponsePageWidget> {
   // Stores action output result for [Backend Call - API (checkStatus)] action in responsePage widget.
   ApiCallResponse? checkStatus;
   // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
-  QrTransactionsRecord? qrTransaction;
-  // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
   InvoiceRecord? invoice;
   // Stores action output result for [Custom Action - filterProducts] action in responsePage widget.
   List<SelItemListStruct>? prdListkiosk;
