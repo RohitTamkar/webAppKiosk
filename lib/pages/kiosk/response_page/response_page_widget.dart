@@ -37,8 +37,6 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.status = true;
-      safeSetState(() {});
       _model.shiftDetailsNewweb = await actions.shiftExists(
         functions.getDayId(),
         '0',
@@ -74,8 +72,21 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
           ),
           singleRecord: true,
         ).then((s) => s.firstOrNull);
-        _model.status = (_model.checkStatus?.succeeded ?? true);
-        safeSetState(() {});
+        await showDialog(
+          context: context,
+          builder: (alertDialogContext) {
+            return AlertDialog(
+              title: Text(_model.qrTransaction!.msg),
+              content: Text(_model.qrTransaction!.status.toString()),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
+            );
+          },
+        );
         FFAppState().shiftDetailsNEw = _model.shiftDetailsNewweb!;
         FFAppState().msg = _model.qrTransaction!.msg;
         safeSetState(() {});
@@ -315,6 +326,21 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
             return;
           }
         } else {
+          await showDialog(
+            context: context,
+            builder: (alertDialogContext) {
+              return AlertDialog(
+                title: Text(_model.qrTransaction!.msg),
+                content: Text(_model.qrTransaction!.status.toString()),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(alertDialogContext),
+                    child: Text('Ok'),
+                  ),
+                ],
+              );
+            },
+          );
           await Future.delayed(const Duration(milliseconds: 2000));
           _model.taxmaster2 = await queryTaxMasterRecordOnce();
           _model.outletdoc2 = await queryOutletRecordOnce(
