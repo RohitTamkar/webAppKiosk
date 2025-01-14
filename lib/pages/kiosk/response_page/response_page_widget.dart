@@ -63,30 +63,6 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
         amount: FFAppState().finalAmt,
       );
 
-      await showDialog(
-        context: context,
-        builder: (alertDialogContext) {
-          return AlertDialog(
-            title: Text(valueOrDefault<String>(
-              getJsonField(
-                (_model.checkStatus?.jsonBody ?? ''),
-                r'''$[0].status''',
-              )?.toString()?.toString(),
-              'true',
-            )),
-            content: Text((_model.checkStatus?.jsonBody ?? '').toString()),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text(valueOrDefault<String>(
-                  FFAppState().paytmOrderId,
-                  '0',
-                )),
-              ),
-            ],
-          );
-        },
-      );
       if ((_model.checkStatus?.succeeded ?? true)) {
         _model.qrTransaction2 = await queryQrTransactionsRecordOnce(
           parent: FFAppState().outletIdRef,
@@ -96,26 +72,11 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
           ),
           singleRecord: true,
         ).then((s) => s.firstOrNull);
-        await showDialog(
-          context: context,
-          builder: (alertDialogContext) {
-            return AlertDialog(
-              title: Text('Payment Failed !'),
-              content: Text('Failed'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext),
-                  child: Text('Ok'),
-                ),
-              ],
-            );
-          },
-        );
         FFAppState().shiftDetailsNEw = _model.shiftDetailsNewweb!;
-        FFAppState().msg = getJsonField(
-          (_model.checkStatus?.jsonBody ?? ''),
-          r'''$[0].message''',
-        ).toString().toString();
+        FFAppState().msg = valueOrDefault<String>(
+          _model.qrTransaction2?.msg,
+          '0',
+        );
         safeSetState(() {});
         FFAppState().shiftDetailsJson = _model.shiftDetailsNewweb!;
         FFAppState().kioskAmt = FFAppState().finalAmt;
@@ -353,20 +314,6 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
             return;
           }
         } else {
-          await showDialog(
-            context: context,
-            builder: (alertDialogContext) {
-              return AlertDialog(
-                content: Text((_model.checkStatus?.jsonBody ?? '').toString()),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
-              );
-            },
-          );
           await Future.delayed(const Duration(milliseconds: 2000));
           _model.taxmaster2 = await queryTaxMasterRecordOnce();
           _model.outletdoc2 = await queryOutletRecordOnce(
@@ -887,6 +834,45 @@ Successful */
                                 model: _model.transactionStatusFailedModel,
                                 updateCallback: () => safeSetState(() {}),
                                 child: TransactionStatusFailedWidget(),
+                              ),
+                              Flexible(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 20.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      context.goNamed('loadingScreenkiosknew');
+                                    },
+                                    child: Text(
+                                      FFLocalizations.of(context).getText(
+                                        '2w322of1' /* Click Here To Order Again....! */,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .displayLarge
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .displayLargeFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            fontSize: 15.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w600,
+                                            decoration:
+                                                TextDecoration.underline,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .displayLargeFamily),
+                                          ),
+                                    ),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
