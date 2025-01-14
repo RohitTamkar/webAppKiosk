@@ -346,7 +346,8 @@ class CheckStatusCall {
   "outletId": "${escapeStringForJson(outletId)}",
   "orderId": "${escapeStringForJson(orderId)}",
   "merchantKey": "${escapeStringForJson(merchantKey)}",
-  "isProd": ${isProd}
+  "isProd": ${isProd},
+  "amount": "${escapeStringForJson(amount)}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'checkStatus',
