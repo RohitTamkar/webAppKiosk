@@ -67,6 +67,13 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
         context: context,
         builder: (alertDialogContext) {
           return AlertDialog(
+            title: Text(valueOrDefault<String>(
+              getJsonField(
+                (_model.checkStatus?.jsonBody ?? ''),
+                r'''$[0].status''',
+              )?.toString()?.toString(),
+              'true',
+            )),
             content: Text((_model.checkStatus?.jsonBody ?? '').toString()),
             actions: [
               TextButton(
@@ -111,7 +118,10 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
         safeSetState(() {});
         if ((FFAppState().paytmOrderId != null &&
                 FFAppState().paytmOrderId != '') &&
-            _model.qrTransaction!.status) {
+            getJsonField(
+              (_model.checkStatus?.jsonBody ?? ''),
+              r'''$[0].status''',
+            )) {
           _model.invoice = await queryInvoiceRecordOnce(
             parent: FFAppState().outletIdRef,
             queryBuilder: (invoiceRecord) =>
@@ -845,7 +855,10 @@ Successful */
                         ),
                       ),
                     ),
-                  if (!_model.qrTransaction!.status)
+                  if (!getJsonField(
+                    (_model.checkStatus?.jsonBody ?? ''),
+                    r'''$[0].status''',
+                  ))
                     Expanded(
                       flex: 7,
                       child: Padding(
