@@ -63,6 +63,20 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
         amount: FFAppState().finalAmt.toString(),
       );
 
+      await showDialog(
+        context: context,
+        builder: (alertDialogContext) {
+          return AlertDialog(
+            content: Text((_model.checkStatus?.jsonBody ?? '').toString()),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          );
+        },
+      );
       if ((_model.checkStatus?.succeeded ?? true)) {
         _model.qrTransaction = await queryQrTransactionsRecordOnce(
           parent: FFAppState().outletIdRef,
