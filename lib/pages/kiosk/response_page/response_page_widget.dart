@@ -60,8 +60,8 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
         merchantTransactionId: FFAppState().transactionid,
         outletId: FFAppState().outletIdRef?.id,
         orderId: FFAppState().paytmOrderId,
-        merchantKey: _model.outletdoc?.merchantKey,
-        isProd: _model.outletdoc?.isProd,
+        merchantKey: _model.outletdoc?.phonePeMkey,
+        isProd: _model.outletdoc?.isProdWeb,
         amount: FFAppState().finalAmt.toString(),
       );
 
