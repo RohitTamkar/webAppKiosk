@@ -316,18 +316,6 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
           }
         } else {
           await Future.delayed(const Duration(milliseconds: 2000));
-          _model.taxmaster2 = await queryTaxMasterRecordOnce();
-          _model.outletdoc2 = await queryOutletRecordOnce(
-            queryBuilder: (outletRecord) => outletRecord.where(
-              'id',
-              isEqualTo: FFAppState().outletIdRef?.id,
-            ),
-            singleRecord: true,
-          ).then((s) => s.firstOrNull);
-          _model.appsetting1 = await queryAppSettingsRecordOnce(
-            parent: FFAppState().outletIdRef,
-            singleRecord: true,
-          ).then((s) => s.firstOrNull);
           _model.rm = await actions.removeFromAllBillList(
             FFAppState().selBill,
           );
@@ -364,6 +352,8 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
         );
 
         context.goNamed('loadingScreenkiosknew');
+
+        return;
       }
     });
 

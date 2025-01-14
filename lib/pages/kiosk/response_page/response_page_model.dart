@@ -41,12 +41,6 @@ class ResponsePageModel extends FlutterFlowModel<ResponsePageWidget> {
   dynamic? shiftSummarRkiosk;
   // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
   ShiftRecord? shiftref;
-  // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
-  List<TaxMasterRecord>? taxmaster2;
-  // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
-  OutletRecord? outletdoc2;
-  // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
-  AppSettingsRecord? appsetting1;
   // Stores action output result for [Custom Action - removeFromAllBillList] action in responsePage widget.
   List<dynamic>? rm;
   // Model for transactionStatusFailed component.
