@@ -224,17 +224,6 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
             _model.shiftDetailsNewweb,
             r'''$.shiftExists''',
           )) {
-            FFAppState().billcount = getJsonField(
-              _model.shiftDetailsNewweb,
-              r'''$.billCount''',
-            );
-            safeSetState(() {});
-            FFAppState().billcount = FFAppState().billcount + 1;
-            safeSetState(() {});
-            _model.shiftSummarRkiosk = await actions.calShiftSummary(
-              _model.docInvoicekiosk!,
-              FFAppState().shiftDetailsJson,
-            );
             _model.shiftref = await queryShiftRecordOnce(
               parent: FFAppState().outletIdRef,
               queryBuilder: (shiftRecord) => shiftRecord.where(
@@ -246,6 +235,14 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
               ),
               singleRecord: true,
             ).then((s) => s.firstOrNull);
+            FFAppState().billcount = _model.shiftref!.billCount;
+            safeSetState(() {});
+            FFAppState().billcount = FFAppState().billcount + 1;
+            safeSetState(() {});
+            _model.shiftSummarRkiosk = await actions.calShiftSummary(
+              _model.docInvoicekiosk!,
+              FFAppState().shiftDetailsJson,
+            );
 
             await _model.shiftref!.reference.update(createShiftRecordData(
               billCount: FFAppState().billcount,
