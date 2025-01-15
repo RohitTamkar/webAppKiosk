@@ -1525,10 +1525,10 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                           .toList())
                                                   .isNotEmpty) {
                                                 if (_model.outletDOc
-                                                            ?.merchantId !=
+                                                            ?.phonePeMid !=
                                                         null &&
                                                     _model.outletDOc
-                                                            ?.merchantId !=
+                                                            ?.phonePeMid !=
                                                         '') {
                                                   if (getJsonField(
                                                     widget!.shiftdetails,
