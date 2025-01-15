@@ -38,14 +38,10 @@ class LoadingScreenkiosknewModel
   dynamic? shiftDetailsNew2;
   // Stores action output result for [Firestore Query - Query a collection] action in loadingScreenkiosknew widget.
   AppSettingsRecord? appsetting;
-  // Stores action output result for [Firestore Query - Query a collection] action in loadingScreenkiosknew widget.
-  InvoiceRecord? invoicecount;
   // Stores action output result for [Custom Action - shiftExists] action in loadingScreenkiosknew widget.
   dynamic? shiftDetailsNewresumed;
   // Stores action output result for [Firestore Query - Query a collection] action in loadingScreenkiosknew widget.
   AppSettingsRecord? appsetting2;
-  // Stores action output result for [Firestore Query - Query a collection] action in loadingScreenkiosknew widget.
-  InvoiceRecord? invoicecountshiftresumed;
 
   @override
   void initState(BuildContext context) {}
