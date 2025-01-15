@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'index.dart'; // Imports other custom actions
+
 import 'dart:html' as html;
 
 Future<void> clearCacheBeforeRun2() async {
@@ -19,12 +21,12 @@ Future<void> clearCacheBeforeRun2() async {
         await cache.clear();
       }
     });
-    print('Caché limpiada.');
+    print('Caché CLEARDED.');
   } catch (e) {
-    print('Error al limpiar la caché: $e');
+    print('Error To clear caché: $e');
   }
   // Recargar páginas
-  html.window.location.reload();
+  //html.window.location.reload();
   html.window.onLoad.listen((event) {
     html.window.location.reload();
   });

@@ -89,35 +89,25 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
             _model.qrTransaction2!.status) {
           _model.invoice = await queryInvoiceRecordOnce(
             parent: FFAppState().outletIdRef,
-            queryBuilder: (invoiceRecord) =>
-                invoiceRecord.orderBy('invoiceDate', descending: true),
+            queryBuilder: (invoiceRecord) => invoiceRecord
+                .where(
+                  'source',
+                  isEqualTo: 'WEB ORDER',
+                )
+                .orderBy('invoiceDate', descending: true),
             singleRecord: true,
           ).then((s) => s.firstOrNull);
-          if (_model.appsettings!.settingList
-              .where((e) => e.title == 'resetserialNoDaily')
-              .toList()
-              .firstOrNull!
-              .value) {
-            if ((_model.invoice?.count != null) &&
-                (_model.invoice?.shiftId ==
-                    getJsonField(
-                      _model.shiftDetailsNewweb,
-                      r'''$.shiftId''',
-                    ).toString().toString())) {
-              FFAppState().count = _model.invoice!.count;
-              safeSetState(() {});
-            } else {
-              FFAppState().count = 100;
-              safeSetState(() {});
-            }
+          if ((_model.invoice?.count != null) &&
+              (_model.invoice?.shiftId ==
+                  getJsonField(
+                    _model.shiftDetailsNewweb,
+                    r'''$.shiftId''',
+                  ).toString().toString())) {
+            FFAppState().count = _model.invoice!.count;
+            safeSetState(() {});
           } else {
-            if (_model.invoice?.count != null) {
-              FFAppState().count = _model.invoice!.count;
-              safeSetState(() {});
-            } else {
-              FFAppState().count = 0;
-              safeSetState(() {});
-            }
+            FFAppState().count = 0;
+            safeSetState(() {});
           }
 
           _model.prdListkiosk = await actions.filterProducts(
@@ -161,7 +151,8 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
               ).toString().toString(),
               orderType: FFAppState().orderType,
               kotStatus: 'PENDING',
-              count: FFAppState().count,
+              count:
+                  functions.stringToint('00${FFAppState().count.toString()}'),
               source: 'WEB ORDER',
             ),
             ...mapToFirestore(
@@ -204,7 +195,8 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
               ).toString().toString(),
               orderType: FFAppState().orderType,
               kotStatus: 'PENDING',
-              count: FFAppState().count,
+              count:
+                  functions.stringToint('00${FFAppState().count.toString()}'),
               source: 'WEB ORDER',
             ),
             ...mapToFirestore(
@@ -328,6 +320,7 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
           FFAppState().delCharges = 0.0;
           FFAppState().transactionid = '';
           FFAppState().shiftDetailsNEw = _model.shiftDetailsNewweb!;
+          FFAppState().orderType = 'DINE IN';
           FFAppState().update(() {});
           return;
         }
