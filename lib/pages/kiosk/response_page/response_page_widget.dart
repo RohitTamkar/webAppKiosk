@@ -546,6 +546,60 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
                                       ),
                                     ),
                                   ),
+                                  Flexible(
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 20.0),
+                                          child: Text(
+                                            'Date : ${valueOrDefault<String>(
+                                              dateTimeFormat(
+                                                "yMMMd",
+                                                getCurrentTimestamp,
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              ),
+                                              '15/1/2025',
+                                            )} ${dateTimeFormat(
+                                              "h:mm a ",
+                                              getCurrentTimestamp,
+                                              locale:
+                                                  FFLocalizations.of(context)
+                                                      .languageCode,
+                                            )}',
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .displayLarge
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .displayLargeFamily,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .info,
+                                                  fontSize: 15.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontStyle: FontStyle.italic,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .displayLargeFamily),
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 50.0),
