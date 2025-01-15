@@ -602,7 +602,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ta': '',
     },
     'zilnpb2n': {
-      'en': 'Show Below Token No To Collect Your Order At Counter',
+      'en': 'Show Below Token No To Collect Your Order At Counter ',
       'hi': '',
       'kn': '',
       'mr': '',

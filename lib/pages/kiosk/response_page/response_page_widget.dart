@@ -615,7 +615,10 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 50.0),
                                     child: Text(
-                                      'TOKEN NO :${_model.docInvoicekiosk?.count?.toString()}',
+                                      valueOrDefault<String>(
+                                        'TOKEN NO :${FFAppState().count.toString()}',
+                                        'NA',
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .displayLarge
                                           .override(
