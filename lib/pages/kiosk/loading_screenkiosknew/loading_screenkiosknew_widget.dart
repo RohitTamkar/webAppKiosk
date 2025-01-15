@@ -44,7 +44,7 @@ class _LoadingScreenkiosknewWidgetState
       _model.outletgetdirect = await queryOutletRecordOnce(
         queryBuilder: (outletRecord) => outletRecord.where(
           'id',
-          isEqualTo: 'mMqegB3BKICpheHkQsWQ',
+          isEqualTo: 'mD2rZVndgjrBECOsnYXB',
         ),
         singleRecord: true,
       ).then((s) => s.firstOrNull);
