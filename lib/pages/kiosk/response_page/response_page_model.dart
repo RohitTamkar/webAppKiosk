@@ -41,6 +41,26 @@ class ResponsePageModel extends FlutterFlowModel<ResponsePageWidget> {
   dynamic? shiftSummarRkiosk;
   // Stores action output result for [Custom Action - removeFromAllBillList] action in responsePage widget.
   List<dynamic>? rm;
+  // Stores action output result for [Custom Action - shiftExists] action in Button widget.
+  dynamic? shiftDetailsNewwebCopy;
+  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
+  QrwebconfigRecord? qrWebOutletdetails23;
+  // Stores action output result for [Backend Call - API (checkStatus)] action in Button widget.
+  ApiCallResponse? checkStatusCopy;
+  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
+  QrTransactionsRecord? qrTransaction2Copy;
+  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
+  InvoiceRecord? invoiceCopy;
+  // Stores action output result for [Custom Action - filterProducts] action in Button widget.
+  List<SelItemListStruct>? prdListkioskCopy;
+  // Stores action output result for [Backend Call - Create Document] action in Button widget.
+  InvoiceRecord? docInvoicekioskCopy;
+  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
+  ShiftRecord? shiftrefCopy;
+  // Stores action output result for [Custom Action - calShiftSummary] action in Button widget.
+  dynamic? shiftSummarRkioskCopy;
+  // Stores action output result for [Custom Action - removeFromAllBillList] action in Button widget.
+  List<dynamic>? rmCopy;
   // Model for transactionStatusFailed component.
   late TransactionStatusFailedModel transactionStatusFailedModel;
 

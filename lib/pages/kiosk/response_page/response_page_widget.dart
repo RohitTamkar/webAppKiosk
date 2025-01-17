@@ -511,6 +511,477 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
                                           ),
                                     ),
                                   ),
+                                  if ((FFAppState().count != null) &&
+                                      (FFAppState().count != 0))
+                                    FFButtonWidget(
+                                      onPressed: () async {
+                                        var _shouldSetState = false;
+                                        _model.shiftDetailsNewwebCopy =
+                                            await actions.shiftExists(
+                                          functions.getDayId(),
+                                          '0',
+                                          FFAppState().outletIdRef!.id,
+                                        );
+                                        _shouldSetState = true;
+                                        _model.qrWebOutletdetails23 =
+                                            await queryQrwebconfigRecordOnce(
+                                          queryBuilder: (qrwebconfigRecord) =>
+                                              qrwebconfigRecord.where(
+                                            'outletId',
+                                            isEqualTo:
+                                                FFAppState().outletIdRef?.id,
+                                          ),
+                                          singleRecord: true,
+                                        ).then((s) => s.firstOrNull);
+                                        _shouldSetState = true;
+                                        _model.checkStatusCopy =
+                                            await CheckStatusCall.call(
+                                          merchantId: _model
+                                              .qrWebOutletdetails23?.phonePeMid,
+                                          merchantTransactionId:
+                                              FFAppState().transactionid,
+                                          outletId:
+                                              FFAppState().outletIdRef?.id,
+                                          orderId: FFAppState().paytmOrderId,
+                                          merchantKey: _model
+                                              .qrWebOutletdetails23
+                                              ?.phonePeMkey,
+                                          isProd: _model
+                                              .qrWebOutletdetails23?.isProdWeb,
+                                          amount: FFAppState().finalAmt,
+                                        );
+
+                                        _shouldSetState = true;
+                                        await Future.delayed(
+                                            const Duration(milliseconds: 2000));
+                                        if ((_model
+                                                .checkStatusCopy?.succeeded ??
+                                            true)) {
+                                          _model.qrTransaction2Copy =
+                                              await queryQrTransactionsRecordOnce(
+                                            parent: FFAppState().outletIdRef,
+                                            queryBuilder:
+                                                (qrTransactionsRecord) =>
+                                                    qrTransactionsRecord.where(
+                                              'orderId',
+                                              isEqualTo:
+                                                  FFAppState().paytmOrderId,
+                                            ),
+                                            singleRecord: true,
+                                          ).then((s) => s.firstOrNull);
+                                          _shouldSetState = true;
+                                          FFAppState().shiftDetailsNEw =
+                                              _model.shiftDetailsNewwebCopy!;
+                                          FFAppState().msg = getJsonField(
+                                            (_model.checkStatusCopy?.jsonBody ??
+                                                ''),
+                                            r'''$[0].message''',
+                                          ).toString();
+                                          safeSetState(() {});
+                                          FFAppState().shiftDetailsJson =
+                                              _model.shiftDetailsNewwebCopy!;
+                                          FFAppState().kioskAmt =
+                                              FFAppState().finalAmt;
+                                          safeSetState(() {});
+                                          FFAppState().shiftexist = 'True';
+                                          safeSetState(() {});
+                                          if ((FFAppState().paytmOrderId !=
+                                                      null &&
+                                                  FFAppState().paytmOrderId !=
+                                                      '') &&
+                                              _model.qrTransaction2!.status) {
+                                            _model.invoiceCopy =
+                                                await queryInvoiceRecordOnce(
+                                              parent: FFAppState().outletIdRef,
+                                              queryBuilder: (invoiceRecord) =>
+                                                  invoiceRecord
+                                                      .where(
+                                                        'source',
+                                                        isEqualTo: 'WEB ORDER',
+                                                      )
+                                                      .orderBy('invoiceDate',
+                                                          descending: true),
+                                              singleRecord: true,
+                                            ).then((s) => s.firstOrNull);
+                                            _shouldSetState = true;
+                                            if ((_model.invoiceCopy?.count !=
+                                                    null) &&
+                                                (_model.invoiceCopy?.shiftId ==
+                                                    getJsonField(
+                                                      _model
+                                                          .shiftDetailsNewwebCopy,
+                                                      r'''$.shiftId''',
+                                                    ).toString())) {
+                                              FFAppState().count =
+                                                  _model.invoiceCopy!.count;
+                                              safeSetState(() {});
+                                            } else {
+                                              FFAppState().count = 0;
+                                              safeSetState(() {});
+                                            }
+
+                                            _model.prdListkioskCopy =
+                                                await actions.filterProducts(
+                                              FFAppState().selBill,
+                                              FFAppState()
+                                                  .allBillsList
+                                                  .toList(),
+                                            );
+                                            _shouldSetState = true;
+                                            FFAppState().count =
+                                                FFAppState().count + 1;
+                                            safeSetState(() {});
+
+                                            var invoiceRecordReference =
+                                                InvoiceRecord.createDoc(
+                                                    FFAppState().outletIdRef!);
+                                            await invoiceRecordReference.set({
+                                              ...createInvoiceRecordData(
+                                                invoice:
+                                                    FFAppState().paytmOrderId,
+                                                party: FFAppState().setCustName,
+                                                invoiceDate:
+                                                    functions.timestampToMili(
+                                                        getCurrentTimestamp),
+                                                dayId: functions.getDayId(),
+                                                paymentMode: 'UPI QR',
+                                                discountAmt:
+                                                    valueOrDefault<double>(
+                                                  FFAppState().disAmt,
+                                                  0.0,
+                                                ),
+                                                discountPer:
+                                                    valueOrDefault<double>(
+                                                  FFAppState().disPer,
+                                                  0.0,
+                                                ),
+                                                delliveryChrg:
+                                                    FFAppState().delCharges *
+                                                        FFAppState().noOfItems,
+                                                taxAmt: valueOrDefault<double>(
+                                                  FFAppState().taxamt,
+                                                  0.0,
+                                                ),
+                                                billAmt: valueOrDefault<double>(
+                                                  FFAppState().billAmt,
+                                                  0.0,
+                                                ),
+                                                finalBillAmt:
+                                                    FFAppState().finalAmt,
+                                                roundOff: 0.0,
+                                                shiftId: getJsonField(
+                                                  FFAppState().shiftDetailsJson,
+                                                  r'''$.shiftId''',
+                                                ).toString(),
+                                                orderType:
+                                                    FFAppState().orderType,
+                                                kotStatus: 'PENDING',
+                                                count: functions.stringToint(
+                                                    '00${FFAppState().count.toString()}'),
+                                                source: 'WEB ORDER',
+                                              ),
+                                              ...mapToFirestore(
+                                                {
+                                                  'productList':
+                                                      getSelItemListListFirestoreData(
+                                                    _model.prdListkioskCopy,
+                                                  ),
+                                                },
+                                              ),
+                                            });
+                                            _model.docInvoicekioskCopy =
+                                                InvoiceRecord
+                                                    .getDocumentFromData({
+                                              ...createInvoiceRecordData(
+                                                invoice:
+                                                    FFAppState().paytmOrderId,
+                                                party: FFAppState().setCustName,
+                                                invoiceDate:
+                                                    functions.timestampToMili(
+                                                        getCurrentTimestamp),
+                                                dayId: functions.getDayId(),
+                                                paymentMode: 'UPI QR',
+                                                discountAmt:
+                                                    valueOrDefault<double>(
+                                                  FFAppState().disAmt,
+                                                  0.0,
+                                                ),
+                                                discountPer:
+                                                    valueOrDefault<double>(
+                                                  FFAppState().disPer,
+                                                  0.0,
+                                                ),
+                                                delliveryChrg:
+                                                    FFAppState().delCharges *
+                                                        FFAppState().noOfItems,
+                                                taxAmt: valueOrDefault<double>(
+                                                  FFAppState().taxamt,
+                                                  0.0,
+                                                ),
+                                                billAmt: valueOrDefault<double>(
+                                                  FFAppState().billAmt,
+                                                  0.0,
+                                                ),
+                                                finalBillAmt:
+                                                    FFAppState().finalAmt,
+                                                roundOff: 0.0,
+                                                shiftId: getJsonField(
+                                                  FFAppState().shiftDetailsJson,
+                                                  r'''$.shiftId''',
+                                                ).toString(),
+                                                orderType:
+                                                    FFAppState().orderType,
+                                                kotStatus: 'PENDING',
+                                                count: functions.stringToint(
+                                                    '00${FFAppState().count.toString()}'),
+                                                source: 'WEB ORDER',
+                                              ),
+                                              ...mapToFirestore(
+                                                {
+                                                  'productList':
+                                                      getSelItemListListFirestoreData(
+                                                    _model.prdListkioskCopy,
+                                                  ),
+                                                },
+                                              ),
+                                            }, invoiceRecordReference);
+                                            _shouldSetState = true;
+
+                                            await _model
+                                                .docInvoicekioskCopy!.reference
+                                                .update(createInvoiceRecordData(
+                                              id: _model.docInvoicekioskCopy
+                                                  ?.reference.id,
+                                            ));
+                                            if (getJsonField(
+                                              _model.shiftDetailsNewwebCopy,
+                                              r'''$.shiftExists''',
+                                            )) {
+                                              _model.shiftrefCopy =
+                                                  await queryShiftRecordOnce(
+                                                parent:
+                                                    FFAppState().outletIdRef,
+                                                queryBuilder: (shiftRecord) =>
+                                                    shiftRecord.where(
+                                                  'shiftId',
+                                                  isEqualTo: getJsonField(
+                                                    _model
+                                                        .shiftDetailsNewwebCopy,
+                                                    r'''$.shiftId''',
+                                                  ).toString(),
+                                                ),
+                                                singleRecord: true,
+                                              ).then((s) => s.firstOrNull);
+                                              _shouldSetState = true;
+                                              FFAppState().billcount =
+                                                  getJsonField(
+                                                _model.shiftDetailsNewwebCopy,
+                                                r'''$.billCount''',
+                                              );
+                                              safeSetState(() {});
+                                              FFAppState().billcount =
+                                                  FFAppState().billcount + 1;
+                                              safeSetState(() {});
+                                              _model.shiftSummarRkioskCopy =
+                                                  await actions.calShiftSummary(
+                                                _model.docInvoicekioskCopy!,
+                                                FFAppState().shiftDetailsJson,
+                                              );
+                                              _shouldSetState = true;
+
+                                              await _model
+                                                  .shiftrefCopy!.reference
+                                                  .update(createShiftRecordData(
+                                                billCount:
+                                                    FFAppState().billcount,
+                                                totalSale: getJsonField(
+                                                  _model.shiftSummarRkioskCopy,
+                                                  r'''$.totalSale''',
+                                                ),
+                                                deliveryCharges: getJsonField(
+                                                  _model.shiftSummarRkioskCopy,
+                                                  r'''$.deliveryCharges''',
+                                                ),
+                                                tax: getJsonField(
+                                                  _model.shiftSummarRkioskCopy,
+                                                  r'''$.tax''',
+                                                ),
+                                                lastBillNo: getJsonField(
+                                                  _model.shiftSummarRkioskCopy,
+                                                  r'''$.lastBillno''',
+                                                ).toString(),
+                                                discount: getJsonField(
+                                                  _model.shiftSummarRkioskCopy,
+                                                  r'''$.discount''',
+                                                ),
+                                                lastBillTime:
+                                                    functions.timestampToMili(
+                                                        getCurrentTimestamp),
+                                                cashSale: getJsonField(
+                                                  _model.shiftSummarRkioskCopy,
+                                                  r'''$.cashSale''',
+                                                ),
+                                                paymentJson: getJsonField(
+                                                  _model.shiftSummarRkioskCopy,
+                                                  r'''$.paymentJson''',
+                                                ).toString(),
+                                              ));
+                                              FFAppState().lastBill =
+                                                  FFAppState().finalAmt;
+                                              FFAppState().update(() {});
+                                              await actions
+                                                  .removeFromAllBillList(
+                                                FFAppState().selBill,
+                                              );
+                                              await actions.clearValue();
+                                              FFAppState().subTotal = 0.0;
+                                              FFAppState().update(() {});
+                                              FFAppState().finalAmt = 0.0;
+                                              FFAppState().billAmt = 0.0;
+                                              FFAppState().count =
+                                                  FFAppState().count;
+                                              FFAppState().cartItem = [];
+                                              FFAppState().isBillPrinted = true;
+                                              FFAppState().noOfItems = 0;
+                                              FFAppState().delCharges = 0.0;
+                                              FFAppState().shiftDetailsNEw =
+                                                  _model.shiftSummarRkioskCopy!;
+                                              FFAppState().paytmOrderId = '';
+                                              FFAppState().orderType = '';
+                                              FFAppState().update(() {});
+                                              if (_shouldSetState)
+                                                safeSetState(() {});
+                                              return;
+                                            } else {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    'Login again to start Shift ',
+                                                    style: TextStyle(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                    ),
+                                                  ),
+                                                  duration: Duration(
+                                                      milliseconds: 4000),
+                                                  backgroundColor:
+                                                      Color(0x00000000),
+                                                ),
+                                              );
+                                              if (_shouldSetState)
+                                                safeSetState(() {});
+                                              return;
+                                            }
+                                          } else {
+                                            await Future.delayed(const Duration(
+                                                milliseconds: 2000));
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  content: Text(
+                                                      'ORDER ID NOT GENERATE'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                            _model.rmCopy = await actions
+                                                .removeFromAllBillList(
+                                              FFAppState().selBill,
+                                            );
+                                            _shouldSetState = true;
+                                            await actions.clearValue();
+                                            FFAppState().subTotal = 0.0;
+                                            FFAppState().update(() {});
+                                            FFAppState().finalAmt = 0.0;
+                                            FFAppState().billAmt = 0.0;
+                                            FFAppState().count =
+                                                FFAppState().count;
+                                            FFAppState().cartItem = [];
+                                            FFAppState().isBillPrinted = true;
+                                            FFAppState().noOfItems = 0;
+                                            FFAppState().delCharges = 0.0;
+                                            FFAppState().transactionid = '';
+                                            FFAppState().shiftDetailsNEw =
+                                                _model.shiftDetailsNewwebCopy!;
+                                            FFAppState().orderType = 'DINE IN';
+                                            FFAppState().update(() {});
+                                            if (_shouldSetState)
+                                              safeSetState(() {});
+                                            return;
+                                          }
+                                        } else {
+                                          await showDialog(
+                                            context: context,
+                                            builder: (alertDialogContext) {
+                                              return AlertDialog(
+                                                title: Text('Payment Failed !'),
+                                                content: Text('Failed'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: Text('Ok'),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+
+                                          context
+                                              .goNamed('loadingScreenkiosknew');
+
+                                          if (_shouldSetState)
+                                            safeSetState(() {});
+                                          return;
+                                        }
+
+                                        if (_shouldSetState)
+                                          safeSetState(() {});
+                                      },
+                                      text: FFLocalizations.of(context).getText(
+                                        'c1xcvjf5' /* If Token Not Generate Click He... */,
+                                      ),
+                                      options: FFButtonOptions(
+                                        height: 40.0,
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 0.0, 16.0, 0.0),
+                                        iconPadding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmallFamily,
+                                              color: Colors.white,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmallFamily),
+                                            ),
+                                        elevation: 0.0,
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                    ),
                                   Flexible(
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(

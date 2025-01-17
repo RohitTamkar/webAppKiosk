@@ -594,6 +594,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'mr': '',
       'ta': '',
     },
+    'c1xcvjf5': {
+      'en': 'If Token Not Generate Click Here To Generate',
+      'hi': '',
+      'kn': '',
+      'mr': '',
+      'ta': '',
+    },
     'zilnpb2n': {
       'en': 'Show Below Token No To Collect Your Order At Counter ',
       'hi': '',
