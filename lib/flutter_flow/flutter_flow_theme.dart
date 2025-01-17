@@ -163,7 +163,7 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color tertiary = const Color(0xFFA2DB3D);
   late Color alternate = const Color(0xFF9DB8FF);
   late Color primaryText = const Color(0xFF0D0801);
-  late Color secondaryText = const Color(0xFF54726D);
+  late Color secondaryText = const Color(0xFF576A6E);
   late Color primaryBackground = const Color(0xFFF4F3F8);
   late Color secondaryBackground = const Color(0xFFFFFFFF);
   late Color accent1 = const Color(0xFF616161);
@@ -173,7 +173,7 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color success = const Color(0xFF04A24C);
   late Color warning = const Color(0xFFFCDC0C);
   late Color error = const Color(0xFFE21C3D);
-  late Color info = const Color(0xFF1C4494);
+  late Color info = const Color(0xFF1048B7);
 
   late Color primaryBtnText = Color(0xFFFFFFFF);
   late Color lineColor = Color(0xFF0D0801);
@@ -562,12 +562,12 @@ class DarkModeTheme extends FlutterFlowTheme {
   @Deprecated('Use tertiary instead')
   Color get tertiaryColor => tertiary;
 
-  late Color primary = const Color(0xFFB6001A);
+  late Color primary = const Color(0xFFFF7AAB);
   late Color secondary = const Color(0xFFBD9A65);
   late Color tertiary = const Color(0xFF568B00);
   late Color alternate = const Color(0xFF5E52D4);
-  late Color primaryText = const Color(0xFFF2F2EA);
-  late Color secondaryText = const Color(0xFFB6A774);
+  late Color primaryText = const Color(0xFFEEF1F3);
+  late Color secondaryText = const Color(0xFF8AA4AA);
   late Color primaryBackground = const Color(0xFF131517);
   late Color secondaryBackground = const Color(0xFF1F2527);
   late Color accent1 = const Color(0xFFEEEEEE);
@@ -577,7 +577,7 @@ class DarkModeTheme extends FlutterFlowTheme {
   late Color success = const Color(0xFF04A24C);
   late Color warning = const Color(0xFFFCDC0C);
   late Color error = const Color(0xFFE21C3D);
-  late Color info = const Color(0xFF1C4494);
+  late Color info = const Color(0xFF528CFC);
 
   late Color primaryBtnText = Color(0xFFFFFFFF);
   late Color lineColor = Color(0xFF0D0801);

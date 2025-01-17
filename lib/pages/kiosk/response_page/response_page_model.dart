@@ -24,9 +24,7 @@ class ResponsePageModel extends FlutterFlowModel<ResponsePageWidget> {
   // Stores action output result for [Custom Action - shiftExists] action in responsePage widget.
   dynamic? shiftDetailsNewweb;
   // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
-  AppSettingsRecord? appsettings;
-  // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.
-  OutletRecord? outletdoc;
+  QrwebconfigRecord? qrWebOutletdetails;
   // Stores action output result for [Backend Call - API (checkStatus)] action in responsePage widget.
   ApiCallResponse? checkStatus;
   // Stores action output result for [Firestore Query - Query a collection] action in responsePage widget.

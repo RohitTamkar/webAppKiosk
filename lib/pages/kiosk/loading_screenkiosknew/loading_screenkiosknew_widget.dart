@@ -39,12 +39,20 @@ class _LoadingScreenkiosknewWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       setDarkModeSetting(context, ThemeMode.light);
+      _model.link = await actions.getDomainLink();
       await actions.clearCacheBeforeRun2();
-      await Future.delayed(const Duration(milliseconds: 2000));
+      _model.outletdetails = await queryQrwebconfigRecordOnce(
+        queryBuilder: (qrwebconfigRecord) => qrwebconfigRecord.where(
+          'domain',
+          isEqualTo: _model.link,
+        ),
+        singleRecord: true,
+      ).then((s) => s.firstOrNull);
+      await Future.delayed(const Duration(milliseconds: 1000));
       _model.outletgetdirect = await queryOutletRecordOnce(
         queryBuilder: (outletRecord) => outletRecord.where(
           'id',
-          isEqualTo: 'mD2rZVndgjrBECOsnYXB',
+          isEqualTo: _model.outletdetails?.outletId,
         ),
         singleRecord: true,
       ).then((s) => s.firstOrNull);

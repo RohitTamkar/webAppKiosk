@@ -43,27 +43,24 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
         '0',
         FFAppState().outletIdRef!.id,
       );
-      _model.appsettings = await queryAppSettingsRecordOnce(
-        parent: FFAppState().outletIdRef,
-        singleRecord: true,
-      ).then((s) => s.firstOrNull);
-      _model.outletdoc = await queryOutletRecordOnce(
-        queryBuilder: (outletRecord) => outletRecord.where(
-          'id',
+      _model.qrWebOutletdetails = await queryQrwebconfigRecordOnce(
+        queryBuilder: (qrwebconfigRecord) => qrwebconfigRecord.where(
+          'outletId',
           isEqualTo: FFAppState().outletIdRef?.id,
         ),
         singleRecord: true,
       ).then((s) => s.firstOrNull);
       _model.checkStatus = await CheckStatusCall.call(
-        merchantId: _model.outletdoc?.phonePeMid,
+        merchantId: _model.qrWebOutletdetails?.phonePeMid,
         merchantTransactionId: FFAppState().transactionid,
         outletId: FFAppState().outletIdRef?.id,
         orderId: FFAppState().paytmOrderId,
-        merchantKey: _model.outletdoc?.phonePeMkey,
-        isProd: _model.outletdoc?.isProdWeb,
+        merchantKey: _model.qrWebOutletdetails?.phonePeMkey,
+        isProd: _model.qrWebOutletdetails?.isProdWeb,
         amount: FFAppState().finalAmt,
       );
 
+      await Future.delayed(const Duration(milliseconds: 2000));
       if ((_model.checkStatus?.succeeded ?? true)) {
         _model.qrTransaction2 = await queryQrTransactionsRecordOnce(
           parent: FFAppState().outletIdRef,

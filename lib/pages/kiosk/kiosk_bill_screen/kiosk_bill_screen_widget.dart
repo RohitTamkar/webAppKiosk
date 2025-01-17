@@ -139,7 +139,6 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                     child: Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
                         image: DecorationImage(
                           fit: BoxFit.fitWidth,
                           alignment: AlignmentDirectional(0.0, -1.0),
@@ -257,8 +256,9 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                                 fontFamily: FlutterFlowTheme.of(
                                                                         context)
                                                                     .headlineSmallFamily,
-                                                                color: Color(
-                                                                    0xFF033BE8),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .info,
                                                                 fontSize: 14.0,
                                                                 letterSpacing:
                                                                     0.0,
@@ -436,7 +436,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .customColor1,
+                                                              .secondaryText,
                                                       size: 20.0,
                                                     ),
                                                     onPressed: () async {
@@ -516,8 +516,6 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                   .height *
                                               0.15,
                                           decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
                                             borderRadius:
                                                 BorderRadius.circular(10.0),
                                           ),
@@ -544,7 +542,9 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                   width: 65.0,
                                                   height: double.infinity,
                                                   decoration: BoxDecoration(
-                                                    color: Color(0xFFF5F5FA),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             10.0),
@@ -681,8 +681,9 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                                 0.23,
                                                             decoration:
                                                                 BoxDecoration(
-                                                              color: Color(
-                                                                  0xFFF5F5FA),
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
@@ -769,10 +770,10 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                                               textAlign: TextAlign.center,
                                                                               style: FlutterFlowTheme.of(context).displayMedium.override(
                                                                                     fontFamily: FlutterFlowTheme.of(context).displayMediumFamily,
-                                                                                    color: Color(0xFF83A1EB),
+                                                                                    color: FlutterFlowTheme.of(context).info,
                                                                                     fontSize: 10.0,
                                                                                     letterSpacing: 0.0,
-                                                                                    fontWeight: FontWeight.normal,
+                                                                                    fontWeight: FontWeight.bold,
                                                                                     useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).displayMediumFamily),
                                                                                   ),
                                                                             ),
@@ -904,9 +905,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                       Color(0x000D0801),
                                                       Color(0x980D0801),
                                                       Color(0xDA0D0801),
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryText
+                                                      Color(0xFF110B02)
                                                     ],
                                                     stops: [
                                                       0.0,
@@ -965,9 +964,8 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                                   fontFamily: FlutterFlowTheme.of(
                                                                           context)
                                                                       .headlineLargeFamily,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
+                                                                  color: Color(
+                                                                      0xFFF7F3F3),
                                                                   fontSize:
                                                                       13.0,
                                                                   letterSpacing:
@@ -1010,7 +1008,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                                           fontFamily:
                                                                               FlutterFlowTheme.of(context).headlineSmallFamily,
                                                                           color:
-                                                                              FlutterFlowTheme.of(context).customColor1,
+                                                                              Color(0xFFBEE2FF),
                                                                           fontSize:
                                                                               12.0,
                                                                           letterSpacing:
@@ -1034,7 +1032,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                                           fontFamily:
                                                                               FlutterFlowTheme.of(context).headlineSmallFamily,
                                                                           color:
-                                                                              FlutterFlowTheme.of(context).customColor1,
+                                                                              Color(0xFFBEE2FF),
                                                                           fontSize:
                                                                               12.0,
                                                                           letterSpacing:
@@ -1335,7 +1333,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                                               .labelSmall
                                                                               .override(
                                                                                 fontFamily: FlutterFlowTheme.of(context).labelSmallFamily,
-                                                                                color: FlutterFlowTheme.of(context).primary,
+                                                                                color: Color(0xFFD70120),
                                                                                 fontSize: 10.0,
                                                                                 letterSpacing: 0.0,
                                                                                 fontWeight: FontWeight.w600,
@@ -1394,7 +1392,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                                             icon:
                                                                                 Icon(
                                                                               Icons.remove_rounded,
-                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                              color: Colors.black,
                                                                               size: 12.0,
                                                                             ),
                                                                             onPressed:
@@ -1534,6 +1532,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                                               textAlign: TextAlign.center,
                                                                               style: FlutterFlowTheme.of(context).labelSmall.override(
                                                                                     fontFamily: FlutterFlowTheme.of(context).labelSmallFamily,
+                                                                                    color: Colors.black,
                                                                                     fontSize: 10.0,
                                                                                     letterSpacing: 0.0,
                                                                                     fontWeight: FontWeight.w600,
@@ -1556,7 +1555,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                                             icon:
                                                                                 Icon(
                                                                               Icons.add,
-                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                              color: Colors.black,
                                                                               size: 12.0,
                                                                             ),
                                                                             onPressed:
@@ -1758,8 +1757,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                     .override(
                                       fontFamily: FlutterFlowTheme.of(context)
                                           .displayMediumFamily,
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
+                                      color: Color(0xFFD70120),
                                       fontSize: 5.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
@@ -1789,8 +1787,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                             0.0, 0.0, 5.0, 0.0),
                                         child: Icon(
                                           Icons.shopping_cart_rounded,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
+                                          color: Colors.black,
                                           size: 17.0,
                                         ),
                                       ),
@@ -1806,6 +1803,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                 fontFamily:
                                                     FlutterFlowTheme.of(context)
                                                         .displayLargeFamily,
+                                                color: Colors.black,
                                                 fontSize: 15.0,
                                                 letterSpacing: 0.0,
                                                 useGoogleFonts: GoogleFonts
@@ -1825,7 +1823,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                       children: [
                                         Text(
                                           FFLocalizations.of(context).getText(
-                                            'lffvqew8' /* Parcel :₹  */,
+                                            'lffvqew8' /* Parcel : ₹  */,
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .displayLarge
@@ -1833,6 +1831,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                 fontFamily:
                                                     FlutterFlowTheme.of(context)
                                                         .displayLargeFamily,
+                                                color: Colors.black,
                                                 fontSize: 11.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.normal,
@@ -1856,6 +1855,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                                       FlutterFlowTheme.of(
                                                               context)
                                                           .displayLargeFamily,
+                                                  color: Colors.black,
                                                   fontSize: 11.0,
                                                   letterSpacing: 0.0,
                                                   useGoogleFonts: GoogleFonts
@@ -1887,6 +1887,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                             fontFamily:
                                                 FlutterFlowTheme.of(context)
                                                     .displayMediumFamily,
+                                            color: Colors.black,
                                             fontSize: 18.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.normal,
@@ -1907,6 +1908,7 @@ class _KioskBillScreenWidgetState extends State<KioskBillScreenWidget>
                                             fontFamily:
                                                 FlutterFlowTheme.of(context)
                                                     .displayMediumFamily,
+                                            color: Colors.black,
                                             fontSize: 18.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w600,

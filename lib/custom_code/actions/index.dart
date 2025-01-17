@@ -142,3 +142,4 @@ export 'savelogsto_storage.dart' show savelogstoStorage;
 export 'auto_launch_app.dart' show autoLaunchApp;
 export 'launch_url.dart' show launchUrl;
 export 'clear_cache_before_run2.dart' show clearCacheBeforeRun2;
+export 'get_domain_link.dart' show getDomainLink;

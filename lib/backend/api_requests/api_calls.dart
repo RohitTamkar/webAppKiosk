@@ -368,6 +368,39 @@ class CheckStatusCall {
   }
 }
 
+class TestCall {
+  static Future<ApiCallResponse> call({
+    String? mobiles = '',
+    String? name = '',
+    String? outlet = '',
+    String? filename = '',
+    String? link = '',
+  }) async {
+    final ffApiRequestBody = '''
+{"mobiles":"${escapeStringForJson(mobiles)}" ,
+    "name":"${escapeStringForJson(name)}" ,
+    "outlet":"${escapeStringForJson(outlet)}" ,
+    "filename": "${escapeStringForJson(filename)}",
+    "link": "${escapeStringForJson(link)}"}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'test',
+      apiUrl:
+          'https://asia-south1-sconnect-pos.cloudfunctions.net/msg91SMS/send_sms_pdf_link',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

@@ -86,7 +86,6 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
               body: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
                   image: DecorationImage(
                     fit: BoxFit.fitWidth,
                     alignment: AlignmentDirectional(0.0, -1.0),
@@ -375,7 +374,9 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                   unselectedChipStyle:
                                                       ChipStyle(
                                                     backgroundColor:
-                                                        Color(0xFFD7D4E8),
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primaryBackground,
                                                     textStyle: FlutterFlowTheme
                                                             .of(context)
                                                         .bodyMedium
@@ -401,6 +402,10 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                             .secondaryText,
                                                     iconSize: 12.0,
                                                     elevation: 0.0,
+                                                    borderColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .secondaryText,
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             6.0),
@@ -439,10 +444,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                       child: Container(
                         width: double.infinity,
                         height: 100.0,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
+                        decoration: BoxDecoration(),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -472,7 +474,9 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                           child: Container(
                                             width: 100.0,
                                             decoration: BoxDecoration(
-                                              color: Color(0xFFF5F5FA),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
                                               boxShadow: [
                                                 BoxShadow(
                                                   blurRadius: 2.0,
@@ -565,16 +569,11 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                                 TextAlign.start,
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyMedium
+                                                                .labelSmall
                                                                 .override(
                                                                   fontFamily: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyMediumFamily,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .info,
-                                                                  fontSize:
-                                                                      12.0,
+                                                                      .labelSmallFamily,
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight:
@@ -584,7 +583,7 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                                           .asMap()
                                                                       .containsKey(
                                                                           FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
+                                                                              .labelSmallFamily),
                                                                 ),
                                                           ),
                                                         ),
@@ -705,9 +704,8 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                                   icon: Icon(
                                                                     Icons
                                                                         .remove_sharp,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryText,
+                                                                    color: Colors
+                                                                        .black,
                                                                     size: 15.0,
                                                                   ),
                                                                   onPressed:
@@ -832,9 +830,8 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                                       0xFFA7D348),
                                                                   icon: Icon(
                                                                     Icons.add,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryText,
+                                                                    color: Colors
+                                                                        .black,
                                                                     size: 15.0,
                                                                   ),
                                                                   onPressed:
@@ -1506,11 +1503,12 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                           : () async {
                                               _model.btnPressed = true;
                                               safeSetState(() {});
-                                              _model.outletDOc =
-                                                  await queryOutletRecordOnce(
-                                                queryBuilder: (outletRecord) =>
-                                                    outletRecord.where(
-                                                  'id',
+                                              _model.qrwebOutletDetails =
+                                                  await queryQrwebconfigRecordOnce(
+                                                queryBuilder:
+                                                    (qrwebconfigRecord) =>
+                                                        qrwebconfigRecord.where(
+                                                  'outletId',
                                                   isEqualTo: FFAppState()
                                                       .outletIdRef
                                                       ?.id,
@@ -1524,10 +1522,10 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                           .allBillsList
                                                           .toList())
                                                   .isNotEmpty) {
-                                                if (_model.outletDOc
+                                                if (_model.qrwebOutletDetails
                                                             ?.phonePeMid !=
                                                         null &&
-                                                    _model.outletDOc
+                                                    _model.qrwebOutletDetails
                                                             ?.phonePeMid !=
                                                         '') {
                                                   if (getJsonField(
@@ -1541,15 +1539,17 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                     'ORD-${getCurrentTimestamp.millisecondsSinceEpoch.toString()}',
                                                     '0',
                                                   );
-                                                  FFAppState().outletId =
-                                                      _model.outletDOc!.id;
+                                                  FFAppState().outletId = _model
+                                                      .qrwebOutletDetails!
+                                                      .outletId;
                                                   FFAppState().transactionid =
                                                       'MT${getCurrentTimestamp.millisecondsSinceEpoch.toString()}';
                                                   safeSetState(() {});
                                                   _model.apiResulttja =
                                                       await PayApiCall.call(
                                                     merchantId: _model
-                                                        .outletDOc?.phonePeMid,
+                                                        .qrwebOutletDetails
+                                                        ?.phonePeMid,
                                                     merchantTransactionId:
                                                         FFAppState()
                                                             .transactionid,
@@ -1560,11 +1560,13 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                     amount:
                                                         FFAppState().finalAmt *
                                                             100,
-                                                    redirectUrl:
-                                                        'https://themagicicecreamfactory.in/responsePage',
+                                                    redirectUrl: _model
+                                                        .qrwebOutletDetails
+                                                        ?.redirectUrl,
                                                     redirectMode: 'REDIRECT',
-                                                    callbackUrl:
-                                                        'https://themagicicecreamfactory.in/responsePage',
+                                                    callbackUrl: _model
+                                                        .qrwebOutletDetails
+                                                        ?.redirectUrl,
                                                     mobileNumber: 8669695333,
                                                     type: 'PAY_PAGE',
                                                     outletId: FFAppState()
@@ -1573,9 +1575,11 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                     orderId: FFAppState()
                                                         .paytmOrderId,
                                                     merchantKey: _model
-                                                        .outletDOc?.phonePeMkey,
+                                                        .qrwebOutletDetails
+                                                        ?.phonePeMkey,
                                                     isProd: _model
-                                                        .outletDOc?.isProdWeb,
+                                                        .qrwebOutletDetails
+                                                        ?.isProdWeb,
                                                   );
 
                                                   if ((_model.apiResulttja

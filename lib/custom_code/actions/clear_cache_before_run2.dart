@@ -15,19 +15,24 @@ import 'dart:html' as html;
 
 Future<void> clearCacheBeforeRun2() async {
   try {
-    await html.window.caches!.keys().then((cacheNames) async {
-      for (var cacheName in cacheNames) {
-        var cache = await html.window.caches!.open(cacheName);
-        await cache.clear();
+    // Clear local storage
+    html.window.localStorage.clear();
+
+    // Clear session storage
+    html.window.sessionStorage.clear();
+
+    // Clear caches
+    if (html.window.caches != null) {
+      final cacheNames = await html.window.caches!.keys();
+      for (final cacheName in cacheNames) {
+        await html.window.caches!.delete(cacheName);
       }
-    });
-    print('Caché CLEARDED.');
+    }
+
+    print('Cache, Local Storage, and Session Storage cleared.');
   } catch (e) {
-    print('Error To clear caché: $e');
+    print('Error clearing cache and storage: $e');
   }
-  // Recargar páginas
-  //html.window.location.reload();
-  html.window.onLoad.listen((event) {
-    html.window.location.reload();
-  });
+
+  // Reload the page only once
 }

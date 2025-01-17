@@ -20,6 +20,10 @@ class LoadingScreenkiosknewModel
     extends FlutterFlowModel<LoadingScreenkiosknewWidget> {
   ///  State fields for stateful widgets in this page.
 
+  // Stores action output result for [Custom Action - getDomainLink] action in loadingScreenkiosknew widget.
+  String? link;
+  // Stores action output result for [Firestore Query - Query a collection] action in loadingScreenkiosknew widget.
+  QrwebconfigRecord? outletdetails;
   // Stores action output result for [Firestore Query - Query a collection] action in loadingScreenkiosknew widget.
   OutletRecord? outletgetdirect;
   // Stores action output result for [Firestore Query - Query a collection] action in loadingScreenkiosknew widget.

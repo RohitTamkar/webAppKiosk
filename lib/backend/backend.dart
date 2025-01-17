@@ -47,6 +47,7 @@ import 'schema/qr_transactions_record.dart';
 import 'schema/app_settings_master_record.dart';
 import 'schema/stock_summary_record.dart';
 import 'schema/monthly_pass_record.dart';
+import 'schema/qrwebconfig_record.dart';
 import 'dart:async';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -101,6 +102,7 @@ export 'schema/qr_transactions_record.dart';
 export 'schema/app_settings_master_record.dart';
 export 'schema/stock_summary_record.dart';
 export 'schema/monthly_pass_record.dart';
+export 'schema/qrwebconfig_record.dart';
 
 /// Functions to query DeviceRecords (as a Stream and as a Future).
 Future<int> queryDeviceRecordCount({
@@ -3626,6 +3628,84 @@ Future<FFFirestorePage<MonthlyPassRecord>> queryMonthlyPassRecordPage({
       if (isStream) {
         final streamSubscription =
             (page.dataStream)?.listen((List<MonthlyPassRecord> data) {
+          data.forEach((item) {
+            final itemIndexes = controller.itemList!
+                .asMap()
+                .map((k, v) => MapEntry(v.reference.id, k));
+            final index = itemIndexes[item.reference.id];
+            final items = controller.itemList!;
+            if (index != null) {
+              items.replaceRange(index, index + 1, [item]);
+              controller.itemList = {
+                for (var item in items) item.reference: item
+              }.values.toList();
+            }
+          });
+        });
+        streamSubscriptions?.add(streamSubscription);
+      }
+      return page;
+    });
+
+/// Functions to query QrwebconfigRecords (as a Stream and as a Future).
+Future<int> queryQrwebconfigRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      QrwebconfigRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<QrwebconfigRecord>> queryQrwebconfigRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      QrwebconfigRecord.collection,
+      QrwebconfigRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<QrwebconfigRecord>> queryQrwebconfigRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      QrwebconfigRecord.collection,
+      QrwebconfigRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+Future<FFFirestorePage<QrwebconfigRecord>> queryQrwebconfigRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+  required PagingController<DocumentSnapshot?, QrwebconfigRecord> controller,
+  List<StreamSubscription?>? streamSubscriptions,
+}) =>
+    queryCollectionPage(
+      QrwebconfigRecord.collection,
+      QrwebconfigRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    ).then((page) {
+      controller.appendPage(
+        page.data,
+        page.nextPageMarker,
+      );
+      if (isStream) {
+        final streamSubscription =
+            (page.dataStream)?.listen((List<QrwebconfigRecord> data) {
           data.forEach((item) {
             final itemIndexes = controller.itemList!
                 .asMap()
