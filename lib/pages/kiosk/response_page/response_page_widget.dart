@@ -511,8 +511,8 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
                                           ),
                                     ),
                                   ),
-                                  if ((FFAppState().count != null) &&
-                                      (FFAppState().count != 0))
+                                  if ((FFAppState().count == null) &&
+                                      (FFAppState().count == 0))
                                     FFButtonWidget(
                                       onPressed: () async {
                                         var _shouldSetState = false;
