@@ -58,9 +58,9 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
         merchantKey: _model.qrWebOutletdetails?.phonePeMkey,
         isProd: _model.qrWebOutletdetails?.isProdWeb,
         amount: FFAppState().finalAmt,
+        domain: _model.qrWebOutletdetails?.domain,
       );
 
-      await Future.delayed(const Duration(milliseconds: 2000));
       if ((_model.checkStatus?.succeeded ?? true)) {
         _model.qrTransaction2 = await queryQrTransactionsRecordOnce(
           parent: FFAppState().outletIdRef,
@@ -148,8 +148,10 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
               ).toString().toString(),
               orderType: FFAppState().orderType,
               kotStatus: 'PENDING',
-              count:
-                  functions.stringToint('00${FFAppState().count.toString()}'),
+              count: valueOrDefault<int>(
+                FFAppState().count,
+                1,
+              ),
               source: 'WEB ORDER',
             ),
             ...mapToFirestore(
@@ -192,8 +194,10 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
               ).toString().toString(),
               orderType: FFAppState().orderType,
               kotStatus: 'PENDING',
-              count:
-                  functions.stringToint('00${FFAppState().count.toString()}'),
+              count: valueOrDefault<int>(
+                FFAppState().count,
+                1,
+              ),
               source: 'WEB ORDER',
             ),
             ...mapToFirestore(
@@ -549,6 +553,8 @@ class _ResponsePageWidgetState extends State<ResponsePageWidget> {
                                           isProd: _model
                                               .qrWebOutletdetails23?.isProdWeb,
                                           amount: FFAppState().finalAmt,
+                                          domain: _model
+                                              .qrWebOutletdetails23?.domain,
                                         );
 
                                         _shouldSetState = true;

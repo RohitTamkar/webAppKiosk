@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -1585,6 +1586,81 @@ class _KioskCartWidgetState extends State<KioskCartWidget> {
                                                   if ((_model.apiResulttja
                                                           ?.succeeded ??
                                                       true)) {
+                                                    _model.checkstatusApis =
+                                                        await CheckStatusCall
+                                                            .call(
+                                                      merchantId: _model
+                                                          .qrwebOutletDetails
+                                                          ?.phonePeMid,
+                                                      merchantTransactionId:
+                                                          FFAppState()
+                                                              .transactionid,
+                                                      outletId: FFAppState()
+                                                          .outletIdRef
+                                                          ?.id,
+                                                      orderId: FFAppState()
+                                                          .paytmOrderId,
+                                                      merchantKey: _model
+                                                          .qrwebOutletDetails
+                                                          ?.phonePeMkey,
+                                                      isProd: _model
+                                                          .qrwebOutletDetails
+                                                          ?.isProdWeb,
+                                                      amount:
+                                                          FFAppState().finalAmt,
+                                                    );
+
+                                                    _model.prdListkiosk =
+                                                        await actions
+                                                            .filterProducts(
+                                                      FFAppState().selBill,
+                                                      FFAppState()
+                                                          .allBillsList
+                                                          .toList(),
+                                                    );
+                                                    _model.qrtransaction =
+                                                        await queryQrTransactionsRecordOnce(
+                                                      parent: FFAppState()
+                                                          .outletIdRef,
+                                                      queryBuilder:
+                                                          (qrTransactionsRecord) =>
+                                                              qrTransactionsRecord
+                                                                  .where(
+                                                        'orderId',
+                                                        isEqualTo: FFAppState()
+                                                            .paytmOrderId,
+                                                      ),
+                                                      singleRecord: true,
+                                                    ).then((s) =>
+                                                            s.firstOrNull);
+
+                                                    await _model.qrtransaction!
+                                                        .reference
+                                                        .update({
+                                                      ...createQrTransactionsRecordData(
+                                                        shiftId: valueOrDefault<
+                                                            String>(
+                                                          getJsonField(
+                                                            widget!
+                                                                .shiftdetails,
+                                                            r'''$.shiftId''',
+                                                          )?.toString(),
+                                                          '0',
+                                                        ),
+                                                        count:
+                                                            FFAppState().count,
+                                                        orderType: FFAppState()
+                                                            .orderType,
+                                                      ),
+                                                      ...mapToFirestore(
+                                                        {
+                                                          'productList':
+                                                              getSelItemListListFirestoreData(
+                                                            _model.prdListkiosk,
+                                                          ),
+                                                        },
+                                                      ),
+                                                    });
                                                     await actions.launchUrl(
                                                       getJsonField(
                                                         (_model.apiResulttja

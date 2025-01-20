@@ -27,8 +27,6 @@ export '/pages/kiosk/kot_order_screen/kot_order_screen_widget.dart'
     show KotOrderScreenWidget;
 export '/pages/kiosk/token_display/token_display_widget.dart'
     show TokenDisplayWidget;
-export '/pages/kiosk/response_order/response_order_widget.dart'
-    show ResponseOrderWidget;
 export '/pages/kiosk/kiosk_payment_copy/kiosk_payment_copy_widget.dart'
     show KioskPaymentCopyWidget;
 export '/pages/kiosk/kiosk_choose_payment_mode/kiosk_choose_payment_mode_widget.dart'

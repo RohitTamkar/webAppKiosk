@@ -872,44 +872,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ta': '',
     },
   },
-  // responseOrder
-  {
-    'd66ogc2g': {
-      'en': 'Thank You !',
-      'hi': '',
-      'kn': '',
-      'mr': '',
-      'ta': '',
-    },
-    'jvuqki25': {
-      'en': 'Show Below Token No To Collect Your Order At Counter',
-      'hi': '',
-      'kn': '',
-      'mr': '',
-      'ta': '',
-    },
-    'jup6btjc': {
-      'en': 'Receipt ',
-      'hi': '',
-      'kn': '',
-      'mr': '',
-      'ta': '',
-    },
-    'l69zys7a': {
-      'en': 'Payment \nSuccessful',
-      'hi': '',
-      'kn': '',
-      'mr': '',
-      'ta': '',
-    },
-    'gadymulg': {
-      'en': 'Home',
-      'hi': '',
-      'kn': '',
-      'mr': '',
-      'ta': '',
-    },
-  },
   // KioskPaymentCopy
   {
     '4in5uw1r': {
